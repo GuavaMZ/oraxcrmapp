@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:oraxcrm/app/app.dart';
@@ -71,7 +72,31 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                 icon: const Icon(Icons.abc))) //TODO:CHANGE ICON
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(height: displayHeight(context) * 0.05),
+                  CarouselSlider(items: [
+                    Container(
+                      margin: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: ColorsManager.buttonColor1,
+                        borderRadius: BorderRadius.circular(displayHeight(context) * 0.05),
+                      ),
+                    ),
+                     Container(
+                      margin: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: ColorsManager.buttonColor2,
+                        borderRadius: BorderRadius.circular(displayHeight(context) * 0.05),
+                      ),
+                    ),
+                     Container(
+                      margin: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 231, 19, 19),
+                        borderRadius: BorderRadius.circular(displayHeight(context) * 0.05),
+                      ),
+                    ),
+                  ], options: CarouselOptions(autoPlay: true,padEnds: false,))
                 ],
               ),
             ),
