@@ -1,9 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
+import 'package:oraxcrm/presentation/add_bottomsheet/view/add_bottomsheet.dart';
 import 'package:oraxcrm/presentation/mainpage/viewmodel/mainpage_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:provider/provider.dart';
 
 class MainPageView extends StatefulWidget {
@@ -41,15 +42,30 @@ class _MainPageViewState extends State<MainPageView>
             labels: const ["Home", "Home1", "Home2", "Home3"],
             icons: _viewModel.navBarIcons,
             // tabBarColor: ColorsManager.bgColor
-            onTabItemSelected: (int index){
-              _viewModel.changePage(index);
+            onTabItemSelected: (int index) {
+              if (index == 2) {
+                showModalBottomSheet(
+                  context: context,
+                  constraints: BoxConstraints(maxHeight: displayHeight(context) * 0.23),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft:
+                              Radius.circular(displayHeight(context) * 0.055),
+                          topRight:
+                              Radius.circular(displayHeight(context) * 0.055))),
+                  builder: (BuildContext context) {
+                    return const AddBottomsheetView();
+                  },
+                );
+              } else {
+                _viewModel.changePage(index);
+              }
             },
           ),
           body: TabBarView(
             controller: _viewModel.motionTabBarController,
             physics: const NeverScrollableScrollPhysics(),
             children: _viewModel.pages,
-
           ),
         ));
   }

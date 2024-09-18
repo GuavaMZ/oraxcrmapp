@@ -13,4 +13,8 @@ class ColorsManager {
   static const Color buttonColor3 = Color(0xff989898);
   static const Color buttonColor4 = Color(0xffC8C8C8);
   static const Color textFieldColor = Color(0xffF5F4F4);
+  static const Color defaultShadowColor = Color(0xff000000);
+  static const Color profilePicBorderColor = Color(0xff000000);
+  static const Color separatorColor = Color(0xfff1f1f1);
+  static const Color bottomSheetColor = Color(0xffffffff);
 }
