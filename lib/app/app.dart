@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       MapLocale('ar', AppStrings.AR,
           /*fontFamily: FontConstants.arabicFontFamily*/),
       MapLocale('en', AppStrings.EN, /*fontFamily: FontConstants.outfitFontFamily*/)
-    ], initLanguageCode: 'ar');
+    ], initLanguageCode: 'en');
     localization.onTranslatedLanguage = _onTranslatedLanguage;
     super.initState();
   }
