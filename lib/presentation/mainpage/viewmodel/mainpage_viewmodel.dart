@@ -8,6 +8,20 @@ class MainPageViewModel extends ChangeNotifier{
 
   List<Widget> pages = [
     HomeScreenView(),
-    ProfileView()
+    ProfileView(),
+    HomeScreenView(),
+    ProfileView(),
   ];
+
+  List<IconData> navBarIcons = [
+    Icons.abc,
+    Icons.ac_unit,
+    Icons.access_alarm,
+    Icons.access_time,
+  ];
+
+  changePage(int index){
+    motionTabBarController.animateTo(index);
+    notifyListeners();
+  }
 }

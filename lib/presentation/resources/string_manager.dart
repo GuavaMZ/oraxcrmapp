@@ -61,7 +61,7 @@ mixin AppStrings {
 
 
 
-  Map<String, dynamic> EN = {
+  static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
     loginToYourAccount: 'Login to your Account',
     phoneNumber: 'Phone Number',
@@ -123,7 +123,7 @@ mixin AppStrings {
 
   };
 
-  Map<String, dynamic> AR = {
+  static Map<String, dynamic> AR = {
     welcomeBack: 'مرحبا بعودتك',
     loginToYourAccount: 'تسجيل الدخول الي حسابك',
     phoneNumber: 'رقم الهاتف',

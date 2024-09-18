@@ -6,6 +6,7 @@ import 'package:oraxcrm/presentation/contractsigning/view/contract_signing.dart'
 import 'package:oraxcrm/presentation/files/view/files.dart';
 import 'package:oraxcrm/presentation/homescreen/view/home_screen.dart';
 import 'package:oraxcrm/presentation/login/view/login_view.dart';
+import 'package:oraxcrm/presentation/mainpage/view/mainpage.dart';
 import 'package:oraxcrm/presentation/openticket/view/open_ticket.dart';
 import 'package:oraxcrm/presentation/personalinfo/view/personal_info.dart';
 import 'package:oraxcrm/presentation/profile/view/profile.dart';
@@ -33,10 +34,10 @@ class Routes {
   static const String activitiesRoute = "/activities/view";
   static const String changePasswordRoute = "/changePassword/view";
 
-  final router = GoRouter(routes: [
+  static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const LoginView(),
+      builder: (context, state) => const MainPageView(),
     ),
     GoRoute(
       path: filesRoute,
