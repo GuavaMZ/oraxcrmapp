@@ -77,7 +77,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/user.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.personalInfo.getString(context),
@@ -112,7 +115,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/edit.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.changePassword.getString(context),
@@ -147,7 +153,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/document.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.ticketsSummary.getString(context),
@@ -182,7 +191,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/task.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.contracts.getString(context),
@@ -217,7 +229,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/coin.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.projects.getString(context),
@@ -252,7 +267,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/folder.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.files.getString(context),
@@ -287,7 +305,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/help.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.support.getString(context),
@@ -322,7 +343,10 @@ class _ProfileViewState extends State<ProfileView> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(''), //TODO:ICON HERE
+                              SvgPicture.asset('assets/images/logout.svg'),
+                              const Padding( 
+                               padding: EdgeInsets.only(right: 15),
+                               ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.signOut.getString(context),
@@ -334,16 +358,8 @@ class _ProfileViewState extends State<ProfileView> {
                               ),
                             ],
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: displayHeight(context) * 0.02,
-                            color: ColorsManager.iconsColor1,
-                          )
                         ])),
-                Container(
-                  height: 1,
-                  color: ColorsManager.separatorColor,
-                ),
+                
               ],
             ),
           ),
