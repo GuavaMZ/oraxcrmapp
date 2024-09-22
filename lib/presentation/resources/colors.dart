@@ -17,4 +17,11 @@ class ColorsManager {
   static const Color profilePicBorderColor = Color(0xff000000);
   static const Color separatorColor = Color(0xfff1f1f1);
   static const Color bottomSheetColor = Color(0xffffffff);
+  static const Color statisticsContainerColor = Color(0xffffffff);
+  static const Color ticketsContainerColor = Color(0xffffffff);
+  static const Color filesContainerColor = Color(0xffffffff);
+  static const Color projectsContainerColor = Color(0xffffffff);
+  static const Color choiceChipBorderColor = Color(0xffffffff);
+  static const Color selectedChoiceChipColor = Color(0xff000000);
+  static const Color unSelectedChoiceChipColor = Color(0xffffffff);
 }
