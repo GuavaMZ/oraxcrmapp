@@ -56,6 +56,8 @@ mixin AppStrings {
   static const String verificationCode= 'Verification Code';
   static const String signature= 'Signature';
   static const String confirm= 'Confirm';
+  static const String projectDetails =  'Project Details';
+  static const String activities = 'Activities';
 
 
 
@@ -119,7 +121,8 @@ mixin AppStrings {
     verificationCode: 'Verification Code',
     signature: 'Signature',
     confirm: 'Confirm',
-
+    projectDetails:"Project Details",
+    activities:"Activities",
 
   };
 
@@ -181,6 +184,7 @@ mixin AppStrings {
     verificationCode: 'رمز التحقق',
     signature: 'إمضاء',
     confirm: 'تأكيد',
-
+    projectDetails:"تفاصيل المشروع",
+    activities:"النشاطات"
   };
 }
