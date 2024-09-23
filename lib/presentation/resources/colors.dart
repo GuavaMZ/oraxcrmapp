@@ -24,4 +24,7 @@ class ColorsManager {
   static const Color choiceChipBorderColor = Color(0xffffffff);
   static const Color selectedChoiceChipColor = Color(0xff000000);
   static const Color unSelectedChoiceChipColor = Color(0xffffffff);
+  static const Color discreteCircleFirstColor = Color(0xff2795ca);
+  static const Color discreteCircleSecondColor = Color(0xffe30716);
+  static const Color discreteCircleThirdColor = Color(0xffffffff);
 }
