@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:oraxcrm/app/app.dart';
 import 'package:oraxcrm/presentation/homescreen/viewmodel/home_screen_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
@@ -17,6 +18,12 @@ class HomeScreenView extends StatefulWidget {
 
 class _HomeScreenViewState extends State<HomeScreenView> {
   final HomeScreenViewmodel _viewModel = HomeScreenViewmodel();
+  @override
+  void initState() {
+    Future.wait([_viewModel.getUserInfo()]);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -51,7 +58,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                             child: IconButton(
                                 onPressed: () {},
                                 icon:
-                                    const Icon(Icons.abc))), //TODO:CHANGE ICON
+                                    SvgPicture.asset('assets/images/notification 2.svg'))), //TODO:CHANGE ICON
                         Text(AppStrings.home.getString(context),
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
@@ -69,34 +76,42 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                 ]),
                             child: IconButton(
                                 onPressed: () {},
-                                icon: const Icon(Icons.abc))) //TODO:CHANGE ICON
+                                icon: SvgPicture.asset('assets/images/menu-1 3.svg'))) //TODO:CHANGE ICON
                       ],
                     ),
                   ),
                   SizedBox(height: displayHeight(context) * 0.05),
-                  CarouselSlider(items: [
-                    Container(
-                      margin: EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: ColorsManager.buttonColor1,
-                        borderRadius: BorderRadius.circular(displayHeight(context) * 0.05),
-                      ),
-                    ),
-                     Container(
-                      margin: EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: ColorsManager.buttonColor2,
-                        borderRadius: BorderRadius.circular(displayHeight(context) * 0.05),
-                      ),
-                    ),
-                     Container(
-                      margin: EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 231, 19, 19),
-                        borderRadius: BorderRadius.circular(displayHeight(context) * 0.05),
-                      ),
-                    ),
-                  ], options: CarouselOptions(autoPlay: true,padEnds: false,))
+                  CarouselSlider(
+                      items: [
+                        Container(
+                          margin: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            color: ColorsManager.buttonColor1,
+                            borderRadius: BorderRadius.circular(
+                                displayHeight(context) * 0.05),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            color: ColorsManager.buttonColor2,
+                            borderRadius: BorderRadius.circular(
+                                displayHeight(context) * 0.05),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 231, 19, 19),
+                            borderRadius: BorderRadius.circular(
+                                displayHeight(context) * 0.05),
+                          ),
+                        ),
+                      ],
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        padEnds: false,
+                      ))
                 ],
               ),
             ),

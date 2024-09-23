@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
+import 'package:oraxcrm/app/app.dart';
 import 'package:oraxcrm/presentation/add_bottomsheet/view/add_bottomsheet.dart';
 import 'package:oraxcrm/presentation/mainpage/viewmodel/mainpage_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
+import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
 
 class MainPageView extends StatefulWidget {
@@ -38,15 +41,20 @@ class _MainPageViewState extends State<MainPageView>
         child: Scaffold(
           bottomNavigationBar: MotionTabBar(
             controller: _viewModel.motionTabBarController,
-            initialSelectedTab: "Home",
-            labels: const ["Home", "Home1", "Home2", "Home3"],
+            initialSelectedTab: AppStrings.home.getString(context),
+            labels: [
+              AppStrings.home.getString(context),
+              AppStrings.notifications.getString(context),
+              "Add",
+              AppStrings.profile.getString(context)
+            ],
             icons: _viewModel.navBarIcons,
-            // tabBarColor: ColorsManager.bgColor
             onTabItemSelected: (int index) {
               if (index == 2) {
                 showModalBottomSheet(
                   context: context,
-                  constraints: BoxConstraints(maxHeight: displayHeight(context) * 0.23),
+                  constraints:
+                      BoxConstraints(maxHeight: displayHeight(context) * 0.23),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                           topLeft:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
@@ -37,9 +38,9 @@ class _ProfileViewState extends State<ProfileView> {
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        const Text(
-                          'Mahytab Adel',
-                          style: TextStyle(
+                        Text(
+                          DataHolders.userDataModel!.data!.firstname!,
+                          style: const TextStyle(
                               fontSize: 12, color: ColorsManager.fontColor2),
                         )
                       ],
@@ -78,9 +79,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/user.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.personalInfo.getString(context),
@@ -116,9 +117,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/edit.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.changePassword.getString(context),
@@ -154,9 +155,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/document.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.ticketsSummary.getString(context),
@@ -192,9 +193,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/task.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.contracts.getString(context),
@@ -230,9 +231,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/coin.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.projects.getString(context),
@@ -268,9 +269,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/folder.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.files.getString(context),
@@ -306,9 +307,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/help.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.support.getString(context),
@@ -344,9 +345,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/logout.svg'),
-                              const Padding( 
-                               padding: EdgeInsets.only(right: 15),
-                               ), //TODO:ICON HERE
+                              const Padding(
+                                padding: EdgeInsets.only(right: 15),
+                              ), //TODO:ICON HERE
                               SizedBox(
                                 child: Text(
                                   AppStrings.signOut.getString(context),
@@ -359,7 +360,6 @@ class _ProfileViewState extends State<ProfileView> {
                             ],
                           ),
                         ])),
-                
               ],
             ),
           ),

@@ -6,21 +6,22 @@ mixin AppStrings {
   static const String forgotPassword = 'Forgot Password?';
   static const String signIn = 'Sign In';
   static const String dontHaveAnyAccountSignUp = "Don't have Account ? Sign Up";
-  static const String home= 'Home';
-  static const String all= 'All';
-  static const String apps= 'Apps';
-  static const String websites= 'Websites';
-  static const String erpSystems= 'ERP Systems';
-  static const String openTicket= 'Open Ticket';
-  static const String signContract= 'Sign Contract';
-  static const String subject= 'Subject';
-  static const String client= 'Client';
-  static const String department= 'Department';
-  static const String follower= 'Follower';
-  static const String priority= 'Priority';
-  static const String project= 'Project';
-  static const String ticketText= 'Ticket Text';
-  static const String open= 'Open';
+  static const String home = 'Home';
+  static const String all = 'All';
+  static const String apps = 'Apps';
+  static const String websites = 'Websites';
+  static const String erpSystems = 'ERP Systems';
+  static const String openTicket = 'Open Ticket';
+  static const String signContract = 'Sign Contract';
+  static const String subject = 'Subject';
+  static const String client = 'Client';
+  static const String department = 'Department';
+  static const String notifications = 'Notifications';
+  static const String follower = 'Follower';
+  static const String priority = 'Priority';
+  static const String project = 'Project';
+  static const String ticketText = 'Ticket Text';
+  static const String open = 'Open';
   static const String profile = 'Profile';
   static const String personalInfo = 'Personal Info';
   static const String changePassword = 'Change Password';
@@ -38,30 +39,29 @@ mixin AppStrings {
   static const String update = 'Update';
   static const String oldPassword = 'Old Password';
   static const String newPassword = 'New Password';
-  static const String confirmPassword= 'Confirm Password';
+  static const String confirmPassword = 'Confirm Password';
   static const String closed = 'Closed';
   static const String onHold = 'On Hold';
-  static const String finished= 'Finished';
-  static const String inProgress= 'In Progress';
-  static const String projectSummary= 'Project Summary';
+  static const String finished = 'Finished';
+  static const String inProgress = 'In Progress';
+  static const String projectSummary = 'Project Summary';
   static const String tasks = 'Tasks';
   static const String tickets = 'Tickets';
-  static const String openTasks= 'Open Tasks';
-  static const String daysLeft= 'Days Left';
+  static const String openTasks = 'Open Tasks';
+  static const String daysLeft = 'Days Left';
   static const String signed = 'Signed';
   static const String unSigned = 'UnSigned';
-  static const String contractTerms= 'Contract Terms';
-  static const String contractSigning= 'Contract Signing';
-  static const String downloadContract= 'Download Contract';
-  static const String verificationCode= 'Verification Code';
-  static const String signature= 'Signature';
-  static const String confirm= 'Confirm';
-  static const String projectDetails =  'Project Details';
+  static const String contractTerms = 'Contract Terms';
+  static const String contractSigning = 'Contract Signing';
+  static const String downloadContract = 'Download Contract';
+  static const String verificationCode = 'Verification Code';
+  static const String signature = 'Signature';
+  static const String confirm = 'Confirm';
+  static const String projectDetails = 'Project Details';
   static const String activities = 'Activities';
-
-
-
-
+  static const String invalidEmailOrPassword = 'Invalid Email Or Password';
+  static const String invalidPhoneOrPassword =
+      "Invalid Phone Number Or Password";
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -103,7 +103,7 @@ mixin AppStrings {
     update: 'Update',
     oldPassword: 'Old Password',
     newPassword: 'New Password',
-    confirmPassword:'Confirm Password',
+    confirmPassword: 'Confirm Password',
     closed: 'Closed',
     onHold: 'On Hold',
     finished: 'Finished',
@@ -121,9 +121,11 @@ mixin AppStrings {
     verificationCode: 'Verification Code',
     signature: 'Signature',
     confirm: 'Confirm',
-    projectDetails:"Project Details",
-    activities:"Activities",
-
+    projectDetails: "Project Details",
+    activities: "Activities",
+    invalidEmailOrPassword: "Invalid Email Or Password",
+    invalidPhoneOrPassword: "Invalid Phone Number Or Password",
+    notifications:"Notifications"
   };
 
   static Map<String, dynamic> AR = {
@@ -166,7 +168,7 @@ mixin AppStrings {
     update: 'تحديث',
     oldPassword: 'كلمة المرور القديمة',
     newPassword: 'كلمة المرور الجديدة',
-    confirmPassword:'تأكيد كلمة المرور',
+    confirmPassword: 'تأكيد كلمة المرور',
     closed: 'مغلق',
     onHold: 'في الأنتظار',
     finished: 'انتهت',
@@ -184,7 +186,10 @@ mixin AppStrings {
     verificationCode: 'رمز التحقق',
     signature: 'إمضاء',
     confirm: 'تأكيد',
-    projectDetails:"تفاصيل المشروع",
-    activities:"النشاطات"
+    projectDetails: "تفاصيل المشروع",
+    activities: "النشاطات",
+    invalidEmailOrPassword: "خطأ في البريد الالكتروني او كلمة السر",
+    invalidPhoneOrPassword: "خطأ في رقم الهاتف او كلمة السر",
+    notifications:"الاشعارات"
   };
 }
