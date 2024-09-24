@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oraxcrm/presentation/resources/font_manager.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 
@@ -26,8 +27,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
         localization.init(mapLocales: [
       MapLocale('ar', AppStrings.AR,
-          /*fontFamily: FontConstants.arabicFontFamily*/),
-      MapLocale('en', AppStrings.EN, /*fontFamily: FontConstants.outfitFontFamily*/)
+          fontFamily: FontManager.currentFont),
+      MapLocale('en', AppStrings.EN, fontFamily: FontManager.currentFont)
     ], initLanguageCode: 'en');
     localization.onTranslatedLanguage = _onTranslatedLanguage;
     super.initState();
@@ -43,6 +44,9 @@ class _MyAppState extends State<MyApp> {
       routerConfig: Routes.router,
       supportedLocales: localization.supportedLocales,
       localizationsDelegates: localization.localizationsDelegates,
+      theme: ThemeData(
+        fontFamily: FontManager.currentFont
+      ),
     );
   }
 }
