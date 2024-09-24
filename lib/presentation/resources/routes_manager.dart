@@ -21,6 +21,7 @@ class Routes {
   static const String loginRoute = "/login/view";
   static const String profileRoute = "/profile/view";
   static const String homeScreenRoute = "/homeScreen/view";
+  static const String mainScreenRoute = "/mainScreen/view";
   static const String filesRoute = "/files/view";
   static const String projectsRoute = "/projects/view";
   static const String tasksRoute = "/tasks/view";
@@ -46,6 +47,10 @@ class Routes {
     GoRoute(
       path: homeScreenRoute,
       builder: (context, state) => const HomeScreenView(),
+    ),
+    GoRoute(
+      path: mainScreenRoute,
+      builder: (context, state) => const MainPageView(),
     ),
     GoRoute(
       path: activitiesRoute,
