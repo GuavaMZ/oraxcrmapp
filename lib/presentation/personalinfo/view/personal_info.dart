@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oraxcrm/presentation/personalinfo/viewmodel/personal_info_viewmodel.dart';
+import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/sizehelper.dart';
+import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
 
 class PersonalInfoView extends StatefulWidget {
