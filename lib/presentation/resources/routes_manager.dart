@@ -38,7 +38,7 @@ class Routes {
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const FilesView(),
+      builder: (context, state) => const ProjectDetailsView(),
     ),
     GoRoute(
       path: filesRoute,
@@ -100,13 +100,9 @@ class Routes {
       path: ticketsSummaryRoute,
       builder: (context, state) => const TicketsSummaryView(),
     ),
-
-
-
-
-
-
-
-    
+    GoRoute(
+      path: loginRoute,
+      builder: (context, state) => const LoginView(),
+    ),
   ]);
 }

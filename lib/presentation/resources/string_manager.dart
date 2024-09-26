@@ -60,6 +60,12 @@ mixin AppStrings {
   static const String projectDetails = 'Project Details';
   static const String activities = 'Activities';
   static const String invalidEmailOrPassword = 'Invalid Email Or Password';
+  static const String answered = 'Answered';
+  static const String low = 'Low';
+  static const String high = 'High';
+  static const String medium = 'Medium';
+  static const String cancelled = 'Cancelled';
+  static const String notStarted = 'Not Started';
   static const String invalidPhoneOrPassword =
       "Invalid Phone Number Or Password";
 
@@ -125,7 +131,22 @@ mixin AppStrings {
     activities: "Activities",
     invalidEmailOrPassword: "Invalid Email Or Password",
     invalidPhoneOrPassword: "Invalid Phone Number Or Password",
-    notifications:"Notifications"
+    notifications: "Notifications",
+    answered: "Answered",
+    "مهم": "High",
+    "منخفض": "Low",
+    "منخفضة": "Low",
+    "متوسط": "Medium",
+    "متوسطة": "Medium",
+    'افتح': "Open",
+    'مغلقة': "Closed",
+    'في تقدم': "In Progress",
+    "أجاب": "Answered",
+    "في الانتظار": "On Hold",
+    "null": 'N/A',
+    "Null": 'N/A',
+    notStarted: "Not Started",
+    cancelled: "Cancelled",
   };
 
   static Map<String, dynamic> AR = {
@@ -150,7 +171,7 @@ mixin AppStrings {
     priority: 'أولوية',
     project: 'المشروع',
     ticketText: 'نص التذكرة',
-    open: 'فتح',
+    open: 'مفتوح',
     profile: 'الملف الشخصي',
     personalInfo: 'المعلومات الشخصية',
     changePassword: 'تغيير الباسورد',
@@ -190,6 +211,24 @@ mixin AppStrings {
     activities: "النشاطات",
     invalidEmailOrPassword: "خطأ في البريد الالكتروني او كلمة السر",
     invalidPhoneOrPassword: "خطأ في رقم الهاتف او كلمة السر",
-    notifications:"الاشعارات"
+    notifications: "الاشعارات",
+    answered: "مُجاب عليها",
+    low: "منخفض",
+    medium: "متوسط",
+    high: "مهم",
+    "مهم": "مهم",
+    "منخفض": "منخفض",
+    "منخفضة": "منخفضة",
+    "متوسط": "متوسط",
+    "متوسطة": "متوسطة",
+    'افتح': "افتح",
+    'مغلقة': "مغلقة",
+    'في تقدم': "في تقدم",
+    "أجاب": "أجاب",
+    "في الانتظار": "في الانتظار",
+    "null": 'N/A',
+    "Null": 'N/A',
+    notStarted: "لم تبدأ",
+    cancelled:"Cancelled"
   };
 }

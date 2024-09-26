@@ -1,3 +1,3 @@
 class FontManager{
-  static const String currentFont = 'Kawkab';
+  static const String currentFont = 'Poppins';
 }

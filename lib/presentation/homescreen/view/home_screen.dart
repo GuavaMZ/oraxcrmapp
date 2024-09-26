@@ -20,7 +20,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   final HomeScreenViewmodel _viewModel = HomeScreenViewmodel();
   @override
   void initState() {
-    Future.wait([_viewModel.getUserInfo()]);
+    Future.wait([_viewModel.getUserInfo(context)]);
     super.initState();
   }
 
