@@ -79,7 +79,9 @@ class _ProfileViewState extends State<ProfileView> {
                     height: displayHeight(context) * 0.04,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(Routes.personalInfoRoute);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorsManager.bgColor,
                           elevation: 0,
@@ -197,7 +199,9 @@ class _ProfileViewState extends State<ProfileView> {
                     color: ColorsManager.separatorColor,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(Routes.contractsRoute);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorsManager.bgColor,
                           elevation: 0,

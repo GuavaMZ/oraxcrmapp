@@ -11,6 +11,7 @@ class HomeScreenViewmodel extends ChangeNotifier {
   Future getUserInfo(BuildContext context) async {
     UserInfoRequests userInfoRequests = UserInfoRequests();
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(prefs.getString('usrToken'));
     try {
       await userInfoRequests.getUserInfo(
           {'Authorization': prefs.getString('usrToken')}).then((res) {

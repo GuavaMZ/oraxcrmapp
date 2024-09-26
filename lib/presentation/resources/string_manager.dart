@@ -20,6 +20,7 @@ mixin AppStrings {
   static const String follower = 'Follower';
   static const String priority = 'Priority';
   static const String project = 'Project';
+  static const String projectProgess = 'Project Progress';
   static const String ticketText = 'Ticket Text';
   static const String open = 'Open';
   static const String profile = 'Profile';
@@ -49,6 +50,7 @@ mixin AppStrings {
   static const String tickets = 'Tickets';
   static const String openTasks = 'Open Tasks';
   static const String daysLeft = 'Days Left';
+  static const String days = 'Days';
   static const String signed = 'Signed';
   static const String unSigned = 'UnSigned';
   static const String contractTerms = 'Contract Terms';
@@ -147,6 +149,8 @@ mixin AppStrings {
     "Null": 'N/A',
     notStarted: "Not Started",
     cancelled: "Cancelled",
+    days:"Days",
+    projectProgess:"Project Progress"
   };
 
   static Map<String, dynamic> AR = {
@@ -229,6 +233,8 @@ mixin AppStrings {
     "null": 'N/A',
     "Null": 'N/A',
     notStarted: "لم تبدأ",
-    cancelled:"Cancelled"
+    cancelled: "Cancelled",
+    days:"ايام",
+    projectProgess:'تقدم المشروع'
   };
 }

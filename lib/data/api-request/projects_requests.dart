@@ -27,7 +27,7 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(ApiLinks.baseUrl + ApiLinks.getProjects + id,
+      response = await dio.get(ApiLinks.baseUrl + ApiLinks.getProjectDetailsById + id,
           options: Options(
             method: 'GET',
             headers: header,

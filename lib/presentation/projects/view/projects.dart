@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/app/app.dart';
 import 'package:oraxcrm/presentation/projects/viewmodel/projects_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
@@ -173,7 +174,10 @@ class _ProjectsViewState extends State<ProjectsView> {
                               margin: EdgeInsets.only(
                                   bottom: displayHeight(context) * 0.02),
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  print(_viewModel.projectsList![index]);
+                                  context.push(Routes.projectDetailsRoute,extra:_viewModel.projectsList![index]);
+                                },
                                 style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(
@@ -187,7 +191,7 @@ class _ProjectsViewState extends State<ProjectsView> {
                                       top: displayHeight(context) * 0.03,
                                       bottom: displayHeight(context) * 0.03,
                                       left: displayWidth(context) * 0.07,
-                                      right: displayWidth(context) * 0.07),
+                                      right: displayWidth(context) * 0.04),
                                   decoration: BoxDecoration(
                                       color:
                                           ColorsManager.projectsContainerColor,

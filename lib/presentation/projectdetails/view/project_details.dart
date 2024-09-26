@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:oraxcrm/presentation/activities/view/activities.dart';
+import 'package:oraxcrm/presentation/project_summary/view/project_summary.dart';
 import 'package:oraxcrm/presentation/projectdetails/viewmodel/project_details_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
+import 'package:oraxcrm/presentation/tasks/view/tasks.dart';
+import 'package:oraxcrm/presentation/tickets/view/tickets.dart';
 import 'package:provider/provider.dart';
 
 class ProjectDetailsView extends StatefulWidget {
-  const ProjectDetailsView({super.key});
-
+  const ProjectDetailsView({super.key, this.projectData});
+  final projectData;
   @override
   State<ProjectDetailsView> createState() => _ProjectDetailsViewState();
 }
@@ -65,7 +70,9 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                                     blurRadius: 25)
                               ]),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.pop();
+                              },
                               icon: const Icon(Icons.arrow_back))),
                       Text(AppStrings.projectDetails.getString(context),
                           style: const TextStyle(
@@ -134,7 +141,8 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                                   viewModel.initProjectDetailsPage =
                                       viewModel.projectDetailsTitles[index];
                                   viewModel.tabController.animateToPage(index,
-                                      duration: Duration(milliseconds: 500),
+                                      duration:
+                                          const Duration(milliseconds: 500),
                                       curve: Curves.ease);
                                   viewModel.toggleNotifyListeners();
                                 },
@@ -159,11 +167,17 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: displayHeight(context),
                   child: PageView(
                       controller: _viewModel.tabController,
-                      children: _viewModel.projectDetailsPages),
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        ProjectSummaryView(projectData: widget.projectData),
+                        const TasksView(),
+                        const TicketsView(),
+                        const ActivitiesView()
+                      ]),
                 )
               ],
             )),

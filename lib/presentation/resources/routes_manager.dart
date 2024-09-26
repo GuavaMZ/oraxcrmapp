@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/changepassword/view/change_password.dart';
 import 'package:oraxcrm/presentation/contracts/view/Contracts.dart';
@@ -38,7 +39,7 @@ class Routes {
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const ProjectDetailsView(),
+      builder: (context, state) => const MainPageView(),
     ),
     GoRoute(
       path: filesRoute,
@@ -82,7 +83,7 @@ class Routes {
     ),
     GoRoute(
       path: projectDetailsRoute,
-      builder: (context, state) => const ProjectDetailsView(),
+      builder: (context, state) => ProjectDetailsView(projectData:state.extra as Dataprojects),
     ),
     GoRoute(
       path: projectsRoute,
