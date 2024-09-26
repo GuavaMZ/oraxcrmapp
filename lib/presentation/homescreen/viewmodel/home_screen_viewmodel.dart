@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/data/api-request/user_info_requests.dart';
 import 'package:oraxcrm/domain/model/user_data_model.dart';
@@ -17,7 +17,7 @@ class HomeScreenViewmodel extends ChangeNotifier {
         print(DataHolders.userDataModel!.data?.firstname);
       });
     } catch (e) {
-      Fluttertoast.showToast(msg: e.toString());
+      // Fluttertoast.showToast(msg: e.toString());
     }
   }
 }

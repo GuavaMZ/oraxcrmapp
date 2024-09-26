@@ -50,7 +50,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           child: IconButton(
                               onPressed: () {},
                               icon: const Icon(Icons.arrow_back))),
-                      Text(AppStrings.ticketsSummary.getString(context),
+                      Text(AppStrings.personalInfo.getString(context),
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
                       Container(
@@ -68,10 +68,199 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           child: IconButton(
                               onPressed: () {},
                               icon: SvgPicture.asset(
-                                  'assets/images/menu-1 3.svg')))
+                                  'assets/images/menu-1 3.svg'))),
                     ],
                   ),
                 ),
+                SizedBox(
+                height: displayHeight(context) * 0.05,
+              ),
+                SizedBox(
+                width: displayWidth(context) * 0.9,
+                height: displayHeight(context) * 0.08,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xffF5F4F4),
+                    hintText: AppStrings.firstName.getString(context),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    // border: const OutlineInputBorder(
+                    //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                    //   borderSide: BorderSide(width: 0, color: Color(0xffffffff)),
+                    // ),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: displayHeight(context) * 0.04,
+              ),
+              SizedBox(
+                width: displayWidth(context) * 0.9,
+                height: displayHeight(context) * 0.08,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xffF5F4F4),
+                    hintText: AppStrings.lastName.getString(context),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    // border: const OutlineInputBorder(
+                    //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                    //   borderSide: BorderSide(width: 0, color: Color(0xffffffff)),
+                    // ),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: displayHeight(context) * 0.04,
+              ),
+              SizedBox(
+                width: displayWidth(context) * 0.9,
+                height: displayHeight(context) * 0.08,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xffF5F4F4),
+                    hintText: AppStrings.emailaddress.getString(context),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    // border: const OutlineInputBorder(
+                    //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                    //   borderSide: BorderSide(width: 0, color: Color(0xffffffff)),
+                    // ),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: displayHeight(context) * 0.04,
+              ),
+              SizedBox(
+                width: displayWidth(context) * 0.9,
+                height: displayHeight(context) * 0.08,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xffF5F4F4),
+                    hintText: AppStrings.phoneNumber.getString(context),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    // border: const OutlineInputBorder(
+                    //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                    //   borderSide: BorderSide(width: 0, color: Color(0xffffffff)),
+                    // ),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: displayHeight(context) * 0.04,
+              ),
+              SizedBox(
+                width: displayWidth(context) * 0.9,
+                height: displayHeight(context) * 0.08,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xffF5F4F4),
+                    hintText: AppStrings.position.getString(context),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    // border: const OutlineInputBorder(
+                    //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                    //   borderSide: BorderSide(width: 0, color: Color(0xffffffff)),
+                    // ),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: displayHeight(context) * 0.04,
+              ),
+              SizedBox(
+                width: displayWidth(context) * 0.9,
+                height: displayHeight(context) * 0.08,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xffF5F4F4),
+                    hintText: AppStrings.direction.getString(context),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide:
+                          BorderSide(width: 0, color: Color(0xffffffff)),
+                    ),
+                    // border: const OutlineInputBorder(
+                    //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                    //   borderSide: BorderSide(width: 0, color: Color(0xffffffff)),
+                    // ),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: displayHeight(context) * 0.04,
+              ),
               ]
             ),
         )
