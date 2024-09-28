@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/changepassword/view/change_password.dart';
+import 'package:oraxcrm/presentation/contact_us/view/contact_us.dart';
 import 'package:oraxcrm/presentation/contracts/view/Contracts.dart';
 import 'package:oraxcrm/presentation/contractsigning/view/contract_signing.dart';
 import 'package:oraxcrm/presentation/files/view/files.dart';
@@ -39,7 +40,7 @@ class Routes {
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const MainPageView(),
+      builder: (context, state) => const ContactUsView(),
     ),
     GoRoute(
       path: filesRoute,

@@ -70,6 +70,13 @@ mixin AppStrings {
   static const String notStarted = 'Not Started';
   static const String invalidPhoneOrPassword =
       "Invalid Phone Number Or Password";
+  static const String website = 'Website';  
+  static const String contactUs = 'Contact Us';
+  static const String unifiedNumber = 'Unified Number';  
+  static const String emailAddress = 'Email Address';
+  static const String location = 'Location';
+
+
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -150,7 +157,12 @@ mixin AppStrings {
     notStarted: "Not Started",
     cancelled: "Cancelled",
     days:"Days",
-    projectProgess:"Project Progress"
+    projectProgess:"Project Progress",
+    website: "Website" ,
+    contactUs: "Contact Us",
+    unifiedNumber:'Unified Number', 
+    emailAddress: 'Email Address',
+    location: 'Location',
   };
 
   static Map<String, dynamic> AR = {
@@ -235,6 +247,11 @@ mixin AppStrings {
     notStarted: "لم تبدأ",
     cancelled: "Cancelled",
     days:"ايام",
-    projectProgess:'تقدم المشروع'
+    projectProgess:'تقدم المشروع',
+    website: "الموقع الألكتروني",
+    contactUs: "تواصل معنا" ,
+    unifiedNumber:'الرقم الموحد', 
+    emailAddress: 'البريد الألكتروني',
+    location: 'الموقع',
   };
 }
