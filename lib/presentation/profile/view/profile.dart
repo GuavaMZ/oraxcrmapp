@@ -20,6 +20,12 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   final ProfileViewModel _viewModel = ProfileViewModel();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -46,15 +52,16 @@ class _ProfileViewState extends State<ProfileView> {
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          Consumer<ProfileViewModel>(
+                          ValueListenableBuilder(
                             builder: (BuildContext context, viewModel,
                                     Widget? child) =>
                                 Text(
-                              DataHolders.userDataModel!.data!.firstname!,
+                              DataHolders.userDataModel!.data!.firstname ?? '',
                               style: const TextStyle(
                                   fontSize: 12,
                                   color: ColorsManager.fontColor2),
                             ),
+                            valueListenable: _viewModel.userName,
                           )
                         ],
                       ),

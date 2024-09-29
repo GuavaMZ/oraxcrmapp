@@ -45,142 +45,151 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
         child: Scaffold(
           backgroundColor: ColorsManager.bgColor,
           resizeToAvoidBottomInset: false,
-          body: SingleChildScrollView(
-            child: Center(
+          body: Container(
+            child: DefaultTabController(
+                length: 4,
+                initialIndex: 0,
                 child: Column(
-              children: [
-                SizedBox(
-                  height: displayHeight(context) * 0.06,
-                ),
-                SizedBox(
-                  width: displayWidth(context) * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                              color: ColorsManager.iconsColor3,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
-                                    spreadRadius: 0,
-                                    offset: const Offset(0, 4),
-                                    blurRadius: 25)
-                              ]),
-                          child: IconButton(
-                              onPressed: () {
-                                context.pop();
-                              },
-                              icon: const Icon(Icons.arrow_back))),
-                      Text(AppStrings.projectDetails.getString(context),
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      Container(
-                          decoration: BoxDecoration(
-                              color: ColorsManager.iconsColor3,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
-                                    spreadRadius: 0,
-                                    offset: const Offset(0, 4),
-                                    blurRadius: 25)
-                              ]),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: SvgPicture.asset(
-                                  'assets/images/menu-1 3.svg'))),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: displayHeight(context) * 0.04,
-                ),
-                Consumer<ProjectDetailsViewModel>(
-                  builder: (BuildContext context, viewModel, Widget? child) =>
-                      Container(
-                    height: displayHeight(context) * 0.05,
-                    decoration: BoxDecoration(boxShadow: [
-                      BoxShadow(
-                          color:
-                              ColorsManager.defaultShadowColor.withOpacity(0.1),
-                          spreadRadius: 0,
-                          offset: const Offset(0, 4),
-                          blurRadius: 25)
-                    ]),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: viewModel.projectDetailsTitles.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Row(
-                          children: [
-                            SizedBox(
-                              width: displayWidth(context) * 0.02,
-                            ),
-                            ChoiceChip(
-                                label: Text(
-                                  viewModel.projectDetailsTitles[index]
-                                      .toString()
-                                      .getString(context),
-                                  style: TextStyle(
-                                      color: viewModel.initProjectDetailsPage ==
-                                              viewModel
-                                                  .projectDetailsTitles[index]
-                                          ? ColorsManager.fontColor3
-                                          : ColorsManager.fontColor1),
-                                ),
-                                labelPadding: EdgeInsets.symmetric(
-                                    horizontal: displayWidth(context) * 0.02),
-                                selected: viewModel.initProjectDetailsPage ==
-                                    viewModel.projectDetailsTitles[index],
-                                onSelected: (b) {
-                                  viewModel.initProjectDetailsPage =
-                                      viewModel.projectDetailsTitles[index];
-                                  viewModel.tabController.animateToPage(index,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.ease);
-                                  viewModel.toggleNotifyListeners();
-                                },
-                                showCheckmark: false,
-                                side: const BorderSide(
-                                    width: 0,
-                                    color: ColorsManager.choiceChipBorderColor),
-                                selectedColor:
-                                    ColorsManager.selectedChoiceChipColor,
-                                backgroundColor:
-                                    ColorsManager.unSelectedChoiceChipColor,
-                                // elevation: 1,
-                                shadowColor: ColorsManager.defaultShadowColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                          displayHeight(context) * 0.03)),
-                                )),
-                          ],
-                        );
-                      },
+                  children: [
+                    SizedBox(
+                      height: displayHeight(context) * 0.06,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: displayHeight(context),
-                  child: PageView(
-                      controller: _viewModel.tabController,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        ProjectSummaryView(projectData: widget.projectData),
-                        const TasksView(),
-                        const TicketsView(),
-                        const ActivitiesView()
-                      ]),
-                )
-              ],
-            )),
+                    SizedBox(
+                      width: displayWidth(context) * 0.9,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              decoration: BoxDecoration(
+                                  color: ColorsManager.iconsColor3,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: ColorsManager.defaultShadowColor
+                                            .withOpacity(0.1),
+                                        spreadRadius: 0,
+                                        offset: const Offset(0, 4),
+                                        blurRadius: 25)
+                                  ]),
+                              child: IconButton(
+                                  onPressed: () {
+                                    context.pop();
+                                  },
+                                  icon: const Icon(Icons.arrow_back))),
+                          Text(AppStrings.projectDetails.getString(context),
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                          Container(
+                              decoration: BoxDecoration(
+                                  color: ColorsManager.iconsColor3,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: ColorsManager.defaultShadowColor
+                                            .withOpacity(0.1),
+                                        spreadRadius: 0,
+                                        offset: const Offset(0, 4),
+                                        blurRadius: 25)
+                                  ]),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: SvgPicture.asset(
+                                      'assets/images/menu-1 3.svg'))),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: displayHeight(context) * 0.04,
+                    ),
+                    Consumer<ProjectDetailsViewModel>(
+                      builder:
+                          (BuildContext context, viewModel, Widget? child) =>
+                              Container(
+                        height: displayHeight(context) * 0.05,
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
+                              color: ColorsManager.defaultShadowColor
+                                  .withOpacity(0.1),
+                              spreadRadius: 0,
+                              offset: const Offset(0, 4),
+                              blurRadius: 25)
+                        ]),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: viewModel.projectDetailsTitles.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Row(
+                              children: [
+                                SizedBox(
+                                  width: displayWidth(context) * 0.02,
+                                ),
+                                ChoiceChip(
+                                    label: Text(
+                                      viewModel.projectDetailsTitles[index]
+                                          .toString()
+                                          .getString(context),
+                                      style: TextStyle(
+                                          color: viewModel
+                                                      .initProjectDetailsPage ==
+                                                  viewModel
+                                                          .projectDetailsTitles[
+                                                      index]
+                                              ? ColorsManager.fontColor3
+                                              : ColorsManager.fontColor1),
+                                    ),
+                                    labelPadding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            displayWidth(context) * 0.02),
+                                    selected: viewModel
+                                            .initProjectDetailsPage ==
+                                        viewModel.projectDetailsTitles[index],
+                                    onSelected: (b) {
+                                      viewModel.initProjectDetailsPage =
+                                          viewModel.projectDetailsTitles[index];
+                                      viewModel.tabController.animateToPage(
+                                          index,
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          curve: Curves.ease);
+                                      viewModel.toggleNotifyListeners();
+                                    },
+                                    showCheckmark: false,
+                                    side: const BorderSide(
+                                        width: 0,
+                                        color: ColorsManager
+                                            .choiceChipBorderColor),
+                                    selectedColor:
+                                        ColorsManager.selectedChoiceChipColor,
+                                    backgroundColor:
+                                        ColorsManager.unSelectedChoiceChipColor,
+                                    // elevation: 1,
+                                    shadowColor:
+                                        ColorsManager.defaultShadowColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(
+                                              displayHeight(context) * 0.03)),
+                                    )),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                          // controller: _viewModel.tabController,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: [
+                            ProjectSummaryView(projectData: widget.projectData),
+                            const TasksView(),
+                            const TicketsView(),
+                            const ActivitiesView()
+                          ]),
+                    )
+                  ],
+                )),
           ),
         ));
   }

@@ -21,6 +21,7 @@ mixin AppStrings {
   static const String priority = 'Priority';
   static const String project = 'Project';
   static const String projectProgess = 'Project Progress';
+  static const String projectSupervisor = 'Project Supervisor';
   static const String ticketText = 'Ticket Text';
   static const String open = 'Open';
   static const String profile = 'Profile';
@@ -150,7 +151,8 @@ mixin AppStrings {
     notStarted: "Not Started",
     cancelled: "Cancelled",
     days:"Days",
-    projectProgess:"Project Progress"
+    projectProgess:"Project Progress",
+    projectSupervisor:"Project Supervisors",
   };
 
   static Map<String, dynamic> AR = {
@@ -235,6 +237,8 @@ mixin AppStrings {
     notStarted: "لم تبدأ",
     cancelled: "Cancelled",
     days:"ايام",
-    projectProgess:'تقدم المشروع'
+    projectProgess:'تقدم المشروع',
+    projectSupervisor:"مشرفو المشروع",
+
   };
 }
