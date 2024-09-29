@@ -42,7 +42,7 @@ class Routes {
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const AboutUsView(),
+      builder: (context, state) => const ChangePasswordView(),
     ),
     GoRoute(
       path: filesRoute,
