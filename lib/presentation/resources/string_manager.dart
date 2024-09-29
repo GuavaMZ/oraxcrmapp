@@ -190,6 +190,15 @@ mixin AppStrings {
     theOraxCrmAplication:
       "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
     features: 'Features',
+    hourCustomerService: '24 hour customer service',
+    designCreatedByTheTeam: 'Design created by the team',
+    accuracy: 'Accuracy, performance and hard work',
+    available: 'All the services you want are available',
+    services: 'Services',
+    uiUx: 'Ui UX Design',
+    webDevelopment: 'Websites Development',
+    mobileApp: 'Mobile App Development',
+  
 
   };
 
@@ -284,5 +293,14 @@ mixin AppStrings {
     theOraxCrmAplication:
       "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
     features: 'الميزات',
+    hourCustomerService: 'خدمة العملاء على مدار 24 ساعة',
+    designCreatedByTheTeam: 'التصميم من إبداع الفريق',
+    accuracy: 'الدقة والأداء والعمل الجاد',
+    available: 'جميع الخدمات التي تريدها متاحة',
+    services: 'الخدمات',
+    uiUx: 'تصميم واجهة وتجربة المستخدم',
+    webDevelopment: 'تطوير مواقع الويب',
+    mobileApp: 'تطوير تطبيقات الهاتف المحمول',
+  
   };
 }
