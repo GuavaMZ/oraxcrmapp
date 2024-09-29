@@ -92,8 +92,8 @@ mixin AppStrings {
   static const String uiUx = 'Ui UX Design';
   static const String webDevelopment = 'Websites Development';
   static const String mobileApp = 'Mobile App Development';
-  
-
+  static const String date = 'Date of last Update';
+  static const String copyright= 'CopyRight OraxSoft';
 
 
   static Map<String, dynamic> EN = {
@@ -198,8 +198,8 @@ mixin AppStrings {
     uiUx: 'Ui UX Design',
     webDevelopment: 'Websites Development',
     mobileApp: 'Mobile App Development',
-  
-
+    date: 'Date of last Update',
+    copyright: 'CopyRight OraxSoft' ,
   };
 
   static Map<String, dynamic> AR = {
@@ -301,6 +301,8 @@ mixin AppStrings {
     uiUx: 'تصميم واجهة وتجربة المستخدم',
     webDevelopment: 'تطوير مواقع الويب',
     mobileApp: 'تطوير تطبيقات الهاتف المحمول',
+    date: 'تاريخ التحديث الأخير',
+    copyright: 'جميع الحقوق محفوظة لشركة اوراكس سوفت' ,
   
   };
 }

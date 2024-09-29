@@ -194,6 +194,26 @@ class _AboutUsViewState extends State<AboutUsView> {
                 SizedBox(
                     height: displayHeight(context) * 0.02,
                   ),
+                  SizedBox(
+                  width: displayWidth(context) * 0.9,
+                  child: 
+                      Text(AppStrings.date.getString(context),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                ),
+                SizedBox(
+                    height: displayHeight(context) * 0.02,
+                  ),
+                  SizedBox(
+                    height: displayHeight(context) * 0.02,
+                  ),
+                  SizedBox(
+                  width: displayWidth(context) * 0.9,
+                  child: 
+                      Text(AppStrings.copyright.getString(context),
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.normal)),
+                ),
               ]),
           )
         ),
