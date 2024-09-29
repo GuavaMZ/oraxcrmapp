@@ -76,6 +76,23 @@ mixin AppStrings {
   static const String unifiedNumber = 'Unified Number';  
   static const String emailAddress = 'Email Address';
   static const String location = 'Location';
+  static const String call = 'Call';
+  static const String textMessage = 'Text Message';
+  static const String whatsapp = 'Whatsapp';
+  static const String aboutUs = 'About Us';
+  static const String arabic = 'Arabic';
+  static const String theOraxCrmAplication =
+      "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.";
+  static const String features = 'Features';
+  static const String hourCustomerService = '24 hour customer service';
+  static const String designCreatedByTheTeam = 'Design created by the team';
+  static const String accuracy = 'Accuracy, performance and hard work';
+  static const String available = 'All the services you want are available';
+  static const String services = 'Services';
+  static const String uiUx = 'Ui UX Design';
+  static const String webDevelopment = 'Websites Development';
+  static const String mobileApp = 'Mobile App Development';
+  
 
 
 
@@ -165,6 +182,15 @@ mixin AppStrings {
     unifiedNumber:'Unified Number', 
     emailAddress: 'Email Address',
     location: 'Location',
+    call: 'Call',
+    textMessage: 'Text Message',
+    whatsapp: 'Whatsapp',
+    aboutUs: 'About Us',
+    arabic: 'Arabic',
+    theOraxCrmAplication:
+      "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
+    features: 'Features',
+
   };
 
   static Map<String, dynamic> AR = {
@@ -249,6 +275,14 @@ mixin AppStrings {
     notStarted: "لم تبدأ",
     cancelled: "Cancelled",
     days:"ايام",
-    projectProgess:'تقدم المشروع'
+    projectProgess:'تقدم المشروع',
+    call: 'اتصل',
+    textMessage: 'رسالة نصية',
+    whatsapp: 'واتساب',
+    aboutUs: 'من نحن',
+    arabic: 'عربي' ,
+    theOraxCrmAplication:
+      "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
+    features: 'الميزات',
   };
 }
