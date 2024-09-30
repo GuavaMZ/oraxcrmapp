@@ -7,6 +7,8 @@ import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProjectsViewModel extends ChangeNotifier {
+  bool getProjetcsLastPageFlag = false;
+
   List<String> projectsStatuses = [
     AppStrings.notStarted,
     AppStrings.inProgress,
@@ -30,23 +32,26 @@ class ProjectsViewModel extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     ProjectsModel? projectsModel;
     print(prefs.getString('usrToken'));
-    try {
-      await projectsRequests.getProjects(
+    if (getProjetcsLastPageFlag == false) {
+      try {
+        await projectsRequests.getProjects(
           {'Authorization': prefs.getString('usrToken')},
-          ).then((res) async {
-        if (res.statusCode == 200) {
-          projectsModel = ProjectsModel.fromJson(res.data);
-          projectsList!.addAll(projectsModel!.dataprojects!);
-          assignProjectsStatusesCounts();
-        } else if (res.statusCode == 401) {
-          if (context.mounted) {
-            context.pushReplacement(Routes.loginRoute);
+        ).then((res) async {
+          if (res.statusCode == 200) {
+            projectsModel = ProjectsModel.fromJson(res.data);
+            projectsList!.addAll(projectsModel!.dataprojects!);
+            getProjetcsLastPageFlag = true;
+            assignProjectsStatusesCounts();
+          } else if (res.statusCode == 401) {
+            if (context.mounted) {
+              context.pushReplacement(Routes.loginRoute);
+            }
           }
-        }
-      });
-      return projectsModel?.dataprojects;
-    } catch (e) {
-      print(e);
+        });
+        return projectsModel?.dataprojects;
+      } catch (e) {
+        print(e);
+      }
     }
   }
 

@@ -46,7 +46,7 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectsTasks}?project_id=$id",
+      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectsTasks}?rel_type=project&rel_id=$id&order_by=id",
           options: Options(
             method: 'GET',
             headers: header,
@@ -65,7 +65,7 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectTickets}?rel_type=project&rel_id=$id&order_by=id",
+      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectTickets}?project_id=$id",
           options: Options(
             method: 'GET',
             headers: header,

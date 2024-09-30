@@ -16,6 +16,13 @@ class TicketsView extends StatefulWidget {
 
 class _TicketsViewState extends State<TicketsView> {
   final TicketsViewModel _viewModel = TicketsViewModel();
+
+  @override
+  void initState() {
+    _viewModel.assignTicketsStatusesCounts(widget.projectTicketsModel!);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -30,111 +37,56 @@ class _TicketsViewState extends State<TicketsView> {
                 SizedBox(
                   height: displayHeight(context) * 0.04,
                 ),
-                SizedBox(
-                  width: displayWidth(context) * 0.95,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
+                Container(
+                  // width: displayWidth(context) * 0.95,
+                  height: displayHeight(context) * 0.17,
+                  decoration: BoxDecoration(boxShadow: [
+                    BoxShadow(
+                        color:
+                            ColorsManager.defaultShadowColor.withOpacity(0.1),
+                        spreadRadius: 0,
+                        offset: const Offset(0, 4),
+                        blurRadius: 25)
+                  ]),
+                  child: ListView.builder(
+                    itemCount: _viewModel.ticketsStatuses.length,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: displayWidth(context) * 0.01),
+                        decoration: BoxDecoration(
+                          color: ColorsManager.statisticsContainerColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(displayHeight(context) * 0.05),
+                          ),
+                        ),
                         height: displayHeight(context) * 0.17,
                         width: displayWidth(context) * 0.3,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(displayHeight(context) * 0.05),
-                            ),
-                            color: ColorsManager.statisticsContainerColor,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.1),
-                                  spreadRadius: 0,
-                                  offset: const Offset(0, 4),
-                                  blurRadius: 25)
-                            ]),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(bottom: 10),
-                              child: Text('25',
+                              child: Text(
+                                  _viewModel.ticketsStatusesCount[index]
+                                      .toString(),
                                   style: TextStyle(
-                                      fontSize: displayHeight(context) * 0.043,
+                                      fontSize: displayHeight(context) * 0.037,
                                       fontWeight: FontWeight.bold)),
                             ),
-                            Text(AppStrings.inProgress.getString(context),
+                            Text(
+                                _viewModel.ticketsStatuses[index]
+                                    .toString()
+                                    .getString(context),
                                 style: TextStyle(
-                                    fontSize: displayHeight(context) * 0.016,
+                                    fontSize: displayHeight(context) * 0.014,
                                     fontWeight: FontWeight.bold))
                           ],
                         ),
-                      ),
-                      Container(
-                        height: displayHeight(context) * 0.17,
-                        width: displayWidth(context) * 0.3,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(displayHeight(context) * 0.05),
-                            ),
-                            color: ColorsManager.statisticsContainerColor,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.1),
-                                  spreadRadius: 0,
-                                  offset: const Offset(0, 4),
-                                  blurRadius: 25)
-                            ]),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Text('25',
-                                  style: TextStyle(
-                                      fontSize: displayHeight(context) * 0.043,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            Text(AppStrings.onHold.getString(context),
-                                style: TextStyle(
-                                    fontSize: displayHeight(context) * 0.016,
-                                    fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: displayHeight(context) * 0.17,
-                        width: displayWidth(context) * 0.3,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(displayHeight(context) * 0.05),
-                            ),
-                            color: ColorsManager.statisticsContainerColor,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.1),
-                                  spreadRadius: 0,
-                                  offset: const Offset(0, 4),
-                                  blurRadius: 25)
-                            ]),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Text('25',
-                                  style: TextStyle(
-                                      fontSize: displayHeight(context) * 0.043,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            Text(AppStrings.finished.getString(context),
-                                style: TextStyle(
-                                    fontSize: displayHeight(context) * 0.016,
-                                    fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: displayHeight(context) * 0.04),
@@ -189,7 +141,7 @@ class _TicketsViewState extends State<TicketsView> {
                                 children: [
                                   Text(
                                     widget.projectTicketsModel!
-                                        .dataTicketsProject![index].name
+                                        .dataTicketsProject![index].subject
                                         .toString(),
                                     style: TextStyle(
                                       fontSize: displayHeight(context) * 0.017,
@@ -197,13 +149,13 @@ class _TicketsViewState extends State<TicketsView> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  // Text(
-                                  //   '${widget.projectTicketsModel!.dataTicketsProject![index].duedate} : ${widget.projectTicketsModel!.dataTicketsProject![index].startdate}',
-                                  //   style: TextStyle(
-                                  //     fontSize: displayHeight(context) * 0.017,
-                                  //     color: ColorsManager.fontColor2,
-                                  //   ),
-                                  // ),
+                                  Text(
+                                    '${widget.projectTicketsModel!.dataTicketsProject![index].date}',
+                                    style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.017,
+                                      color: ColorsManager.fontColor2,
+                                    ),
+                                  ),
                                 ],
                               ),
                               Container(

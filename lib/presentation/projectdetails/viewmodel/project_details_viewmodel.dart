@@ -5,7 +5,6 @@ import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/domain/model/project_tickets_model.dart';
 import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/project_summary/view/project_summary.dart';
-import 'package:oraxcrm/presentation/project_tickets/view/projects_tickets.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:oraxcrm/presentation/tasks/view/tasks.dart';
@@ -34,7 +33,7 @@ class ProjectDetailsViewModel extends ChangeNotifier {
   ProjectTasksModel? projectsTasks;
   ProjectTicketsModel? projectsTickets;
 
-  toggleNotifyListeners() {
+  Future toggleNotifyListeners() async {
     notifyListeners();
   }
 
@@ -48,6 +47,8 @@ class ProjectDetailsViewModel extends ChangeNotifier {
         if (res.statusCode == 200) {
           projectTasksModel = ProjectTasksModel.fromJson(res.data);
           projectsTasks = projectTasksModel;
+          print(projectsTasks);
+          return projectTasksModel;
         } else if (res.statusCode == 401) {
           if (context.mounted) {
             context.pushReplacement(Routes.loginRoute);
@@ -70,6 +71,7 @@ class ProjectDetailsViewModel extends ChangeNotifier {
         if (res.statusCode == 200) {
           projectTicketsModel = ProjectTicketsModel.fromJson(res.data);
           projectsTickets = projectTicketsModel;
+          return projectTicketsModel;
         } else if (res.statusCode == 401) {
           if (context.mounted) {
             context.pushReplacement(Routes.loginRoute);

@@ -7,17 +7,17 @@ import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ContractsViewModel extends ChangeNotifier {
+  bool lastPageFlag = false;
+
   List<DataContract>? contractsList = [];
 
   List<String> contractsType = [];
 
-  Map<String,int> contractsTypeAndCounts = {
+  Map<String, int> contractsTypeAndCounts = {};
 
-  };
-
-  Map<String,String> signedStats = {
-    '0':AppStrings.unSigned,
-    '1':AppStrings.signed,
+  Map<String, String> signedStats = {
+    '0': AppStrings.unSigned,
+    '1': AppStrings.signed,
   };
 
   Future getContracts(BuildContext context) async {
@@ -25,34 +25,37 @@ class ContractsViewModel extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     ContractsModel? contractsModel;
     print(prefs.getString('usrToken'));
-    try {
-      await contractsRequests.getContracts(
-        {'Authorization': prefs.getString('usrToken')},
-      ).then((res) async {
-        if (res.statusCode == 200) {
-          contractsModel = ContractsModel.fromJson(res.data);
-          contractsList!.addAll(contractsModel!.dataContract);
-          assignContractTypes();
-        } else if (res.statusCode == 401) {
-          if (context.mounted) {
-            context.pushReplacement(Routes.loginRoute);
+    if (lastPageFlag == false) {
+      try {
+        await contractsRequests.getContracts(
+          {'Authorization': prefs.getString('usrToken')},
+        ).then((res) async {
+          if (res.statusCode == 200) {
+            contractsModel = ContractsModel.fromJson(res.data);
+            contractsList!.addAll(contractsModel!.dataContract);
+            lastPageFlag = true;
+            assignContractTypes();
+          } else if (res.statusCode == 401) {
+            if (context.mounted) {
+              context.pushReplacement(Routes.loginRoute);
+            }
           }
-        }
-      });
-      return contractsModel?.dataContract;
-    } catch (e) {
-      print(e);
+        });
+        return contractsModel?.dataContract;
+      } catch (e) {
+        print(e);
+      }
     }
   }
 
   assignContractTypes() {
     for (DataContract data in contractsList!) {
-      if(contractsTypeAndCounts[data.typeName.toString()] == null){
+      if (contractsTypeAndCounts[data.typeName.toString()] == null) {
         contractsTypeAndCounts[data.typeName.toString()] = 1;
-      }else {
-        contractsTypeAndCounts[data.typeName.toString()] = (contractsTypeAndCounts[data.typeName.toString()]! + 1);
+      } else {
+        contractsTypeAndCounts[data.typeName.toString()] =
+            (contractsTypeAndCounts[data.typeName.toString()]! + 1);
       }
-      
     }
     print(contractsTypeAndCounts);
   }

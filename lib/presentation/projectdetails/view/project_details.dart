@@ -30,10 +30,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
       length: _viewModel.projectDetailsPages.length,
       vsync: this,
     );
-    Future.wait([
-      _viewModel.getProjectTasks(context, widget.projectData!.id!),
-      _viewModel.getProjectTickets(context, widget.projectData!.id!)
-    ]);
+
     super.initState();
   }
 
@@ -175,20 +172,28 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: TabBarView(
-                        controller: _viewModel.tabController,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          ProjectSummaryView(projectData: widget.projectData),
-                          TasksView(
-                            projectTasksDetails: _viewModel.projectsTasks,
-                          ),
-                          TicketsView(
-                            projectTicketsModel: _viewModel.projectsTickets,
-                          ),
-                          const ActivitiesView()
-                        ]),
+                  FutureBuilder(
+                    future: Future.wait([
+                      _viewModel.getProjectTasks(
+                          context, widget.projectData!.id!),
+                      _viewModel.getProjectTickets(
+                          context, widget.projectData!.id!),
+                    ]),
+                    builder: (context, snapshot) => Expanded(
+                      child: TabBarView(
+                          controller: _viewModel.tabController,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: [
+                            ProjectSummaryView(projectData: widget.projectData),
+                            TasksView(
+                              projectTasksDetails: _viewModel.projectsTasks,
+                            ),
+                            TicketsView(
+                              projectTicketsModel: _viewModel.projectsTickets,
+                            ),
+                            const ActivitiesView()
+                          ]),
+                    ),
                   )
                 ],
               )),
