@@ -30,7 +30,6 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
             future:
                 _viewModel.getProjectDetails(context, widget.projectData!.id!),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Container(
                   margin: EdgeInsets.only(top: displayHeight(context) * 0.5),

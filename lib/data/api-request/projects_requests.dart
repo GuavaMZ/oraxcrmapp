@@ -41,4 +41,42 @@ class ProjectsRequests {
       }
     }
   }
+
+  Future getProjectTasks(Map<String, dynamic> header,String id) async {
+    Response response;
+    try {
+      // print("بداية  الريسبونس ");
+      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectsTasks}?project_id=$id",
+          options: Options(
+            method: 'GET',
+            headers: header,
+          ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // print("خروج من الريسبونس ");
+        response = error.response!;
+        return response;
+      }
+    }
+  }
+
+  Future getProjectTickets(Map<String, dynamic> header,String id) async {
+    Response response;
+    try {
+      // print("بداية  الريسبونس ");
+      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectTickets}?rel_type=project&rel_id=$id&order_by=id",
+          options: Options(
+            method: 'GET',
+            headers: header,
+          ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // print("خروج من الريسبونس ");
+        response = error.response!;
+        return response;
+      }
+    }
+  }
 }

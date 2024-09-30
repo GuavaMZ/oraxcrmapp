@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:oraxcrm/app/app.dart';
 import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/presentation/profile/viewmodel/profile_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
