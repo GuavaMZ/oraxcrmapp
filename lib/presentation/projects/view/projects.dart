@@ -175,7 +175,7 @@ class _ProjectsViewState extends State<ProjectsView> {
                                   bottom: displayHeight(context) * 0.02),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  print(_viewModel.projectsList![index]);
+                                  
                                   context.push(Routes.projectDetailsRoute,extra:_viewModel.projectsList![index]);
                                 },
                                 style: ElevatedButton.styleFrom(
