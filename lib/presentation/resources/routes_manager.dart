@@ -43,7 +43,7 @@ class Routes {
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const NotificationsView(),
+      builder: (context, state) => const ProjectDetailsView(),
     ),
     GoRoute(
       path: filesRoute,
