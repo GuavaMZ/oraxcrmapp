@@ -10,6 +10,7 @@ import 'package:oraxcrm/presentation/files/view/files.dart';
 import 'package:oraxcrm/presentation/homescreen/view/home_screen.dart';
 import 'package:oraxcrm/presentation/login/view/login_view.dart';
 import 'package:oraxcrm/presentation/mainpage/view/mainpage.dart';
+import 'package:oraxcrm/presentation/notifications/view/notifications.dart';
 import 'package:oraxcrm/presentation/openticket/view/open_ticket.dart';
 import 'package:oraxcrm/presentation/personalinfo/view/personal_info.dart';
 import 'package:oraxcrm/presentation/profile/view/profile.dart';
@@ -42,7 +43,7 @@ class Routes {
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const ChangePasswordView(),
+      builder: (context, state) => const NotificationsView(),
     ),
     GoRoute(
       path: filesRoute,
