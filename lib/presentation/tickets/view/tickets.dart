@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:oraxcrm/domain/model/project_tickets_model.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
@@ -30,6 +31,7 @@ class _TicketsViewState extends State<TicketsView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
         body: SingleChildScrollView(
           child: Center(
             child: Column(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/domain/model/project_tasks_model.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
@@ -30,6 +31,7 @@ class _TasksViewState extends State<TasksView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
         body: SingleChildScrollView(
           child: Center(
             child: Column(

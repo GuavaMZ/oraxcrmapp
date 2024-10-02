@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/homescreen/viewmodel/home_screen_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
@@ -30,6 +31,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         child: Scaffold(
           backgroundColor: ColorsManager.bgColor,
           resizeToAvoidBottomInset: false,
+          drawer: const DrawerView(),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -56,8 +58,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                 ]),
                             child: IconButton(
                                 onPressed: () {},
-                                icon:
-                                    SvgPicture.asset('assets/images/notification 2.svg'))), //TODO:CHANGE ICON
+                                icon: SvgPicture.asset(
+                                    'assets/images/notification 2.svg'))),
                         Text(AppStrings.home.getString(context),
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
@@ -73,9 +75,14 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
                                 ]),
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset('assets/images/menu-1 3.svg'))) //TODO:CHANGE ICON
+                            child: Builder(builder: (context) {
+                              return IconButton(
+                                  onPressed: () {
+                                    Scaffold.of(context).openDrawer();
+                                  },
+                                  icon: SvgPicture.asset(
+                                      'assets/images/menu-1 3.svg'));
+                            }))
                       ],
                     ),
                   ),

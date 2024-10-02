@@ -15,11 +15,14 @@ class LoginViewModel extends ChangeNotifier {
   Future login(BuildContext context) async {
     LoginRequest loginRequest = LoginRequest();
     try {
+      print(emailController.text);
+      print(passwordController.text);
       await loginRequest.login(header: {}, body: {
         "email": emailController.text.trim(),
         "password": passwordController.text.trim(),
         "rememper": true,
       }).then((res) async {
+        print(res);
         if (res.statusCode == 200) {
           LoginModel loginModel = LoginModel.fromJson(res.data);
           if (loginModel.status == false) {
@@ -39,6 +42,7 @@ class LoginViewModel extends ChangeNotifier {
       });
     } catch (e) {
       // Fluttertoast.showToast(msg: e.toString());
+      print(e);
     }
   }
 }

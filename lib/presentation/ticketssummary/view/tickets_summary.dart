@@ -3,7 +3,9 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:oraxcrm/presentation/ticketssummary/viewmodel/tickets_summary_viewmodel.dart';
@@ -25,6 +27,7 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
       child: Scaffold(
         backgroundColor: ColorsManager.bgColor,
         resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
         body: SingleChildScrollView(
           child: Center(
             child: Consumer<TicketsSummaryViewModel>(
@@ -169,7 +172,9 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                             margin: EdgeInsets.only(
                                 bottom: displayHeight(context) * 0.02),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.push(Routes.ticketsDetailsRoute,extra: _viewModel.supportTicketsList![index]);
+                              },
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(

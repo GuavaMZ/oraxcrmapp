@@ -94,6 +94,7 @@ mixin AppStrings {
   static const String mobileApp = 'Mobile App Development';
   static const String date = 'Date of last Update';
   static const String copyright= 'CopyRight OraxSoft';
+  static const String ticketDetails= 'Ticket Details';
 
 
   static Map<String, dynamic> EN = {
@@ -200,6 +201,7 @@ mixin AppStrings {
     mobileApp: 'Mobile App Development',
     date: 'Date of last Update',
     copyright: 'CopyRight OraxSoft' ,
+    ticketDetails:"Ticket Details"
   };
 
   static Map<String, dynamic> AR = {
@@ -303,6 +305,6 @@ mixin AppStrings {
     mobileApp: 'تطوير تطبيقات الهاتف المحمول',
     date: 'تاريخ التحديث الأخير',
     copyright: 'جميع الحقوق محفوظة لشركة اوراكس سوفت' ,
-  
+    ticketDetails:"تفاصيل التذكرة"
   };
 }

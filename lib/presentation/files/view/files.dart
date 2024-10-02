@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/files/viewmodel/files_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
@@ -23,6 +24,7 @@ class _FilesViewState extends State<FilesView> {
       child: Scaffold(
         backgroundColor: ColorsManager.bgColor,
         resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
         body: SingleChildScrollView(
           child: Center(
             child: Column(

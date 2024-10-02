@@ -10,7 +10,7 @@ class WidgetsConstants {
       showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (builder) {
+          builder: (context) {
             return AlertDialog(
               content: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

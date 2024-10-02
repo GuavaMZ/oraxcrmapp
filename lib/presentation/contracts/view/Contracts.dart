@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/presentation/contracts/viewmodel/contracts_viewmodel.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
@@ -25,6 +26,7 @@ class _ContractsViewState extends State<ContractsView> {
       child: Scaffold(
         backgroundColor: ColorsManager.bgColor,
         resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
         body: SingleChildScrollView(
           child: Center(
             child: Consumer<ContractsViewModel>(

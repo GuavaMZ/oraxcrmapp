@@ -38,6 +38,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
     return Scaffold(
       backgroundColor: ColorsManager.bgColor,
       resizeToAvoidBottomInset: false,
+        
       body: Center(
         child: SizedBox(
             width: displayWidth(context) * 0.85,

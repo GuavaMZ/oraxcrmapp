@@ -7,7 +7,7 @@ class LoginRequest {
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body}) async {
     try {
-      final response = await dio.post(
+      final Response response = await dio.post(
         ApiLinks.baseUrl + ApiLinks.login,
         options: Options(headers: header),
         data: FormData.fromMap(body),
@@ -28,7 +28,7 @@ class LoginRequest {
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body}) async {
     try {
-      final response = await dio.post(
+      final Response response = await dio.post(
         ApiLinks.baseUrl + ApiLinks.logout,
         options: Options(headers: header),
         data: FormData.fromMap(body),

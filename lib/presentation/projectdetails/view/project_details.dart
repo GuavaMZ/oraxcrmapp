@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/presentation/activities/view/activities.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/project_summary/view/project_summary.dart';
 import 'package:oraxcrm/presentation/projectdetails/viewmodel/project_details_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
@@ -47,6 +48,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
         child: Scaffold(
           backgroundColor: ColorsManager.bgColor,
           resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
           body: DefaultTabController(
               length: 4,
               initialIndex: 0,
