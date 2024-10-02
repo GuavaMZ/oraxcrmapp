@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/project_summary/viewmodel/project_summary_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
@@ -24,6 +25,7 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
       body: SingleChildScrollView(
         child: Center(
           child: FutureBuilder(

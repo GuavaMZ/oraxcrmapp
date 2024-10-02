@@ -25,6 +25,7 @@ class _ProfileViewState extends State<ProfileView> {
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -361,7 +362,9 @@ class _ProfileViewState extends State<ProfileView> {
                     color: ColorsManager.separatorColor,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _viewModel.logOut(context);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorsManager.bgColor,
                           elevation: 0,

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
+import 'package:oraxcrm/domain/model/support_tickets_model.dart';
 import 'package:oraxcrm/presentation/about_us/view/about_us.dart';
 import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/changepassword/view/change_password.dart';
@@ -16,8 +17,10 @@ import 'package:oraxcrm/presentation/personalinfo/view/personal_info.dart';
 import 'package:oraxcrm/presentation/profile/view/profile.dart';
 import 'package:oraxcrm/presentation/projectdetails/view/project_details.dart';
 import 'package:oraxcrm/presentation/projects/view/projects.dart';
+import 'package:oraxcrm/presentation/splash_screen/view/splash.dart';
 import 'package:oraxcrm/presentation/tasks/view/tasks.dart';
 import 'package:oraxcrm/presentation/tickets/view/tickets.dart';
+import 'package:oraxcrm/presentation/tickets_details/view/tickets_details.dart';
 import 'package:oraxcrm/presentation/ticketssummary/view/tickets_summary.dart';
 import 'package:oraxcrm/presentation/unified_number/view/unified_number.dart';
 
@@ -39,11 +42,12 @@ class Routes {
   static const String contractSigningRoute = "/contractSigning/view";
   static const String activitiesRoute = "/activities/view";
   static const String changePasswordRoute = "/changePassword/view";
+  static const String ticketsDetailsRoute = "/tickets_details/view";
 
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const ContractSigningView(),
+      builder: (context, state) => const SplashScreenView(),
     ),
     GoRoute(
       path: filesRoute,
@@ -87,7 +91,8 @@ class Routes {
     ),
     GoRoute(
       path: projectDetailsRoute,
-      builder: (context, state) => ProjectDetailsView(projectData:state.extra as Dataprojects),
+      builder: (context, state) =>
+          ProjectDetailsView(projectData: state.extra as Dataprojects),
     ),
     GoRoute(
       path: projectsRoute,
@@ -108,6 +113,12 @@ class Routes {
     GoRoute(
       path: loginRoute,
       builder: (context, state) => const LoginView(),
+    ),
+    GoRoute(
+      path: ticketsDetailsRoute,
+      builder: (context, state) => TicketsDetailsView(
+        ticketDetails: state.extra as Dataticket,
+      ),
     ),
   ]);
 }

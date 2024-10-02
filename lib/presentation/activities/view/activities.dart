@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oraxcrm/presentation/activities/viewmodel/activities_viewmodel.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ class _ActivitiesViewState extends State<ActivitiesView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
         body: SingleChildScrollView(
           child: Center(
             child: Column(children: [

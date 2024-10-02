@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/app/app.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/projects/viewmodel/projects_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
@@ -27,6 +28,7 @@ class _ProjectsViewState extends State<ProjectsView> {
         child: Scaffold(
           backgroundColor: ColorsManager.bgColor,
           resizeToAvoidBottomInset: false,
+          drawer: const DrawerView(),
           body: SingleChildScrollView(
             child: Center(
               child: Consumer<ProjectsViewModel>(
@@ -175,8 +177,8 @@ class _ProjectsViewState extends State<ProjectsView> {
                                   bottom: displayHeight(context) * 0.02),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  
-                                  context.push(Routes.projectDetailsRoute,extra:_viewModel.projectsList![index]);
+                                  context.push(Routes.projectDetailsRoute,
+                                      extra: _viewModel.projectsList![index]);
                                 },
                                 style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(

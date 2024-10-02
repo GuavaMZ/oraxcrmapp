@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oraxcrm/app/data_holders.dart';
+import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/personalinfo/viewmodel/personal_info_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
@@ -36,6 +37,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
         child: Scaffold(
             backgroundColor: ColorsManager.bgColor,
             resizeToAvoidBottomInset: false,
+        drawer: const DrawerView(),
             body: SingleChildScrollView(
                 child: Center(
               child: Column(children: [
