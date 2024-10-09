@@ -95,6 +95,8 @@ mixin AppStrings {
   static const String date = 'Date of last Update';
   static const String copyright= 'CopyRight OraxSoft';
   static const String ticketDetails= 'Ticket Details';
+  static const String weWillSendYou =
+      "We will send you a one-time password via WhatsApp to confirm the signature.";
 
 
   static Map<String, dynamic> EN = {
