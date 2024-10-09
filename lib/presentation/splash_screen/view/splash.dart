@@ -18,6 +18,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: _viewModel.splashDuration), () async {
+      await _viewModel.checkForUpdates();
       if (await _viewModel.checkForUsrToken() == true) {
         context.pushReplacement(Routes.mainScreenRoute);
       } else {

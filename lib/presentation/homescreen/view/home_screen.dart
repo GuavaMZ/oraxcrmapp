@@ -117,7 +117,20 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       options: CarouselOptions(
                         autoPlay: true,
                         padEnds: false,
-                      ))
+                      )),
+                  SizedBox(height: displayHeight(context) * 0.05),
+                  Text(AppStrings.home.getString(context),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text(AppStrings.home.getString(context),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text(AppStrings.home.getString(context),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text(AppStrings.home.getString(context),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),

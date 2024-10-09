@@ -139,7 +139,14 @@ class _TicketsDetailsViewState extends State<TicketsDetailsView> {
                                     ),
                                   ),
                                   Text(
-                                    '${widget.ticketDetails!}',
+                                    widget.ticketDetails!.priorityName.toString().getString(context),
+                                    style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.017,
+                                      color: ColorsManager.fontColor2,
+                                    ),
+                                  ),
+                                  Text(
+                                    snapshot.data.data.date,
                                     style: TextStyle(
                                       fontSize: displayHeight(context) * 0.017,
                                       color: ColorsManager.fontColor2,
