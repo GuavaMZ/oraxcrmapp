@@ -97,6 +97,7 @@ mixin AppStrings {
   static const String ticketDetails= 'Ticket Details';
   static const String weWillSendYou =
       "We will send you a one-time password via WhatsApp to confirm the signature.";
+  static const String addReply= 'Add Reply To This Ticket';
 
 
   static Map<String, dynamic> EN = {
@@ -203,7 +204,8 @@ mixin AppStrings {
     mobileApp: 'Mobile App Development',
     date: 'Date of last Update',
     copyright: 'CopyRight OraxSoft' ,
-    ticketDetails:"Ticket Details"
+    ticketDetails:"Ticket Details",
+    addReply:'Add Reply To This Ticket',
   };
 
   static Map<String, dynamic> AR = {
@@ -307,6 +309,7 @@ mixin AppStrings {
     mobileApp: 'تطوير تطبيقات الهاتف المحمول',
     date: 'تاريخ التحديث الأخير',
     copyright: 'جميع الحقوق محفوظة لشركة اوراكس سوفت' ,
-    ticketDetails:"تفاصيل التذكرة"
+    ticketDetails:"تفاصيل التذكرة",
+    addReply:"اضف ردا على هذه التذكرة"
   };
 }

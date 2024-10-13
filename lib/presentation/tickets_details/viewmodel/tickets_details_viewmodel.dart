@@ -7,6 +7,8 @@ import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TicketsDetailsViewModel extends ChangeNotifier {
+  TextEditingController messageTextController = TextEditingController();
+
   Map<String, String> projectTicketsStats = {
     '1': AppStrings.open,
     '2': AppStrings.inProgress,

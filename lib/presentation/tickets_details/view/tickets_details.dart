@@ -25,8 +25,62 @@ class _TicketsDetailsViewState extends State<TicketsDetailsView> {
       create: (_) => _viewModel,
       child: Scaffold(
         backgroundColor: ColorsManager.bgColor,
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         drawer: const DrawerView(),
+        bottomSheet: Container(
+          alignment: const Alignment(0, 0.96),
+          height: displayHeight(context) * 0.1,
+          width: displayWidth(context) * 0.9,
+          decoration: BoxDecoration(
+              color: ColorsManager.bgColor,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(displayHeight(context) * 0.03),
+                  topRight: Radius.circular(displayHeight(context) * 0.03)),
+              boxShadow: [
+                BoxShadow(
+                    color: ColorsManager.defaultShadowColor.withOpacity(0.2),
+                    spreadRadius: 4,
+                    blurRadius: 25,
+                    offset: const Offset(0, 4))
+              ]),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: displayWidth(context) * 0.6,
+                // height: displayHeight(context) * 0.073,
+                child: TextField(
+                  controller: _viewModel.messageTextController,
+
+                  decoration: InputDecoration(
+                    hintText: AppStrings.addReply.getString(context),
+                    enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    contentPadding: EdgeInsets.symmetric(
+                        horizontal: displayWidth(context) * 0.04,
+                        vertical: displayHeight(context) * 0.017),
+                  ),
+                  maxLines: 1,
+
+                  // fillColor: const Color(0xffffffff),
+                ),
+              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.attach_file)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      elevation: 0,
+                      // backgroundColor: ColorManager.lightGreenColor,
+                      minimumSize: Size(displayWidth(context) * 0.1,
+                          displayHeight(context) * 0.06)),
+                  onPressed: () async {},
+                  child: null)
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -139,17 +193,26 @@ class _TicketsDetailsViewState extends State<TicketsDetailsView> {
                                     ),
                                   ),
                                   Text(
-                                    widget.ticketDetails!.priorityName.toString().getString(context),
+                                    widget.ticketDetails!.priorityName
+                                        .toString()
+                                        .getString(context),
                                     style: TextStyle(
                                       fontSize: displayHeight(context) * 0.017,
                                       color: ColorsManager.fontColor2,
                                     ),
                                   ),
                                   Text(
-                                    snapshot.data.data.date,
+                                    snapshot.data.data.departmentName,
                                     style: TextStyle(
                                       fontSize: displayHeight(context) * 0.017,
-                                      color: ColorsManager.fontColor2,
+                                      color: ColorsManager.fontColor1,
+                                    ),
+                                  ),
+                                  Text(
+                                    snapshot.data.data.date.toString(),
+                                    style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.017,
+                                      color: ColorsManager.fontColor1,
                                     ),
                                   ),
                                 ],
