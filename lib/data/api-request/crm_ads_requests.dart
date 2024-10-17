@@ -3,7 +3,7 @@ import 'package:oraxcrm/main.dart';
 
 class CRMAdsRequests {
   Future getCategories() async {
-    CrmCategoriesModel  categoriesModel = CrmCategoriesModel();
+    CrmCategoriesModel categoriesModel = CrmCategoriesModel();
     try {
       final res = await supabase.rpc('getcategories');
       categoriesModel = CrmCategoriesModel.fromJson(res);
@@ -12,11 +12,10 @@ class CRMAdsRequests {
     } catch (e) {
       return e;
     }
-
   }
 
   Future getAdvertises() async {
-    CrmAdsModel  adsModel = CrmAdsModel();
+    CrmAdsModel adsModel = CrmAdsModel();
     try {
       final res = await supabase.rpc('getads');
       adsModel = CrmAdsModel.fromJson(res);
@@ -27,11 +26,24 @@ class CRMAdsRequests {
   }
 
   Future getSystemsAndApps() async {
-    CrmAppsSystemsModel  crmAppsSystemsModel = CrmAppsSystemsModel();
+    CrmAppsSystemsModel crmAppsSystemsModel = CrmAppsSystemsModel();
     try {
-      final res = await supabase.rpc('getAds');
+      final res = await supabase.rpc('getsystemsandapps');
       crmAppsSystemsModel = CrmAppsSystemsModel.fromJson(res);
-      print(crmAppsSystemsModel);
+      print(res);
+      return crmAppsSystemsModel;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future getSystemsAndAppsBasedOnCategory(int categoryId) async {
+    CrmAppsSystemsModel crmAppsSystemsModel = CrmAppsSystemsModel();
+    try {
+      final res = await supabase.rpc('getsystemsandappsbasedoncategory',
+          params: {'category_id': categoryId});
+      crmAppsSystemsModel = CrmAppsSystemsModel.fromJson(res);
+      print(res);
       return crmAppsSystemsModel;
     } catch (e) {
       return e;

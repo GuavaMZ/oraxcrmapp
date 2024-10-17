@@ -28,6 +28,7 @@ mixin AppStrings {
   static const String personalInfo = 'Personal Info';
   static const String changePassword = 'Change Password';
   static const String ticketsSummary = 'Tickets Summary';
+  static const String ticketSummary = 'Ticket Summary';
   static const String contracts = 'Contracts';
   static const String files = 'Files';
   static const String projects = 'Projects';
@@ -206,6 +207,7 @@ mixin AppStrings {
     copyright: 'CopyRight OraxSoft' ,
     ticketDetails:"Ticket Details",
     addReply:'Add Reply To This Ticket',
+    ticketSummary:'Ticket Summary',
   };
 
   static Map<String, dynamic> AR = {
@@ -216,7 +218,7 @@ mixin AppStrings {
     forgotPassword: 'هل نسيت كلمة السر؟',
     signIn: 'تسجيل الدخول',
     dontHaveAnyAccountSignUp: "ليس لديك حساب؟ إنشاء حساب جديد",
-    home: 'الصفحة الرئيسية',
+    home: 'الرئيسية',
     all: 'الكل',
     apps: 'التطبيقات',
     websites: 'المواقع',
@@ -310,6 +312,7 @@ mixin AppStrings {
     date: 'تاريخ التحديث الأخير',
     copyright: 'جميع الحقوق محفوظة لشركة اوراكس سوفت' ,
     ticketDetails:"تفاصيل التذكرة",
-    addReply:"اضف ردا على هذه التذكرة"
+    addReply:"اضف ردا على هذه التذكرة",
+    ticketSummary:'ملخص التذكرة'
   };
 }

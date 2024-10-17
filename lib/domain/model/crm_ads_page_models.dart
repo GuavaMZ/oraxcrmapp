@@ -105,7 +105,7 @@ class CrmAppsSystemsData {
       price: json['price'],
       priceOffer: json['price_offer'],
       description: json['description'],
-      images: json['image'],
+      images: json['images'],
       categoryNameAr: json['category_name_ar'],
         categoryNameEn: json['category_name_en'],
     );

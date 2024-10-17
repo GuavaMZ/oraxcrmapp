@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:oraxcrm/app/app.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 
@@ -25,7 +28,9 @@ class _AddBottomsheetViewState extends State<AddBottomsheetView> {
       child: Column(
         children: [
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push(Routes.openTicketRoute);
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.bgColor,
                   elevation: 0,
@@ -38,7 +43,8 @@ class _AddBottomsheetViewState extends State<AddBottomsheetView> {
                   padding: EdgeInsets.all(displayHeight(context) * 0.038)),
               child: Row(
                 children: [
-                  SvgPicture.asset(''), //TODO:ICON HERE
+                  SvgPicture.asset('assets/images/open_ticket.svg'), 
+                  SizedBox(width: displayWidth(context)* 0.06), 
                   SizedBox(
                     child: Text(
                       AppStrings.openTicket.getString(context),
@@ -55,7 +61,9 @@ class _AddBottomsheetViewState extends State<AddBottomsheetView> {
             color: ColorsManager.separatorColor,
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push(Routes.contractSigningRoute);
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.bgColor,
                   elevation: 0,
@@ -63,7 +71,8 @@ class _AddBottomsheetViewState extends State<AddBottomsheetView> {
                   padding: EdgeInsets.all(displayHeight(context) * 0.038)),
               child: Row(
                 children: [
-                  SvgPicture.asset(''), //TODO:ICON HERE
+                  SvgPicture.asset('assets/images/sign_contract.svg'),
+                  SizedBox(width: displayWidth(context)* 0.06), 
                   SizedBox(
                     child: Text(
                       AppStrings.signContract.getString(context),

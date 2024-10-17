@@ -22,19 +22,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
-        localization.init(mapLocales: [
-      MapLocale('ar', AppStrings.AR,
-          fontFamily: FontManager.currentFont),
+    localization.init(mapLocales: [
+      MapLocale('ar', AppStrings.AR, fontFamily: FontManager.arFont),
       MapLocale('en', AppStrings.EN, fontFamily: FontManager.currentFont)
-    ], initLanguageCode: 'en');
+    ], initLanguageCode: 'ar');
     localization.onTranslatedLanguage = _onTranslatedLanguage;
     super.initState();
   }
 
-    void _onTranslatedLanguage(Locale? locale) {
+  void _onTranslatedLanguage(Locale? locale) {
     setState(() {});
   }
 
@@ -45,8 +43,10 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: localization.supportedLocales,
       localizationsDelegates: localization.localizationsDelegates,
       theme: ThemeData(
-        fontFamily: FontManager.currentFont
-      ),
+          fontFamily: localization.currentLocale.toString() == 'en'
+              ? FontManager.currentFont
+              : FontManager.arFont),
+      locale: localization.currentLocale,
     );
   }
 }
