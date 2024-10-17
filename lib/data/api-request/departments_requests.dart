@@ -3,7 +3,7 @@ import 'package:oraxcrm/data/api-base/api_urls.dart';
 
 class DepartmentsRequests {
   Dio dio = Dio();
-  Future getProjects(Map<String, dynamic> header) async {
+  Future getDepartments(Map<String, dynamic> header) async {
     Response response;
     try {
       // print("بداية  الريسبونس ");
