@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/data/api-request/projects_requests.dart';
+import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
+import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProjectSummaryViewModel extends ChangeNotifier {
@@ -9,7 +11,32 @@ class ProjectSummaryViewModel extends ChangeNotifier {
   DateTime? projectStartedDate;
   DateTime? projectDeadlineDate;
   int? daysLeft;
-  double? projectProgressPrecentage;
+  double? projectProgressPercentage;
+  double? openTasksPercentage;
+
+  Map<String, String> projectTasksStats = {
+    '1': AppStrings.notStarted,
+    '2': AppStrings.inProgress,
+    '3': AppStrings.onHold,
+    '4': AppStrings.cancelled,
+    '5': AppStrings.finished,
+  };
+
+  List<String> tasksStatuses = [
+    AppStrings.notStarted,
+    AppStrings.inProgress,
+    AppStrings.onHold,
+    AppStrings.cancelled,
+    AppStrings.finished,
+  ];
+
+  List<int> tasksStatusesCount = [
+    0,
+    0,
+    0,
+    0,
+    0
+  ]; //Not Started,InProgress,OnHold,Cancelled,Finished
 
   Future getProjectDetails(BuildContext context, String id) async {
     ProjectsRequests projectsRequests = ProjectsRequests();
@@ -30,7 +57,7 @@ class ProjectSummaryViewModel extends ChangeNotifier {
               int.parse(res.data['data']['deadline'].toString().split('-')[1]),
               int.parse(res.data['data']['deadline'].toString().split('-')[2]));
           daysLeft = projectDeadlineDate?.difference(currentDate).inDays;
-          projectProgressPrecentage = (daysLeft! /
+          projectProgressPercentage = (daysLeft! /
               projectDeadlineDate!.difference(projectStartedDate!).inDays);
           return res;
         } else if (res.statusCode == 401) {
@@ -42,6 +69,29 @@ class ProjectSummaryViewModel extends ChangeNotifier {
       return res.data;
     } catch (e) {
       print(e);
+    }
+  }
+
+ Future assignProjectTasksStatusesCounts(ProjectTasksModel projectTasks) async {
+    for (DataTasksProject data in projectTasks.dataTasksProject!) {
+      switch (data.status) {
+        case "1":
+          tasksStatusesCount[0]++;
+          break;
+        case "2":
+          tasksStatusesCount[1]++;
+          break;
+        case "3":
+          tasksStatusesCount[2]++;
+          break;
+        case "4":
+          tasksStatusesCount[3]++;
+          break;
+        case "5":
+          tasksStatusesCount[4]++;
+          break;
+        default:
+      }
     }
   }
 }

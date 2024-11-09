@@ -58,6 +58,8 @@ class TicketsSummaryViewModel extends ChangeNotifier {
           if (context.mounted) {
             context.pushReplacement(Routes.loginRoute);
           }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(res.data['message'])));
         }
       });
       return supportTicketsModel?.dataticket;

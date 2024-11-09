@@ -10,7 +10,8 @@ Future<void> main() async {
 
   await Supabase.initialize(
     url: 'https://aqmicofvwznoxawlsfds.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxbWljb2Z2d3pub3hhd2xzZmRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc4MjI5MzQsImV4cCI6MjA0MzM5ODkzNH0.PXPgFb8sI6Fu4JwDDj22APpim0hZiWYDMKoOVEoJSUo',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxbWljb2Z2d3pub3hhd2xzZmRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc4MjI5MzQsImV4cCI6MjA0MzM5ODkzNH0.PXPgFb8sI6Fu4JwDDj22APpim0hZiWYDMKoOVEoJSUo',
   );
 
   runApp(MyApp());

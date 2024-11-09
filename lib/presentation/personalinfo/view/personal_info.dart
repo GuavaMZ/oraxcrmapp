@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/personalinfo/viewmodel/personal_info_viewmodel.dart';
@@ -40,7 +41,9 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
         drawer: const DrawerView(),
             body: SingleChildScrollView(
                 child: Center(
-              child: Column(children: [
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                 SizedBox(
                   height: displayHeight(context) * 0.06,
                 ),
@@ -62,7 +65,9 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                                     blurRadius: 25)
                               ]),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.pop();
+                              },
                               icon: const Icon(Icons.arrow_back))),
                       Text(AppStrings.personalInfo.getString(context),
                           style: const TextStyle(
@@ -90,8 +95,8 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   height: displayHeight(context) * 0.05,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06),
-                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06,right: displayWidth(context) * 0.05),
+
                   child: Text(AppStrings.firstName.getString(context),
                       style: TextStyle(
                           fontSize: displayHeight(context) * 0.019,
@@ -111,6 +116,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                       filled: true,
                       contentPadding: EdgeInsets.only(
                           left: displayWidth(context) * 0.06,
+                          right: displayWidth(context) * 0.06,
                           top: displayHeight(context) * 0.02,
                           bottom: displayHeight(context) * 0.02),
                       fillColor: const Color(0xffF5F4F4),
@@ -138,8 +144,8 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   height: displayHeight(context) * 0.022,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06),
-                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06,right: displayWidth(context) * 0.05),
+
                   child: Text(AppStrings.lastName.getString(context),
                       style: TextStyle(
                           fontSize: displayHeight(context) * 0.019,
@@ -159,6 +165,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                       filled: true,
                       contentPadding: EdgeInsets.only(
                           left: displayWidth(context) * 0.06,
+                          right: displayWidth(context) * 0.06,
                           top: displayHeight(context) * 0.02,
                           bottom: displayHeight(context) * 0.02),
                       fillColor: const Color(0xffF5F4F4),
@@ -186,8 +193,8 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   height: displayHeight(context) * 0.022,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06),
-                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06,right: displayWidth(context) * 0.05),
+
                   child: Text(AppStrings.emailaddress.getString(context),
                       style: TextStyle(
                           fontSize: displayHeight(context) * 0.019,
@@ -207,6 +214,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                       filled: true,
                       contentPadding: EdgeInsets.only(
                           left: displayWidth(context) * 0.06,
+                          right: displayWidth(context) * 0.06,
                           top: displayHeight(context) * 0.02,
                           bottom: displayHeight(context) * 0.02),
                       fillColor: const Color(0xffF5F4F4),
@@ -234,8 +242,8 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   height: displayHeight(context) * 0.022,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06),
-                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06,right: displayWidth(context) * 0.05),
+
                   child: Text(AppStrings.phoneNumber.getString(context),
                       style: TextStyle(
                           fontSize: displayHeight(context) * 0.019,
@@ -255,6 +263,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                       filled: true,
                       contentPadding: EdgeInsets.only(
                           left: displayWidth(context) * 0.06,
+                          right: displayWidth(context) * 0.06,
                           top: displayHeight(context) * 0.02,
                           bottom: displayHeight(context) * 0.02),
                       fillColor: const Color(0xffF5F4F4),
@@ -282,8 +291,8 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   height: displayHeight(context) * 0.022,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06),
-                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: displayWidth(context) * 0.06,right: displayWidth(context) * 0.05),
+
                   child: Text(AppStrings.position.getString(context),
                       style: TextStyle(
                           fontSize: displayHeight(context) * 0.019,
@@ -303,6 +312,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                       filled: true,
                       contentPadding: EdgeInsets.only(
                           left: displayWidth(context) * 0.06,
+                          right: displayWidth(context) * 0.06,
                           top: displayHeight(context) * 0.02,
                           bottom: displayHeight(context) * 0.02),
                       fillColor: const Color(0xffF5F4F4),

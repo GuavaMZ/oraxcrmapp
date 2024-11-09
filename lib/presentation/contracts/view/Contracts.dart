@@ -97,7 +97,9 @@ class _ContractsViewState extends State<ContractsView> {
                                             blurRadius: 25)
                                       ]),
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Scaffold.of(context).openDrawer();
+                                      },
                                       icon: SvgPicture.asset(
                                           'assets/images/menu-1 3.svg')))
                             ],
@@ -175,9 +177,11 @@ class _ContractsViewState extends State<ContractsView> {
                           itemBuilder: (BuildContext context, int index) =>
                               Container(
                             margin: EdgeInsets.only(
-                                bottom: displayHeight(context) * 0.02),
+                                bottom: displayHeight(context) * 0.01),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                
+                              },
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
@@ -191,8 +195,8 @@ class _ContractsViewState extends State<ContractsView> {
                                 padding: EdgeInsets.only(
                                     top: displayHeight(context) * 0.03,
                                     bottom: displayHeight(context) * 0.03,
-                                    left: displayWidth(context) * 0.07,
-                                    right: displayWidth(context) * 0.07),
+                                    left: displayWidth(context) * 0.06,
+                                    right: displayWidth(context) * 0.06),
                                 decoration: BoxDecoration(
                                     color: ColorsManager.ticketsContainerColor,
                                     borderRadius: BorderRadius.circular(

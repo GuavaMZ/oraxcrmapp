@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:oraxcrm/domain/model/contracts_model.dart';
+import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/domain/model/support_tickets_model.dart';
 import 'package:oraxcrm/presentation/about_us/view/about_us.dart';
@@ -6,6 +8,7 @@ import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/changepassword/view/change_password.dart';
 import 'package:oraxcrm/presentation/contact_us/view/contact_us.dart';
 import 'package:oraxcrm/presentation/contracts/view/Contracts.dart';
+import 'package:oraxcrm/presentation/contractsigning/sign_contract/view/sign_contract_view.dart';
 import 'package:oraxcrm/presentation/contractsigning/view/contract_signing.dart';
 import 'package:oraxcrm/presentation/files/view/files.dart';
 import 'package:oraxcrm/presentation/homescreen/view/home_screen.dart';
@@ -43,6 +46,7 @@ class Routes {
   static const String activitiesRoute = "/activities/view";
   static const String changePasswordRoute = "/changePassword/view";
   static const String ticketsDetailsRoute = "/tickets_details/view";
+  static const String signContractRoute = "/sign_contract/view";
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -100,7 +104,9 @@ class Routes {
     ),
     GoRoute(
       path: tasksRoute,
-      builder: (context, state) => const TasksView(),
+      builder: (context, state) =>  TasksView(
+        projectTasksDetails: state.extra as ProjectTasksModel,
+      ),
     ),
     GoRoute(
       path: ticketsRoute,
@@ -118,6 +124,12 @@ class Routes {
       path: ticketsDetailsRoute,
       builder: (context, state) => TicketsDetailsView(
         ticketDetails: state.extra as Dataticket,
+      ),
+    ),
+    GoRoute(
+      path: signContractRoute,
+      builder: (context, state) => SignContractView(
+        contract: state.extra as DataContract,
       ),
     ),
   ]);

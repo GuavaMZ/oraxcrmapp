@@ -72,9 +72,9 @@ mixin AppStrings {
   static const String notStarted = 'Not Started';
   static const String invalidPhoneOrPassword =
       "Invalid Phone Number Or Password";
-  static const String website = 'Website';  
+  static const String website = 'Website';
   static const String contactUs = 'Contact Us';
-  static const String unifiedNumber = 'Unified Number';  
+  static const String unifiedNumber = 'Unified Number';
   static const String emailAddress = 'Email Address';
   static const String location = 'Location';
   static const String call = 'Call';
@@ -94,12 +94,19 @@ mixin AppStrings {
   static const String webDevelopment = 'Websites Development';
   static const String mobileApp = 'Mobile App Development';
   static const String date = 'Date of last Update';
-  static const String copyright= 'CopyRight OraxSoft';
-  static const String ticketDetails= 'Ticket Details';
+  static const String copyright = 'CopyRight OraxSoft';
+  static const String ticketDetails = 'Ticket Details';
   static const String weWillSendYou =
       "We will send you a one-time password via WhatsApp to confirm the signature.";
-  static const String addReply= 'Add Reply To This Ticket';
-
+  static const String addReply = 'Add Reply To This Ticket';
+  static const String attachment = 'Attachments';
+  static const String fillFields = 'fillFields';
+  static const String ticketSubmitted = 'Ticket Submitted';
+  static const String getVerificationCodeOnWhatsapp =
+      "getVerificationCodeOnWhatsapp";
+  static const String verifyCode = 'Verify Code';
+  static const String noContractsToSign = 'noContractsToSign';
+  static const String contractSignedSuccessfully = 'contractSignedSuccessfully';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -179,12 +186,12 @@ mixin AppStrings {
     "Null": 'N/A',
     notStarted: "Not Started",
     cancelled: "Cancelled",
-    days:"Days",
-    projectProgess:"Project Progress",
-    projectSupervisor:"Project Supervisors",
-    website: "Website" ,
+    days: "Days",
+    projectProgess: "Project Progress",
+    projectSupervisor: "Project Supervisors",
+    website: "Website",
     contactUs: "Contact Us",
-    unifiedNumber:'Unified Number', 
+    unifiedNumber: 'Unified Number',
     emailAddress: 'Email Address',
     location: 'Location',
     call: 'Call',
@@ -193,7 +200,7 @@ mixin AppStrings {
     aboutUs: 'About Us',
     arabic: 'Arabic',
     theOraxCrmAplication:
-      "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
+        "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
     features: 'Features',
     hourCustomerService: '24 hour customer service',
     designCreatedByTheTeam: 'Design created by the team',
@@ -204,10 +211,17 @@ mixin AppStrings {
     webDevelopment: 'Websites Development',
     mobileApp: 'Mobile App Development',
     date: 'Date of last Update',
-    copyright: 'CopyRight OraxSoft' ,
-    ticketDetails:"Ticket Details",
-    addReply:'Add Reply To This Ticket',
-    ticketSummary:'Ticket Summary',
+    copyright: 'CopyRight OraxSoft',
+    ticketDetails: "Ticket Details",
+    addReply: 'Add Reply To This Ticket',
+    ticketSummary: 'Ticket Summary',
+    attachment: 'Attachments',
+    fillFields: 'Please fill all fields',
+    ticketSubmitted: 'Your Ticket Has been Successfully Submitted',
+    getVerificationCodeOnWhatsapp: 'Send Verification Code To Whatsapp',
+    verifyCode: 'Verify Code',
+    noContractsToSign: "There is no any contract to sign",
+    contractSignedSuccessfully: "Contract Signed Successfully"
   };
 
   static Map<String, dynamic> AR = {
@@ -291,15 +305,15 @@ mixin AppStrings {
     "Null": 'N/A',
     notStarted: "لم تبدأ",
     cancelled: "Cancelled",
-    days:"ايام",
-    projectProgess:'تقدم المشروع',
+    days: "ايام",
+    projectProgess: 'تقدم المشروع',
     call: 'اتصل',
     textMessage: 'رسالة نصية',
     whatsapp: 'واتساب',
     aboutUs: 'من نحن',
-    arabic: 'عربي' ,
+    arabic: 'عربي',
     theOraxCrmAplication:
-      "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
+        "The ORAXCRM application was developed by Golden Solutions Information Technology Company in order to convert all its business into electronic business easily.",
     features: 'الميزات',
     hourCustomerService: 'خدمة العملاء على مدار 24 ساعة',
     designCreatedByTheTeam: 'التصميم من إبداع الفريق',
@@ -310,9 +324,16 @@ mixin AppStrings {
     webDevelopment: 'تطوير مواقع الويب',
     mobileApp: 'تطوير تطبيقات الهاتف المحمول',
     date: 'تاريخ التحديث الأخير',
-    copyright: 'جميع الحقوق محفوظة لشركة اوراكس سوفت' ,
-    ticketDetails:"تفاصيل التذكرة",
-    addReply:"اضف ردا على هذه التذكرة",
-    ticketSummary:'ملخص التذكرة'
+    copyright: 'جميع الحقوق محفوظة لشركة اوراكس سوفت',
+    ticketDetails: "تفاصيل التذكرة",
+    addReply: "اضف ردا على هذه التذكرة",
+    ticketSummary: 'ملخص التذكرة',
+    attachment: 'المرفقات',
+    fillFields: 'من فضلك ، قم بملء الحقول',
+    ticketSubmitted: 'تم تقديم التذكرة بنجاح',
+    getVerificationCodeOnWhatsapp: 'ارسل كود التحقق الى واتساب',
+    verifyCode: 'تحقق من الكود',
+    noContractsToSign: 'لا توجد عقود لتوقيعها',
+    contractSignedSuccessfully: 'تم توقيع العقد بنجاح',
   };
 }

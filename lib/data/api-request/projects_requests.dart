@@ -23,11 +23,32 @@ class ProjectsRequests {
     }
   }
 
-  Future getProjectsDetails(Map<String, dynamic> header,String id) async {
+  Future getProjectsDetails(Map<String, dynamic> header, String id) async {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(ApiLinks.baseUrl + ApiLinks.getProjectDetailsById + id,
+      response =
+          await dio.get(ApiLinks.baseUrl + ApiLinks.getProjectDetailsById + id,
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // print("خروج من الريسبونس ");
+        response = error.response!;
+        return response;
+      }
+    }
+  }
+
+  Future getProjectTasks(Map<String, dynamic> header, String id) async {
+    Response response;
+    try {
+      // print("بداية  الريسبونس ");
+      response = await dio.get(
+          "${ApiLinks.baseUrl}${ApiLinks.getProjectsTasks}?rel_type=project&rel_id=$id&order_by=id",
           options: Options(
             method: 'GET',
             headers: header,
@@ -42,11 +63,12 @@ class ProjectsRequests {
     }
   }
 
-  Future getProjectTasks(Map<String, dynamic> header,String id) async {
+  Future getProjectTickets(Map<String, dynamic> header, String id) async {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectsTasks}?rel_type=project&rel_id=$id&order_by=id",
+      response = await dio.get(
+          "${ApiLinks.baseUrl}${ApiLinks.getProjectTickets}?project_id=$id",
           options: Options(
             method: 'GET',
             headers: header,
@@ -61,11 +83,11 @@ class ProjectsRequests {
     }
   }
 
-  Future getProjectTickets(Map<String, dynamic> header,String id) async {
+  Future getProjectActivities(Map<String, dynamic> header, String id) async {
     Response response;
     try {
-      // print("بداية  الريسبونس ");
-      response = await dio.get("${ApiLinks.baseUrl}${ApiLinks.getProjectTickets}?project_id=$id",
+      response = await dio.get(
+          ApiLinks.baseUrl + ApiLinks.getProjectActivities +"?project_id=" + int.parse(id).toString(),
           options: Options(
             method: 'GET',
             headers: header,

@@ -24,7 +24,7 @@ class _MainPageViewState extends State<MainPageView>
   @override
   void initState() {
     _viewModel.motionTabBarController =
-        MotionTabBarController(length: 2, initialIndex: 0, vsync: this);
+        MotionTabBarController(length: 4, initialIndex: 0, vsync: this);
     super.initState();
   }
 

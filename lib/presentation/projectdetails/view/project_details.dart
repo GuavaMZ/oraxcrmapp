@@ -48,7 +48,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
         child: Scaffold(
           backgroundColor: ColorsManager.bgColor,
           resizeToAvoidBottomInset: false,
-        drawer: const DrawerView(),
+          drawer: const DrawerView(),
           body: DefaultTabController(
               length: 4,
               initialIndex: 0,
@@ -180,20 +180,24 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                           context, widget.projectData!.id!),
                       _viewModel.getProjectTickets(
                           context, widget.projectData!.id!),
+                      // _viewModel.getProjectActivities(
+                      //     context, widget.projectData!.id!),
                     ]),
                     builder: (context, snapshot) => Expanded(
                       child: TabBarView(
                           controller: _viewModel.tabController,
                           physics: const NeverScrollableScrollPhysics(),
                           children: [
-                            ProjectSummaryView(projectData: widget.projectData),
+                            ProjectSummaryView(projectData: widget.projectData,projectTasksDetails: _viewModel.projectsTasks,),
                             TasksView(
                               projectTasksDetails: _viewModel.projectsTasks,
                             ),
                             TicketsView(
                               projectTicketsModel: _viewModel.projectsTickets,
                             ),
-                            const ActivitiesView()
+                            // ActivitiesView(
+                            //   projectActivities: _viewModel.projectActivities,
+                            // )
                           ]),
                     ),
                   )

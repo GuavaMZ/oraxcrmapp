@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/data/api-request/projects_requests.dart';
+import 'package:oraxcrm/domain/model/project_activities_model.dart';
 import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/domain/model/project_tickets_model.dart';
 import 'package:oraxcrm/presentation/activities/view/activities.dart';
@@ -20,18 +21,19 @@ class ProjectDetailsViewModel extends ChangeNotifier {
     ProjectSummaryView(),
     TasksView(),
     TicketsView(),
-    ActivitiesView()
+    // ActivitiesView()
   ];
 
   List<String> projectDetailsTitles = [
     AppStrings.projectSummary,
     AppStrings.tasks,
     AppStrings.tickets,
-    AppStrings.activities
+    // AppStrings.activities
   ];
 
   ProjectTasksModel? projectsTasks;
   ProjectTicketsModel? projectsTickets;
+  ActiveProjectModel? projectActivities;
 
   Future toggleNotifyListeners() async {
     notifyListeners();
@@ -79,6 +81,30 @@ class ProjectDetailsViewModel extends ChangeNotifier {
         }
       });
       return projectTicketsModel;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+    Future getProjectActivities(BuildContext context, String id) async {
+    ProjectsRequests projectsRequests = ProjectsRequests();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    ActiveProjectModel? activeProjectModel;
+    try {
+      await projectsRequests.getProjectActivities(
+          {'Authorization': prefs.getString('usrToken')}, id).then((res) async {
+            print(res);
+        if (res.statusCode == 200) {
+          activeProjectModel = ActiveProjectModel.fromJson(res.data);
+          projectActivities = activeProjectModel;
+          return activeProjectModel;
+        } else if (res.statusCode == 401) {
+          if (context.mounted) {
+            context.pushReplacement(Routes.loginRoute);
+          }
+        }
+      });
+      return activeProjectModel;
     } catch (e) {
       print(e);
     }
