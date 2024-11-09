@@ -274,7 +274,7 @@ mixin AppStrings {
     projectSummary: 'ملخص المشاريع',
     tasks: 'المهام',
     tickets: 'التذاكر',
-    openTasks: 'فتح المهام',
+    openTasks: 'المهام المفتوحة',
     daysLeft: 'الأيام المتبقية',
     signed: 'تم التوقيع',
     unSigned: 'غير موقّع',

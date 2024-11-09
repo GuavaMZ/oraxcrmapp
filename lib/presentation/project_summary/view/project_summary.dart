@@ -200,20 +200,20 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                         swapAnimationCurve: Curves.linear,
                                         PieChartData(sections: [
                                           PieChartSectionData(
-                                            color: const Color(0xff000000),
-                                            value:
-                                                ((_viewModel.tasksStatusesCount[
-                                                                    3] /
-                                                                _viewModel
-                                                                    .taskCounts) *
-                                                            100)
-                                                        .round() /
-                                                    100,
-                                            titleStyle: const TextStyle(
-                                                color: Color(0xffffffff)),
-
-                                            //Cancelled
-                                          ),
+                                              color: const Color(0xff000000),
+                                              value: ((_viewModel.tasksStatusesCount[
+                                                                  3] /
+                                                              _viewModel
+                                                                  .taskCounts) *
+                                                          100)
+                                                      .round() /
+                                                  100,
+                                              titleStyle: const TextStyle(
+                                                  color: Color(0xffffffff)),
+                                              title:
+                                                  '${((_viewModel.tasksStatusesCount[3] / _viewModel.taskCounts) * 100).round()}%'
+                                              //Cancelled
+                                              ),
                                           PieChartSectionData(
                                               color: const Color(
                                                   0xffc8c8c8), //Finished
@@ -223,7 +223,9 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                                                   .taskCounts) *
                                                           100)
                                                       .round() /
-                                                  100),
+                                                  100,
+                                              title:
+                                                  '${((_viewModel.tasksStatusesCount[4] / _viewModel.taskCounts) * 100).round()}%'),
                                           PieChartSectionData(
                                               color: const Color(
                                                   0xff989898), //In Progress
@@ -233,7 +235,9 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                                                   .taskCounts) *
                                                           100)
                                                       .round() /
-                                                  100),
+                                                  100,
+                                              title:
+                                                  '${((_viewModel.tasksStatusesCount[1] / _viewModel.taskCounts) * 100).round()}%'),
                                           PieChartSectionData(
                                               color: const Color(0xff747474),
                                               value: ((_viewModel.tasksStatusesCount[
@@ -242,7 +246,9 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                                                   .taskCounts) *
                                                           100)
                                                       .round() /
-                                                  100 //On Hold
+                                                  100,
+                                              title:
+                                                  '${((_viewModel.tasksStatusesCount[2] / _viewModel.taskCounts) * 100).round()}%' //On Hold
                                               ),
                                         ])),
                                   ),
@@ -352,9 +358,17 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               LinearPercentIndicator(
                                 barRadius: Radius.circular(
                                     displayHeight(context) * 0.02),
-                                percent: 0.5,
+                                percent: (_viewModel.tasksStatusesCount[0] +
+                                        _viewModel.tasksStatusesCount[1] +
+                                        _viewModel.tasksStatusesCount[2]) /
+                                    (_viewModel.taskCounts +
+                                        _viewModel.tasksStatusesCount[0]),
                                 padding: const EdgeInsets.all(0),
                                 lineHeight: 20,
+                                center: Text(
+                                  '${(_viewModel.taskCounts + _viewModel.tasksStatusesCount[0])} / ${(_viewModel.tasksStatusesCount[0] + _viewModel.tasksStatusesCount[1] + _viewModel.tasksStatusesCount[2])} ',
+                                  style: TextStyle(color: Color(0xffffffff)),
+                                ),
                                 backgroundColor: const Color(0xffc8c8c8),
                                 progressColor: const Color(0xff000000),
                               ),
