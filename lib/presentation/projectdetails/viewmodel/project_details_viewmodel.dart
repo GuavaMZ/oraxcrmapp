@@ -4,7 +4,7 @@ import 'package:oraxcrm/data/api-request/projects_requests.dart';
 import 'package:oraxcrm/domain/model/project_activities_model.dart';
 import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/domain/model/project_tickets_model.dart';
-import 'package:oraxcrm/presentation/activities/view/activities.dart';
+// import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/project_summary/view/project_summary.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
@@ -86,14 +86,14 @@ class ProjectDetailsViewModel extends ChangeNotifier {
     }
   }
 
-    Future getProjectActivities(BuildContext context, String id) async {
+  Future getProjectActivities(BuildContext context, String id) async {
     ProjectsRequests projectsRequests = ProjectsRequests();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     ActiveProjectModel? activeProjectModel;
     try {
       await projectsRequests.getProjectActivities(
           {'Authorization': prefs.getString('usrToken')}, id).then((res) async {
-            print(res);
+        print(res);
         if (res.statusCode == 200) {
           activeProjectModel = ActiveProjectModel.fromJson(res.data);
           projectActivities = activeProjectModel;

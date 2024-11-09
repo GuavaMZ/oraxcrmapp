@@ -13,6 +13,7 @@ class ProjectSummaryViewModel extends ChangeNotifier {
   int? daysLeft;
   double? projectProgressPercentage;
   double? openTasksPercentage;
+  int taskCounts = 0;
 
   Map<String, String> projectTasksStats = {
     '1': AppStrings.notStarted,
@@ -72,7 +73,8 @@ class ProjectSummaryViewModel extends ChangeNotifier {
     }
   }
 
- Future assignProjectTasksStatusesCounts(ProjectTasksModel projectTasks) async {
+  Future assignProjectTasksStatusesCounts(
+      ProjectTasksModel projectTasks) async {
     for (DataTasksProject data in projectTasks.dataTasksProject!) {
       switch (data.status) {
         case "1":
@@ -93,5 +95,9 @@ class ProjectSummaryViewModel extends ChangeNotifier {
         default:
       }
     }
+    taskCounts = tasksStatusesCount[1] +
+        tasksStatusesCount[2] +
+        tasksStatusesCount[3] +
+        tasksStatusesCount[4];
   }
 }

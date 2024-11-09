@@ -14,7 +14,8 @@ import 'package:provider/provider.dart';
 import '../../../domain/model/project_tasks_model.dart';
 
 class ProjectSummaryView extends StatefulWidget {
-  const ProjectSummaryView({super.key, this.projectData,this.projectTasksDetails});
+  const ProjectSummaryView(
+      {super.key, this.projectData, this.projectTasksDetails});
   final Dataprojects? projectData;
   final ProjectTasksModel? projectTasksDetails;
   @override
@@ -23,10 +24,12 @@ class ProjectSummaryView extends StatefulWidget {
 
 class _ProjectSummaryViewState extends State<ProjectSummaryView> {
   final ProjectSummaryViewModel _viewModel = ProjectSummaryViewModel();
-  
+
   @override
   void initState() {
     _viewModel.assignProjectTasksStatusesCounts(widget.projectTasksDetails!);
+    print(_viewModel.tasksStatusesCount);
+    print(_viewModel.taskCounts);
     super.initState();
   }
 
@@ -37,12 +40,12 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
-          drawer: const DrawerView(),
+        drawer: const DrawerView(),
         body: SingleChildScrollView(
           child: Center(
             child: FutureBuilder(
-              future:
-                  _viewModel.getProjectDetails(context, widget.projectData!.id!),
+              future: _viewModel.getProjectDetails(
+                  context, widget.projectData!.id!),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Container(
@@ -52,7 +55,8 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                     width: displayWidth(context) * 0.2,
                     child: LoadingAnimationWidget.discreteCircle(
                         color: ColorsManager.discreteCircleFirstColor,
-                        secondRingColor: ColorsManager.discreteCircleSecondColor,
+                        secondRingColor:
+                            ColorsManager.discreteCircleSecondColor,
                         thirdRingColor: ColorsManager.discreteCircleThirdColor,
                         size: displayWidth(context) * 0.1),
                   );
@@ -172,7 +176,7 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               Container(
                                 // alignment: Alignment.centerLeft,
                                 child: Text(
-                                  AppStrings.projectProgess.getString(context),
+                                  AppStrings.tasksSummary.getString(context),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: ColorsManager.fontColor1,
@@ -183,8 +187,10 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                 height: displayHeight(context) * 0.035,
                               ),
                               Consumer<ProjectSummaryViewModel>(
-                                builder: (BuildContext context, ProjectSummaryViewModel value, Widget? child) =>
-                                Center(
+                                builder: (BuildContext context,
+                                        ProjectSummaryViewModel value,
+                                        Widget? child) =>
+                                    Center(
                                   child: SizedBox(
                                     width: displayWidth(context) * 0.5,
                                     height: displayHeight(context) * 0.25,
@@ -194,17 +200,50 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                         swapAnimationCurve: Curves.linear,
                                         PieChartData(sections: [
                                           PieChartSectionData(
-                                            color: const Color(0xff000000),//Cancelled
+                                            color: const Color(0xff000000),
+                                            value:
+                                                ((_viewModel.tasksStatusesCount[
+                                                                    3] /
+                                                                _viewModel
+                                                                    .taskCounts) *
+                                                            100)
+                                                        .round() /
+                                                    100,
+                                            titleStyle: const TextStyle(
+                                                color: Color(0xffffffff)),
+
+                                            //Cancelled
                                           ),
                                           PieChartSectionData(
-                                            color: const Color(0xffc8c8c8), //Finished
-                                          ),
+                                              color: const Color(
+                                                  0xffc8c8c8), //Finished
+                                              value: ((_viewModel.tasksStatusesCount[
+                                                                  4] /
+                                                              _viewModel
+                                                                  .taskCounts) *
+                                                          100)
+                                                      .round() /
+                                                  100),
                                           PieChartSectionData(
-                                            color: const Color(0xff989898),//In Progress
-                                          ),
+                                              color: const Color(
+                                                  0xff989898), //In Progress
+                                              value: ((_viewModel.tasksStatusesCount[
+                                                                  1] /
+                                                              _viewModel
+                                                                  .taskCounts) *
+                                                          100)
+                                                      .round() /
+                                                  100),
                                           PieChartSectionData(
-                                            color: const Color(0xff747474),//On Hold
-                                          ),
+                                              color: const Color(0xff747474),
+                                              value: ((_viewModel.tasksStatusesCount[
+                                                                  2] /
+                                                              _viewModel
+                                                                  .taskCounts) *
+                                                          100)
+                                                      .round() /
+                                                  100 //On Hold
+                                              ),
                                         ])),
                                   ),
                                 ),
@@ -213,19 +252,22 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                 height: displayHeight(context) * 0.02,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Row(
                                     children: [
                                       CircleAvatar(
                                         radius: displayWidth(context) * 0.02,
-                                        backgroundColor: const Color(0xff989898),
+                                        backgroundColor:
+                                            const Color(0xff989898),
                                       ),
                                       const SizedBox(
                                         width: 4,
                                       ),
                                       Text(
-                                        AppStrings.inProgress.getString(context),
+                                        AppStrings.inProgress
+                                            .getString(context),
                                         style: TextStyle(
                                             color: ColorsManager.fontColor1,
                                             fontSize:
@@ -237,7 +279,8 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                     children: [
                                       CircleAvatar(
                                         radius: displayWidth(context) * 0.02,
-                                        backgroundColor: const Color(0xffc8c8c8),
+                                        backgroundColor:
+                                            const Color(0xffc8c8c8),
                                       ),
                                       const SizedBox(
                                         width: 4,
@@ -255,7 +298,8 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                     children: [
                                       CircleAvatar(
                                         radius: displayWidth(context) * 0.02,
-                                        backgroundColor: const Color(0xff747474),
+                                        backgroundColor:
+                                            const Color(0xff747474),
                                       ),
                                       const SizedBox(
                                         width: 4,
@@ -273,7 +317,8 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                     children: [
                                       CircleAvatar(
                                         radius: displayWidth(context) * 0.02,
-                                        backgroundColor: const Color(0xff000000),
+                                        backgroundColor:
+                                            const Color(0xff000000),
                                       ),
                                       const SizedBox(
                                         width: 4,
@@ -293,7 +338,6 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                 height: displayHeight(context) * 0.05,
                               ),
                               Container(
-
                                 child: Text(
                                   AppStrings.openTasks.getString(context),
                                   style: TextStyle(
@@ -318,7 +362,6 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                 height: displayHeight(context) * 0.025,
                               ),
                               Container(
-
                                 child: Text(
                                   AppStrings.daysLeft.getString(context),
                                   style: TextStyle(
@@ -381,7 +424,8 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               Container(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  AppStrings.projectSupervisor.getString(context),
+                                  AppStrings.projectSupervisor
+                                      .getString(context),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: ColorsManager.fontColor1,
@@ -390,10 +434,11 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               ),
                               // SizedBox(height: displayHeight(context) * 0.01),
                               ListView.builder(
-                                itemCount: snapshot.data['data']['project_members'].length,
+                                itemCount: snapshot
+                                    .data['data']['project_members'].length,
                                 shrinkWrap: true,
-                                itemBuilder: (BuildContext context, int index) =>
-                                    Row(
+                                itemBuilder:
+                                    (BuildContext context, int index) => Row(
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -412,9 +457,11 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                           ]),
                                       child: const CircleAvatar(),
                                     ),
-                                    SizedBox(width: displayWidth(context) * 0.008),
+                                    SizedBox(
+                                        width: displayWidth(context) * 0.008),
                                     Text(
-                                     snapshot.data['data']['project_members'][index]['staff_name'],
+                                      snapshot.data['data']['project_members']
+                                          [index]['staff_name'],
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           color: ColorsManager.fontColor1,

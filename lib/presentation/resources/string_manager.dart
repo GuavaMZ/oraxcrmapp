@@ -49,6 +49,7 @@ mixin AppStrings {
   static const String inProgress = 'In Progress';
   static const String projectSummary = 'Project Summary';
   static const String tasks = 'Tasks';
+  static const String tasksSummary = 'Tasks Summary';
   static const String tickets = 'Tickets';
   static const String openTasks = 'Open Tasks';
   static const String daysLeft = 'Days Left';
@@ -221,7 +222,8 @@ mixin AppStrings {
     getVerificationCodeOnWhatsapp: 'Send Verification Code To Whatsapp',
     verifyCode: 'Verify Code',
     noContractsToSign: "There is no any contract to sign",
-    contractSignedSuccessfully: "Contract Signed Successfully"
+    contractSignedSuccessfully: "Contract Signed Successfully",
+    tasksSummary: 'Tasks Summary'
   };
 
   static Map<String, dynamic> AR = {
@@ -335,5 +337,6 @@ mixin AppStrings {
     verifyCode: 'تحقق من الكود',
     noContractsToSign: 'لا توجد عقود لتوقيعها',
     contractSignedSuccessfully: 'تم توقيع العقد بنجاح',
+    tasksSummary: 'ملخص المهام',
   };
 }
