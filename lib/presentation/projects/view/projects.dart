@@ -3,7 +3,6 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:oraxcrm/app/app.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/projects/viewmodel/projects_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
@@ -237,7 +236,7 @@ class _ProjectsViewState extends State<ProjectsView> {
                                             ),
                                           ),
                                           Text(
-                                            '${_viewModel.projectsList![index].deadline} : ${_viewModel.projectsList![index].startDate}',
+                                            '${_viewModel.projectsList![index].startDate} : ${_viewModel.projectsList![index].deadline}',
                                             style: TextStyle(
                                               fontSize: displayHeight(context) *
                                                   0.017,

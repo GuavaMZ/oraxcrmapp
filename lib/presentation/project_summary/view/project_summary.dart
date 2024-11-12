@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
@@ -343,14 +344,12 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               SizedBox(
                                 height: displayHeight(context) * 0.05,
                               ),
-                              Container(
-                                child: Text(
-                                  AppStrings.openTasks.getString(context),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorsManager.fontColor1,
-                                      fontSize: displayHeight(context) * 0.022),
-                                ),
+                              Text(
+                                AppStrings.openTasks.getString(context),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorsManager.fontColor1,
+                                    fontSize: displayHeight(context) * 0.022),
                               ),
                               SizedBox(
                                 height: displayHeight(context) * 0.025,
@@ -360,14 +359,16 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                     displayHeight(context) * 0.02),
                                 percent: (_viewModel.tasksStatusesCount[0] +
                                         _viewModel.tasksStatusesCount[1] +
-                                        _viewModel.tasksStatusesCount[2]) /
+                                        _viewModel.tasksStatusesCount[2] +
+                                        _viewModel.tasksStatusesCount[3]) /
                                     (_viewModel.taskCounts +
                                         _viewModel.tasksStatusesCount[0]),
                                 padding: const EdgeInsets.all(0),
                                 lineHeight: 20,
                                 center: Text(
-                                  '${(_viewModel.taskCounts + _viewModel.tasksStatusesCount[0])} / ${(_viewModel.tasksStatusesCount[0] + _viewModel.tasksStatusesCount[1] + _viewModel.tasksStatusesCount[2])} ',
-                                  style: TextStyle(color: Color(0xffffffff)),
+                                  '${(_viewModel.taskCounts + _viewModel.tasksStatusesCount[0])} / ${(_viewModel.tasksStatusesCount[0] + _viewModel.tasksStatusesCount[1] + _viewModel.tasksStatusesCount[2] + _viewModel.tasksStatusesCount[3])} ',
+                                  style:
+                                      const TextStyle(color: Color(0xffffffff)),
                                 ),
                                 backgroundColor: const Color(0xffc8c8c8),
                                 progressColor: const Color(0xff000000),
@@ -375,14 +376,12 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               SizedBox(
                                 height: displayHeight(context) * 0.025,
                               ),
-                              Container(
-                                child: Text(
-                                  AppStrings.daysLeft.getString(context),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorsManager.fontColor1,
-                                      fontSize: displayHeight(context) * 0.022),
-                                ),
+                              Text(
+                                AppStrings.daysLeft.getString(context),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorsManager.fontColor1,
+                                    fontSize: displayHeight(context) * 0.022),
                               ),
                               SizedBox(
                                 height: displayHeight(context) * 0.025,
@@ -434,17 +433,57 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                     blurRadius: 25)
                               ]),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  AppStrings.projectSupervisor
-                                      .getString(context),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorsManager.fontColor1,
-                                      fontSize: displayHeight(context) * 0.022),
-                                ),
+                              Text(
+                                AppStrings.description.getString(context),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: ColorsManager.fontColor1,
+                                    fontSize: displayHeight(context) * 0.022),
+                              ),
+                              // SizedBox(height: displayHeight(context) * 0.01),
+                              SizedBox(width: displayWidth(context) * 0.008),
+                              HtmlWidget(
+                                widget.projectData!.description! ?? '',
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    color: ColorsManager.fontColor1,
+                                    fontSize: displayHeight(context) * 0.02),
+                              ),
+                            ],
+                          )),
+                      SizedBox(
+                        height: displayHeight(context) * 0.035,
+                      ),
+                      Container(
+                          width: displayWidth(context) * 0.95,
+                          padding: EdgeInsets.only(
+                              top: displayHeight(context) * 0.03,
+                              bottom: displayHeight(context) * 0.03,
+                              left: displayWidth(context) * 0.07,
+                              right: displayWidth(context) * 0.07),
+                          decoration: BoxDecoration(
+                              color: ColorsManager.projectsContainerColor,
+                              borderRadius: BorderRadius.circular(
+                                  displayHeight(context) * 0.05),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: ColorsManager.defaultShadowColor
+                                        .withOpacity(0.1),
+                                    spreadRadius: 0,
+                                    offset: const Offset(0, 4),
+                                    blurRadius: 25)
+                              ]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                AppStrings.projectSupervisor.getString(context),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorsManager.fontColor1,
+                                    fontSize: displayHeight(context) * 0.022),
                               ),
                               // SizedBox(height: displayHeight(context) * 0.01),
                               ListView.builder(

@@ -17,17 +17,17 @@ class ProjectSummaryViewModel extends ChangeNotifier {
 
   Map<String, String> projectTasksStats = {
     '1': AppStrings.notStarted,
-    '2': AppStrings.inProgress,
+    '4': AppStrings.inProgress,
     '3': AppStrings.onHold,
-    '4': AppStrings.cancelled,
+    '2': AppStrings.cancelled,
     '5': AppStrings.finished,
   };
 
   List<String> tasksStatuses = [
     AppStrings.notStarted,
-    AppStrings.inProgress,
     AppStrings.onHold,
     AppStrings.cancelled,
+    AppStrings.inProgress,
     AppStrings.finished,
   ];
 
@@ -37,7 +37,7 @@ class ProjectSummaryViewModel extends ChangeNotifier {
     0,
     0,
     0
-  ]; //Not Started,InProgress,OnHold,Cancelled,Finished
+  ]; //Not Started,OnHold,Cancelled,InProgress,Finished
 
   Future getProjectDetails(BuildContext context, String id) async {
     ProjectsRequests projectsRequests = ProjectsRequests();

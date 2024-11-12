@@ -48,7 +48,7 @@ class ProjectsRequests {
     try {
       // print("بداية  الريسبونس ");
       response = await dio.get(
-          "${ApiLinks.baseUrl}${ApiLinks.getProjectsTasks}?rel_type=project&rel_id=$id&order_by=id",
+          "${ApiLinks.baseUrl}${ApiLinks.getProjects}/id/$id/group/tasks",
           options: Options(
             method: 'GET',
             headers: header,
@@ -87,7 +87,10 @@ class ProjectsRequests {
     Response response;
     try {
       response = await dio.get(
-          ApiLinks.baseUrl + ApiLinks.getProjectActivities +"?project_id=" + int.parse(id).toString(),
+          ApiLinks.baseUrl +
+              ApiLinks.getProjectActivities +
+              "?project_id=" +
+              id,
           options: Options(
             method: 'GET',
             headers: header,

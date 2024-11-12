@@ -54,40 +54,46 @@ class DataTasksProject {
   String? visibleToClient;
   String? deadlineNotified;
   String? wpWasNotfy;
+  String? addedFromName;
+  String? statusName;
+  List? assignees;
 
   DataTasksProject(
       {this.id,
-        this.name,
-        this.description,
-        this.priority,
-        this.dateadded,
-        this.startdate,
-        this.duedate,
-        this.datefinished,
-        this.addedfrom,
-        this.isAddedFromContact,
-        this.status,
-        this.recurringType,
-        this.repeatEvery,
-        this.recurring,
-        this.isRecurringFrom,
-        this.cycles,
-        this.totalCycles,
-        this.customRecurring,
-        this.lastRecurringDate,
-        this.relId,
-        this.relType,
-        this.isPublic,
-        this.billable,
-        this.billed,
-        this.invoiceId,
-        this.hourlyRate,
-        this.milestone,
-        this.kanbanOrder,
-        this.milestoneOrder,
-        this.visibleToClient,
-        this.deadlineNotified,
-        this.wpWasNotfy});
+      this.name,
+      this.description,
+      this.priority,
+      this.dateadded,
+      this.startdate,
+      this.duedate,
+      this.datefinished,
+      this.addedfrom,
+      this.isAddedFromContact,
+      this.status,
+      this.recurringType,
+      this.repeatEvery,
+      this.recurring,
+      this.isRecurringFrom,
+      this.cycles,
+      this.totalCycles,
+      this.customRecurring,
+      this.lastRecurringDate,
+      this.relId,
+      this.relType,
+      this.isPublic,
+      this.billable,
+      this.billed,
+      this.invoiceId,
+      this.hourlyRate,
+      this.milestone,
+      this.kanbanOrder,
+      this.milestoneOrder,
+      this.visibleToClient,
+      this.deadlineNotified,
+      this.wpWasNotfy,
+      this.addedFromName,
+      this.statusName,
+      this.assignees});
 
   DataTasksProject.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -122,6 +128,9 @@ class DataTasksProject {
     visibleToClient = json['visible_to_client'];
     deadlineNotified = json['deadline_notified'];
     wpWasNotfy = json['wp_was_notfy'];
+    addedFromName = json['addedfrom_name'];
+    statusName = json['status_name'];
+    assignees = json['assignees'];
   }
 
   Map<String, dynamic> toJson() {

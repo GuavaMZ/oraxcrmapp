@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/tasks/viewmodel/tasks_viewmodel.dart';
@@ -24,6 +26,7 @@ class _TasksViewState extends State<TasksView> {
     _viewModel.assignProjectTasksStatusesCounts(widget.projectTasksDetails!);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -107,9 +110,9 @@ class _TasksViewState extends State<TasksView> {
                             bottom: displayHeight(context) * 0.02),
                         child: ElevatedButton(
                           onPressed: () {
-                            // context.push(Routes.projectDetailsRoute,
-                            //     extra: widget.projectTasksDetails
-                            //         .dataTasksProject![index]);
+                            context.push(Routes.tasksDetailsRoute,
+                                extra: widget.projectTasksDetails!
+                                    .dataTasksProject![index]);
                           },
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -123,7 +126,7 @@ class _TasksViewState extends State<TasksView> {
                             padding: EdgeInsets.only(
                                 top: displayHeight(context) * 0.03,
                                 bottom: displayHeight(context) * 0.03,
-                                left: displayWidth(context) * 0.055,
+                                left: displayWidth(context) * 0.04,
                                 right: displayWidth(context) * 0.04),
                             decoration: BoxDecoration(
                                 color: ColorsManager.projectsContainerColor,
@@ -155,7 +158,7 @@ class _TasksViewState extends State<TasksView> {
                                       ),
                                     ),
                                     Text(
-                                      '${widget.projectTasksDetails!.dataTasksProject![index].duedate} : ${widget.projectTasksDetails!.dataTasksProject![index].startdate}',
+                                      '${widget.projectTasksDetails!.dataTasksProject![index].startdate} : ${widget.projectTasksDetails!.dataTasksProject![index].duedate}',
                                       style: TextStyle(
                                         fontSize:
                                             displayHeight(context) * 0.017,
@@ -174,12 +177,7 @@ class _TasksViewState extends State<TasksView> {
                                       horizontal: displayWidth(context) * 0.04,
                                       vertical: displayHeight(context) * 0.005),
                                   child: Text(
-                                    _viewModel.projectTasksStats[widget
-                                            .projectTasksDetails!
-                                            .dataTasksProject![index]
-                                            .status]
-                                        .toString()
-                                        .getString(context),
+                                    '${widget.projectTasksDetails!.dataTasksProject![index].statusName}',
                                     style: TextStyle(
                                         color: ColorsManager.fontColor3,
                                         fontSize:

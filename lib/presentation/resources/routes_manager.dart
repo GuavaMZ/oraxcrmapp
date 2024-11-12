@@ -21,6 +21,7 @@ import 'package:oraxcrm/presentation/profile/view/profile.dart';
 import 'package:oraxcrm/presentation/projectdetails/view/project_details.dart';
 import 'package:oraxcrm/presentation/projects/view/projects.dart';
 import 'package:oraxcrm/presentation/splash_screen/view/splash.dart';
+import 'package:oraxcrm/presentation/tasks/tasks_details/view/tasks_details.dart';
 import 'package:oraxcrm/presentation/tasks/view/tasks.dart';
 import 'package:oraxcrm/presentation/tickets/view/tickets.dart';
 import 'package:oraxcrm/presentation/tickets_details/view/tickets_details.dart';
@@ -47,6 +48,7 @@ class Routes {
   static const String changePasswordRoute = "/changePassword/view";
   static const String ticketsDetailsRoute = "/tickets_details/view";
   static const String signContractRoute = "/sign_contract/view";
+  static const String tasksDetailsRoute = "/tasks_details/view";
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -104,7 +106,7 @@ class Routes {
     ),
     GoRoute(
       path: tasksRoute,
-      builder: (context, state) =>  TasksView(
+      builder: (context, state) => TasksView(
         projectTasksDetails: state.extra as ProjectTasksModel,
       ),
     ),
@@ -130,6 +132,12 @@ class Routes {
       path: signContractRoute,
       builder: (context, state) => SignContractView(
         contract: state.extra as DataContract,
+      ),
+    ),
+    GoRoute(
+      path: tasksDetailsRoute,
+      builder: (context, state) => TasksDetailsView(
+        projectTaskDetails: state.extra as DataTasksProject,
       ),
     ),
   ]);

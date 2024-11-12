@@ -108,6 +108,14 @@ mixin AppStrings {
   static const String verifyCode = 'Verify Code';
   static const String noContractsToSign = 'noContractsToSign';
   static const String contractSignedSuccessfully = 'contractSignedSuccessfully';
+  static const String description = 'Description';
+  static const String taskDetails = 'taskDetails';
+  static const String totalSignIn = 'totalSignIn';
+  static const String dueDate = 'dueDate';
+  static const String startDate = 'Start Date';
+  static const String taskFor = 'Task For';
+  static const String comment = 'Comment';
+  static const String addComment = 'Add Comment';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -223,7 +231,14 @@ mixin AppStrings {
     verifyCode: 'Verify Code',
     noContractsToSign: "There is no any contract to sign",
     contractSignedSuccessfully: "Contract Signed Successfully",
-    tasksSummary: 'Tasks Summary'
+    tasksSummary: 'Tasks Summary',
+    description: "Description",
+    taskDetails: "Task Details",
+    totalSignIn: "Total Sign In Time",
+    dueDate: "Due Date",
+    startDate: "Start Date",
+    comment: "Comment",
+    addComment: "Add Comment"
   };
 
   static Map<String, dynamic> AR = {
@@ -306,7 +321,7 @@ mixin AppStrings {
     "null": 'N/A',
     "Null": 'N/A',
     notStarted: "لم تبدأ",
-    cancelled: "Cancelled",
+    cancelled: "ملغية",
     days: "ايام",
     projectProgess: 'تقدم المشروع',
     call: 'اتصل',
@@ -338,5 +353,14 @@ mixin AppStrings {
     noContractsToSign: 'لا توجد عقود لتوقيعها',
     contractSignedSuccessfully: 'تم توقيع العقد بنجاح',
     tasksSummary: 'ملخص المهام',
+    projectSupervisor: "مشرفي المشروع",
+    description: 'الوصف',
+    taskDetails: 'تفاصيل المهمة',
+    totalSignIn: "إجمالي وقت تسجيل الدخول",
+    dueDate: "تاريخ الاستحقاق",
+    startDate: "تاريخ البدء",
+    taskFor: "إسناد المهمة لـ",
+    comment: "تعليق",
+    addComment: "إضافة تعليق"
   };
 }

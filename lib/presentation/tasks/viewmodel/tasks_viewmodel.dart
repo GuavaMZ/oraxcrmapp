@@ -13,9 +13,9 @@ class TasksViewModel extends ChangeNotifier {
 
   List<String> tasksStatuses = [
     AppStrings.notStarted,
-    AppStrings.inProgress,
     AppStrings.onHold,
     AppStrings.cancelled,
+    AppStrings.inProgress,
     AppStrings.finished,
   ];
 
@@ -26,7 +26,7 @@ class TasksViewModel extends ChangeNotifier {
     0,
     0
   ]; //Not Started,InProgress,OnHold,Cancelled,Finished
-  
+
   assignProjectTasksStatusesCounts(ProjectTasksModel projectTasks) {
     for (DataTasksProject data in projectTasks.dataTasksProject!) {
       switch (data.status) {
