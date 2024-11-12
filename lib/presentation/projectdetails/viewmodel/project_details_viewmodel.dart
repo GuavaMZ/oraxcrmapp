@@ -4,6 +4,7 @@ import 'package:oraxcrm/data/api-request/projects_requests.dart';
 import 'package:oraxcrm/domain/model/project_activities_model.dart';
 import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/domain/model/project_tickets_model.dart';
+import 'package:oraxcrm/presentation/project_discussions/view/project_discussions.dart';
 // import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/project_summary/view/project_summary.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
@@ -21,6 +22,7 @@ class ProjectDetailsViewModel extends ChangeNotifier {
     ProjectSummaryView(),
     TasksView(),
     TicketsView(),
+    ProjectDiscussionsView()
     // ActivitiesView()
   ];
 
@@ -28,6 +30,7 @@ class ProjectDetailsViewModel extends ChangeNotifier {
     AppStrings.projectSummary,
     AppStrings.tasks,
     AppStrings.tickets,
+    AppStrings.discussions
     // AppStrings.activities
   ];
 

@@ -116,6 +116,7 @@ mixin AppStrings {
   static const String taskFor = 'Task For';
   static const String comment = 'Comment';
   static const String addComment = 'Add Comment';
+  static const String discussions = 'Discussions';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -238,7 +239,8 @@ mixin AppStrings {
     dueDate: "Due Date",
     startDate: "Start Date",
     comment: "Comment",
-    addComment: "Add Comment"
+    addComment: "Add Comment",
+    discussions: "Discussions"
   };
 
   static Map<String, dynamic> AR = {
@@ -361,6 +363,7 @@ mixin AppStrings {
     startDate: "تاريخ البدء",
     taskFor: "إسناد المهمة لـ",
     comment: "تعليق",
-    addComment: "إضافة تعليق"
+    addComment: "إضافة تعليق",
+    discussions: 'المناقشات'
   };
 }
