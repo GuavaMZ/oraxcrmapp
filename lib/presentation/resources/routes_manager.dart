@@ -18,6 +18,8 @@ import 'package:oraxcrm/presentation/notifications/view/notifications.dart';
 import 'package:oraxcrm/presentation/openticket/view/open_ticket.dart';
 import 'package:oraxcrm/presentation/personalinfo/view/personal_info.dart';
 import 'package:oraxcrm/presentation/profile/view/profile.dart';
+import 'package:oraxcrm/presentation/project_discussions/discussion_details/view/discussion_details_view.dart';
+import 'package:oraxcrm/presentation/project_files/files_details/view/file_details_view.dart';
 import 'package:oraxcrm/presentation/projectdetails/view/project_details.dart';
 import 'package:oraxcrm/presentation/projects/view/projects.dart';
 import 'package:oraxcrm/presentation/splash_screen/view/splash.dart';
@@ -49,6 +51,8 @@ class Routes {
   static const String ticketsDetailsRoute = "/tickets_details/view";
   static const String signContractRoute = "/sign_contract/view";
   static const String tasksDetailsRoute = "/tasks_details/view";
+  static const String discussionDetailsRoute = "/discussion_details/view";
+  static const String fileDetailsRoute = "/file_details/view";
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -139,6 +143,18 @@ class Routes {
       builder: (context, state) => TasksDetailsView(
         projectTaskDetails: state.extra as DataTasksProject,
       ),
+    ),
+    GoRoute(
+      path: discussionDetailsRoute,
+      builder: (context, state) => DiscussionDetailsView(
+          // projectTaskDetails: state.extra as DataTasksProject,
+          ),
+    ),
+    GoRoute(
+      path: discussionDetailsRoute,
+      builder: (context, state) => FileDetailsView(
+          // projectTaskDetails: state.extra as DataTasksProject,
+          ),
     ),
   ]);
 }

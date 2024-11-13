@@ -117,6 +117,12 @@ mixin AppStrings {
   static const String comment = 'Comment';
   static const String addComment = 'Add Comment';
   static const String discussions = 'Discussions';
+  static const String lastActivity = 'lastActivity';
+  static const String totalComments = 'totalComments';
+  static const String discussionDetails = 'discussionDetails';
+  static const String fileType = 'fileType';
+  static const String fileSize = 'fileSize';
+  static const String notExist = 'notExist';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -240,7 +246,13 @@ mixin AppStrings {
     startDate: "Start Date",
     comment: "Comment",
     addComment: "Add Comment",
-    discussions: "Discussions"
+    discussions: "Discussions",
+    lastActivity: "Last Activity",
+    totalComments: "Total Comments",
+    discussionDetails: 'Discussion Details',
+    fileType: 'File Type',
+    fileSize: 'File Size',
+    notExist: 'Not Exist',
   };
 
   static Map<String, dynamic> AR = {
@@ -364,6 +376,12 @@ mixin AppStrings {
     taskFor: "إسناد المهمة لـ",
     comment: "تعليق",
     addComment: "إضافة تعليق",
-    discussions: 'المناقشات'
+    discussions: 'المناقشات',
+    lastActivity: 'النشاط الاخير',
+    totalComments: 'اجمالي التعليقات',
+    discussionDetails: 'تفاصيل المناقشة',
+    fileType: 'نوع الملف',
+    fileSize: 'حجم الملف',
+    notExist: 'لا يوجد',
   };
 }

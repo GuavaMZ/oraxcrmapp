@@ -104,4 +104,85 @@ class ProjectsRequests {
       }
     }
   }
+
+  Future getProjectDiscussions(Map<String, dynamic> header, String id) async {
+    Response response;
+    try {
+      // print("بداية  الريسبونس ");
+      response = await dio.get(
+          "${ApiLinks.baseUrl}${ApiLinks.getProjectDiscussions}?project_id=$id",
+          options: Options(
+            method: 'GET',
+            headers: header,
+          ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // print("خروج من الريسبونس ");
+        response = error.response!;
+        return response;
+      }
+    }
+  }
+
+  Future getProjectDiscussionDetails(
+      Map<String, dynamic> header, String id) async {
+    Response response;
+    try {
+      // print("بداية  الريسبونس ");
+      response = await dio.get(
+          "${ApiLinks.baseUrl}${ApiLinks.getProjectDiscussions}?project_id=$id",
+          options: Options(
+            method: 'GET',
+            headers: header,
+          ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // print("خروج من الريسبونس ");
+        response = error.response!;
+        return response;
+      }
+    }
+  }
+
+  Future getProjectFiles(Map<String, dynamic> header, String id) async {
+    Response response;
+    try {
+      // print("بداية  الريسبونس ");
+      response = await dio.get(
+          "${ApiLinks.baseUrl}${ApiLinks.getProjectFiles}?project_id=$id",
+          options: Options(
+            method: 'GET',
+            headers: header,
+          ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // print("خروج من الريسبونس ");
+        response = error.response!;
+        return response;
+      }
+    }
+  }
+
+  Future getProjectFileDetails(Map<String, dynamic> header, String id) async {
+    Response response;
+    try {
+      // print("بداية  الريسبونس ");
+      response = await dio.get(
+          "${ApiLinks.baseUrl}${ApiLinks.getProjectFileDetails}?file_id=$id",
+          options: Options(
+            method: 'GET',
+            headers: header,
+          ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // print("خروج من الريسبونس ");
+        response = error.response!;
+        return response;
+      }
+    }
+  }
 }

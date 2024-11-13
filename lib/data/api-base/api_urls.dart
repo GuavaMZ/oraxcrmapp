@@ -16,9 +16,9 @@ class ApiLinks {
       'customers_api/v1/tasks/tasks_relationsby';
   static const String getProjectFiles =
       'customers_api/v1/projects/projectfiles';
-  static const String Get_filesIDprojects_id =
+  static const String getProjectFileDetails =
       'customers_api/v1/projects/projectfile';
-  static const String Get_Discussionsprojects_id =
+  static const String getProjectDiscussions =
       'customers_api/v1/projects/projectdiscussions';
   static const String Get_DiscussionsIDprojects_id =
       'customers_api/v1/projects/project_getdiscussion';
@@ -46,12 +46,14 @@ class ApiLinks {
       'customers_api/v1/miscellaneous/group/get_ticket_priorities';
 
   static const String getEstimates = 'customers_api/v1/estimates';
-  static const String getEstimatesDetailsById = 'customers_api/v1/estimates/id/';
+  static const String getEstimatesDetailsById =
+      'customers_api/v1/estimates/id/';
 
   static const String getProposals = 'customers_api/v1/proposals';
-  static const String getProposalsDetailsById = 'customers_api/v1/proposals/id/';
-  static const String addProposalsComment = "/customers_api/v1/proposals/id/:id/group/proposals_comment";
-
+  static const String getProposalsDetailsById =
+      'customers_api/v1/proposals/id/';
+  static const String addProposalsComment =
+      "/customers_api/v1/proposals/id/:id/group/proposals_comment";
 
   static const String getProjectActivities =
       'customers_api/v1/projects/project_get_activity';

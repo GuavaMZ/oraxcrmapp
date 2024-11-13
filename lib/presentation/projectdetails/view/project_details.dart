@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/presentation/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
+import 'package:oraxcrm/presentation/project_discussions/view/project_discussions.dart';
+import 'package:oraxcrm/presentation/project_files/view/project_files_view.dart';
 import 'package:oraxcrm/presentation/project_summary/view/project_summary.dart';
 import 'package:oraxcrm/presentation/projectdetails/viewmodel/project_details_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
@@ -180,6 +182,10 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                           context, widget.projectData!.id!),
                       _viewModel.getProjectTickets(
                           context, widget.projectData!.id!),
+                      _viewModel.getProjectDiscussions(
+                          context, widget.projectData!.id!),
+                      _viewModel.getProjectFiles(
+                          context, widget.projectData!.id!)
                       // _viewModel.getProjectActivities(
                       //     context, widget.projectData!.id!),
                     ]),
@@ -188,13 +194,23 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                           controller: _viewModel.tabController,
                           physics: const NeverScrollableScrollPhysics(),
                           children: [
-                            ProjectSummaryView(projectData: widget.projectData,projectTasksDetails: _viewModel.projectsTasks,),
+                            ProjectSummaryView(
+                              projectData: widget.projectData,
+                              projectTasksDetails: _viewModel.projectsTasks,
+                            ),
                             TasksView(
                               projectTasksDetails: _viewModel.projectsTasks,
                             ),
                             TicketsView(
                               projectTicketsModel: _viewModel.projectsTickets,
                             ),
+                            ProjectDiscussionsView(
+                              discussionsProjectModel:
+                                  _viewModel.projectDiscussions,
+                            ),
+                            ProjectFiles(
+                              projectFiles: _viewModel.projectFiles,
+                            )
                             // ActivitiesView(
                             //   projectActivities: _viewModel.projectActivities,
                             // )
