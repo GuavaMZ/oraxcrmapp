@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
 import 'package:oraxcrm/presentation/homescreen/view/home_screen.dart';
+import 'package:oraxcrm/presentation/knowlege_base/view/knowledge_base_view.dart';
 import 'package:oraxcrm/presentation/notifications/view/notifications.dart';
 import 'package:oraxcrm/presentation/profile/view/profile.dart';
 
@@ -11,6 +12,7 @@ class MainPageViewModel extends ChangeNotifier {
     HomeScreenView(),
     NotificationsView(),
     HomeScreenView(),
+    KnowledgeBaseView(),
     ProfileView(),
   ];
 
@@ -18,6 +20,7 @@ class MainPageViewModel extends ChangeNotifier {
     Icons.home_rounded,
     Icons.notifications_rounded,
     Icons.add,
+    Icons.developer_board_rounded,
     Icons.person_rounded,
   ];
 

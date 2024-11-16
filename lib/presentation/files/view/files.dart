@@ -1,7 +1,10 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:oraxcrm/data/api-base/api_urls.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/files/viewmodel/files_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
@@ -81,72 +84,135 @@ class _FilesViewState extends State<FilesView> {
             SizedBox(
               height: displayHeight(context) * 0.05,
             ),
-            Container(
-                width: displayWidth(context) * 0.95,
-                padding: EdgeInsets.only(
-                    top: displayHeight(context) * 0.03,
-                    bottom: displayHeight(context) * 0.03,
-                    left: displayWidth(context) * 0.07,
-                    right: displayWidth(context) * 0.07),
-                decoration: BoxDecoration(
-                    color: ColorsManager.projectsContainerColor,
-                    borderRadius:
-                        BorderRadius.circular(displayHeight(context) * 0.05),
-                    boxShadow: [
-                      BoxShadow(
-                          color:
-                              ColorsManager.defaultShadowColor.withOpacity(0.1),
-                          spreadRadius: 0,
-                          offset: const Offset(0, 4),
-                          blurRadius: 25)
-                    ]),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Random Ticket',
-                          style: TextStyle(
-                            fontSize: displayHeight(context) * 0.017,
-                            color: ColorsManager.fontColor1,
-                          ),
-                        ),
-                        Text(
-                          'Fixed Rate',
-                          style: TextStyle(
-                            fontSize: displayHeight(context) * 0.017,
-                            color: ColorsManager.fontColor1,
-                          ),
-                        ),
-                        Text(
-                          '8 Sep 2024 : 8 Sep 2025',
-                          style: TextStyle(
-                            fontSize: displayHeight(context) * 0.017,
-                            color: ColorsManager.fontColor2,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: ColorsManager.iconsColor1,
-                        borderRadius: BorderRadius.circular(
-                            displayHeight(context) * 0.08),
-                      ),
+            FutureBuilder(
+              future: _viewModel.getFiles(context),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container(
+                    margin: EdgeInsets.only(top: displayHeight(context) * 0.5),
+                    // height: displayHeight(context) * 0.17,
+                    alignment: Alignment.center,
+                    width: displayWidth(context) * 0.2,
+                    child: LoadingAnimationWidget.discreteCircle(
+                        color: ColorsManager.discreteCircleFirstColor,
+                        secondRingColor:
+                            ColorsManager.discreteCircleSecondColor,
+                        thirdRingColor: ColorsManager.discreteCircleThirdColor,
+                        size: displayWidth(context) * 0.1),
+                  );
+                } else {
+                  if (_viewModel.filesList!.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: _viewModel.filesList!.length,
                       padding: EdgeInsets.symmetric(
-                          horizontal: displayWidth(context) * 0.06,
-                          vertical: displayHeight(context) * 0.005),
+                          horizontal: displayHeight(context) * 0.02),
+                      primary: false,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                            margin: EdgeInsets.only(
+                                bottom: displayHeight(context) * 0.02),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // context.push(Routes.tasksDetailsRoute,
+                                //     extra: widget.projectFiles!
+                                //         .data[index]);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        displayHeight(context) * 0.05),
+                                  ),
+                                  elevation: 0,
+                                  padding: const EdgeInsets.all(0)),
+                              child: Container(
+                                width: displayWidth(context) * 0.95,
+                                padding: EdgeInsets.only(
+                                    top: displayHeight(context) * 0.03,
+                                    bottom: displayHeight(context) * 0.03,
+                                    left: displayWidth(context) * 0.08,
+                                    right: displayWidth(context) * 0.08),
+                                decoration: BoxDecoration(
+                                    color: ColorsManager.projectsContainerColor,
+                                    borderRadius: BorderRadius.circular(
+                                        displayHeight(context) * 0.05),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorsManager
+                                              .defaultShadowColor
+                                              .withOpacity(0.1),
+                                          spreadRadius: 0,
+                                          offset: const Offset(0, 4),
+                                          blurRadius: 25)
+                                    ]),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          _viewModel.filesList![index].fileName
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize:
+                                                displayHeight(context) * 0.017,
+                                            color: ColorsManager.fontColor1,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          _viewModel.filesList![index].filetype
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize:
+                                                displayHeight(context) * 0.017,
+                                            color: ColorsManager.fontColor2,
+                                          ),
+                                        ),
+                                        // Text(
+                                        //   widget.projectFiles!.data[index]
+                                        //           .lastActivity ??
+                                        //       '${AppStrings.lastActivity.getString(context)} : ${AppStrings.notExist.getString(context)}',
+                                        //   style: TextStyle(
+                                        //       color: ColorsManager.fontColor1,
+                                        //       fontSize: displayHeight(context) *
+                                        //           0.015),
+                                        // ),
+                                      ],
+                                    ),
+                                    // if (widget.projectFiles!.data[index].filetype
+                                    //         .toString()
+                                    //         .split('/')
+                                    //         .first ==
+                                    //     'image')
+                                    //   ExtendedImage.network(
+                                    //     '${ApiLinks.baseUrl}uploads/projects/${widget.projectFiles!.data[index].projectId}/${widget.projectFiles!.data[index].fileName}',
+                                    //     fit: BoxFit.scaleDown,
+                                    //     width: displayWidth(context) * 0.12,
+                                    //   )
+                                  ],
+                                ),
+                              ),
+                            ));
+                      },
+                    );
+                  } else {
+                    return Center(
                       child: Text(
-                        'Closed',
-                        style: TextStyle(
-                            color: ColorsManager.fontColor3,
-                            fontSize: displayHeight(context) * 0.018),
+                        AppStrings.noFilesToShow.getString(context),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: ColorsManager.fontColor1,
+                            fontWeight: FontWeight.bold),
                       ),
-                    )
-                  ],
-                )),
+                    );
+                  }
+                }
+              },
+            ),
           ])),
         ),
       ),

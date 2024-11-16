@@ -286,7 +286,9 @@ class _ProfileViewState extends State<ProfileView> {
                     color: ColorsManager.separatorColor,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(Routes.filesRoute);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorsManager.bgColor,
                           elevation: 0,

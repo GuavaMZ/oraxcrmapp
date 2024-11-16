@@ -9,9 +9,7 @@ import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
-import 'package:oraxcrm/presentation/resources/widgets_constants.dart';
 import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
 class ContractSigningView extends StatefulWidget {
   const ContractSigningView({super.key});
@@ -27,7 +25,6 @@ class _ContractSigningViewState extends State<ContractSigningView> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => _viewModel,
-      
       child: Scaffold(
         backgroundColor: ColorsManager.bgColor,
         // resizeToAvoidBottomInset: false,
@@ -128,7 +125,8 @@ class _ContractSigningViewState extends State<ContractSigningView> {
                                 bottom: displayHeight(context) * 0.02),
                             child: ElevatedButton(
                               onPressed: () {
-                                context.push(Routes.signContractRoute,extra: _viewModel.contractsList?[index]);
+                                context.push(Routes.signContractRoute,
+                                    extra: _viewModel.contractsList?[index]);
                               },
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -230,7 +228,6 @@ class _ContractSigningViewState extends State<ContractSigningView> {
                   );
                 }
               },
-              
             ),
           ),
         ),

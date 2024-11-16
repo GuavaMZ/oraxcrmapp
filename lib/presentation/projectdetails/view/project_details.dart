@@ -97,7 +97,9 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                                       blurRadius: 25)
                                 ]),
                             child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Scaffold.of(context).openDrawer();
+                                },
                                 icon: SvgPicture.asset(
                                     'assets/images/menu-1 3.svg'))),
                       ],

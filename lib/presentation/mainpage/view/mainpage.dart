@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
-import 'package:oraxcrm/app/app.dart';
+
 import 'package:oraxcrm/presentation/add_bottomsheet/view/add_bottomsheet.dart';
 import 'package:oraxcrm/presentation/mainpage/viewmodel/mainpage_viewmodel.dart';
-import 'package:oraxcrm/presentation/resources/colors.dart';
+
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class _MainPageViewState extends State<MainPageView>
   @override
   void initState() {
     _viewModel.motionTabBarController =
-        MotionTabBarController(length: 4, initialIndex: 0, vsync: this);
+        MotionTabBarController(length: 5, initialIndex: 0, vsync: this);
     super.initState();
   }
 
@@ -51,6 +51,7 @@ class _MainPageViewState extends State<MainPageView>
                     AppStrings.home.getString(context),
                     AppStrings.notifications.getString(context),
                     "Add",
+                    AppStrings.knowledgeBase.getString(context),
                     AppStrings.profile.getString(context)
                   ],
                   icons: _viewModel.navBarIcons,

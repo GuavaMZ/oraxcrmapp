@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/domain/model/contracts_model.dart';
+import 'package:oraxcrm/domain/model/knowledge_base_model.dart';
 import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/domain/model/support_tickets_model.dart';
@@ -12,6 +13,7 @@ import 'package:oraxcrm/presentation/contractsigning/sign_contract/view/sign_con
 import 'package:oraxcrm/presentation/contractsigning/view/contract_signing.dart';
 import 'package:oraxcrm/presentation/files/view/files.dart';
 import 'package:oraxcrm/presentation/homescreen/view/home_screen.dart';
+import 'package:oraxcrm/presentation/knowlege_base/articles/view/articles_view.dart';
 import 'package:oraxcrm/presentation/login/view/login_view.dart';
 import 'package:oraxcrm/presentation/mainpage/view/mainpage.dart';
 import 'package:oraxcrm/presentation/notifications/view/notifications.dart';
@@ -53,6 +55,7 @@ class Routes {
   static const String tasksDetailsRoute = "/tasks_details/view";
   static const String discussionDetailsRoute = "/discussion_details/view";
   static const String fileDetailsRoute = "/file_details/view";
+  static const String articlesRoute = "/articles/view";
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -155,6 +158,12 @@ class Routes {
       builder: (context, state) => FileDetailsView(
           // projectTaskDetails: state.extra as DataTasksProject,
           ),
+    ),
+    GoRoute(
+      path: articlesRoute,
+      builder: (context, state) => ArticlesView(
+        articlesModel: state.extra as ArticlesModel,
+      ),
     ),
   ]);
 }

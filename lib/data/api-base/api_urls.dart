@@ -79,4 +79,6 @@ class ApiLinks {
   static const String getSignCode = 'customers_api/v1/contracts/sendcodeign';
   static const String checkSignCode = 'customers_api/v1/contracts/checkcodeign';
   static const String signContract = 'customers_api/v1/contracts/contractsing';
+
+  static const String knowledgeBase = 'customers_api/v1/knowledge_base';
 }
