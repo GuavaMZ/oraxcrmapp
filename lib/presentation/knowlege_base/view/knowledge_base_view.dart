@@ -88,7 +88,7 @@ class _KnowledgeBaseViewState extends State<KnowledgeBaseView> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
                       margin:
-                          EdgeInsets.only(top: displayHeight(context) * 0.5),
+                          EdgeInsets.only(top: displayHeight(context) * 0.25),
                       // height: displayHeight(context) * 0.17,
                       alignment: Alignment.center,
                       width: displayWidth(context) * 0.2,
@@ -169,6 +169,10 @@ class _KnowledgeBaseViewState extends State<KnowledgeBaseView> {
                                             fontWeight: FontWeight.bold,
                                             color: ColorsManager.fontColor1,
                                           ),
+                                        ),
+                                        SizedBox(
+                                          height:
+                                              displayHeight(context) * 0.008,
                                         ),
                                         Text(
                                           _viewModel.articlesGroups![index]
