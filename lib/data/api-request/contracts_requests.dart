@@ -55,7 +55,9 @@ class ContractsRequests {
       // print("بداية  الريسبونس ");
       response = await dio.download(
           '${ApiLinks.baseUrl}${ApiLinks.getContracts}/$contractId/$hash',
-          downloadsDir?.path,
+          Platform.isAndroid
+              ? '/storage/emulated/0/Download/orax_$contractId.pdf'
+              : '${downloadsDir!.path}orax_$contractId.pdf',
           options: Options(
             method: 'GET',
             headers: header,

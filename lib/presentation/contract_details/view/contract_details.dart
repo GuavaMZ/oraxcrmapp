@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:oraxcrm/data/api-base/api_urls.dart';
+
 import 'package:oraxcrm/domain/model/contracts_model.dart';
 import 'package:oraxcrm/presentation/contract_details/viewmodel/contract_details_viewmodel.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
@@ -11,7 +11,6 @@ import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContractDetailsView extends StatefulWidget {
   const ContractDetailsView({super.key, this.contract});
@@ -104,26 +103,37 @@ class _ContractDetailsViewState extends State<ContractDetailsView> {
                       SizedBox(
                         width: displayWidth(context) * 0.05,
                       ),
+                      // IconButton(
+                      //     onPressed: () async {
+                      //       // launchUrl(Uri.parse(
+                      //       //     "${ApiLinks.baseUrl}${ApiLinks.getContracts}/${widget.contract!.id}/${widget.contract!.hash!}"));
+                      //       await _viewModel.downloadContract(
+                      //           widget.contract!.id!,
+                      //           widget.contract!.hash!,
+                      //           context);
+                      //     },
+                      //     tooltip:
+                      //         AppStrings.downloadContract.getString(context),
+                      //     icon: Icon(
+                      //       Icons.file_download_rounded,
+                      //       size: displayWidth(context) * 0.08,
+                      //     )),
+                      // SizedBox(
+                      //   width: displayWidth(context) * 0.05,
+                      // ),
                       IconButton(
                           onPressed: () async {
-                            // launchUrl(Uri.parse(
-                            //     "${ApiLinks.baseUrl}${ApiLinks.getContracts}/${widget.contract!.id}/${widget.contract!.hash!}"));
-                            await _viewModel.downloadContract(
-                                widget.contract!.id!,
-                                widget.contract!.hash!,
-                                context);
+                            if (widget.contract!.signed! == '1') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(AppStrings
+                                          .contractAlreadySigned
+                                          .getString(context))));
+                            } else {
+                              context.push(Routes.signContractRoute,
+                                  extra: widget.contract);
+                            }
                           },
-                          tooltip:
-                              AppStrings.downloadContract.getString(context),
-                          icon: Icon(
-                            Icons.file_download_rounded,
-                            size: displayWidth(context) * 0.08,
-                          )),
-                      SizedBox(
-                        width: displayWidth(context) * 0.05,
-                      ),
-                      IconButton(
-                          onPressed: () {},
                           tooltip: AppStrings.signContract.getString(context),
                           icon: Icon(
                             Icons.file_download_done_rounded,
@@ -154,7 +164,91 @@ class _ContractDetailsViewState extends State<ContractDetailsView> {
                                 offset: const Offset(0, 4),
                                 blurRadius: 25)
                           ]),
-                      child: Column())
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppStrings.mainPoints.getString(context),
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                              Text(widget.contract!.mainpointCount!,
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                          SizedBox(
+                            height: displayHeight(context) * 0.02,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppStrings.subPoints.getString(context),
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                              Text(widget.contract!.subpointsCount!,
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                          SizedBox(
+                            height: displayHeight(context) * 0.02,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppStrings.subject.getString(context),
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                              Text(widget.contract!.subject!,
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                          SizedBox(
+                            height: displayHeight(context) * 0.02,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppStrings.contractStatus.getString(context),
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                              Text(
+                                  _viewModel
+                                      .signedStats[widget.contract!.signed!]
+                                      .toString()
+                                      .getString(context),
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                          SizedBox(
+                            height: displayHeight(context) * 0.02,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(AppStrings.price.getString(context),
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                              Text(widget.contract!.contractValue!,
+                                  style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.015,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                        ],
+                      ))
                 ],
               ),
             ),

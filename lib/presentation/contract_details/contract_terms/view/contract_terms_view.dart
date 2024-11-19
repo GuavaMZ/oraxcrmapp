@@ -98,7 +98,36 @@ class _ContractTermsViewState extends State<ContractTermsView> {
               );
             } else {
               print(snapshot.data['data']);
-              return HtmlWidget(snapshot.data['data'][0]['content']);
+              return HtmlWidget(
+                snapshot.data['data'][0]['content'],
+                customWidgetBuilder: (element) {
+                  if (element.localName == 'p' && element.text != '') {
+                    return Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: displayHeight(context) * 0.02,
+                        horizontal: displayWidth(context) * 0.06,
+                      ),
+                      decoration: BoxDecoration(
+                        color: ColorsManager.ticketsContainerColor,
+                        borderRadius: BorderRadius.circular(
+                            displayHeight(context) * 0.05),
+                        /*boxShadow: [
+                            BoxShadow(
+                                color: ColorsManager.defaultShadowColor
+                                    .withOpacity(0.1),
+                                spreadRadius: 0,
+                                offset: const Offset(0, 4),
+                                blurRadius: 25)
+                          ]*/
+                      ),
+                      child: Text(element.text),
+                    );
+                  }
+                },
+                textStyle: TextStyle(
+                  fontFamily: 'Lama-Sans',
+                ),
+              );
             }
           },
         )

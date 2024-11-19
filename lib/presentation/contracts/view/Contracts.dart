@@ -178,104 +178,219 @@ class _ContractsViewState extends State<ContractsView> {
                               Container(
                             margin: EdgeInsets.only(
                                 bottom: displayHeight(context) * 0.01),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                context.push(Routes.contractDetailsRoute,
-                                    extra: _viewModel.contractsList![index]);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        displayHeight(context) * 0.05),
-                                  ),
-                                  elevation: 0,
-                                  padding: const EdgeInsets.all(0)),
-                              child: Container(
-                                width: displayWidth(context) * 0.95,
-                                // margin: EdgeInsets.only(bottom: displayHeight(context) * 0.01),
-                                padding: EdgeInsets.only(
-                                    top: displayHeight(context) * 0.03,
-                                    bottom: displayHeight(context) * 0.03,
-                                    left: displayWidth(context) * 0.06,
-                                    right: displayWidth(context) * 0.06),
-                                decoration: BoxDecoration(
-                                    color: ColorsManager.ticketsContainerColor,
-                                    borderRadius: BorderRadius.circular(
-                                        displayHeight(context) * 0.05),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: ColorsManager
-                                              .defaultShadowColor
-                                              .withOpacity(0.1),
-                                          spreadRadius: 0,
-                                          offset: const Offset(0, 4),
-                                          blurRadius: 25)
-                                    ]),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                            child: Stack(
+                              alignment: AlignmentDirectional.topEnd,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // context.push(Routes.contractDetailsRoute,
+                                    //     extra: _viewModel.contractsList![index]);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            displayHeight(context) * 0.05),
+                                      ),
+                                      elevation: 0,
+                                      padding: const EdgeInsets.all(0)),
+                                  child: Container(
+                                    width: displayWidth(context) * 0.95,
+                                    // margin: EdgeInsets.only(bottom: displayHeight(context) * 0.01),
+                                    padding: EdgeInsets.only(
+                                        top: displayHeight(context) * 0.03,
+                                        bottom: displayHeight(context) * 0.03,
+                                        left: displayWidth(context) * 0.06,
+                                        right: displayWidth(context) * 0.06),
+                                    decoration: BoxDecoration(
+                                        color:
+                                            ColorsManager.ticketsContainerColor,
+                                        borderRadius: BorderRadius.circular(
+                                            displayHeight(context) * 0.05),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: ColorsManager
+                                                  .defaultShadowColor
+                                                  .withOpacity(0.1),
+                                              spreadRadius: 0,
+                                              offset: const Offset(0, 4),
+                                              blurRadius: 25)
+                                        ]),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          _viewModel
-                                              .contractsList![index].subject
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize:
-                                                displayHeight(context) * 0.017,
-                                            fontWeight: FontWeight.bold,
-                                            color: ColorsManager.fontColor1,
-                                          ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              _viewModel
+                                                  .contractsList![index].subject
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontSize:
+                                                    displayHeight(context) *
+                                                        0.015,
+                                                fontWeight: FontWeight.bold,
+                                                color: ColorsManager.fontColor1,
+                                              ),
+                                            ),
+                                            Text(
+                                              _viewModel.contractsList![index]
+                                                  .typeName
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontSize:
+                                                    displayHeight(context) *
+                                                        0.015,
+                                                overflow: TextOverflow.clip,
+                                                color: ColorsManager.fontColor1,
+                                              ),
+                                            ),
+                                            Text(
+                                              '${_viewModel.contractsList![index].datestart.toString().split(' ').first} : ${_viewModel.contractsList![index].dateend.toString().split(' ').first}',
+                                              style: TextStyle(
+                                                fontSize:
+                                                    displayHeight(context) *
+                                                        0.014,
+                                                overflow: TextOverflow.clip,
+                                                color: ColorsManager.fontColor2,
+                                              ),
+                                            ),
+                                            Text(
+                                                '${AppStrings.mainPoints.getString(context)} : ${_viewModel.contractsList![index].mainpointCount!}',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        displayHeight(context) *
+                                                            0.015,
+                                                    color: ColorsManager
+                                                        .fontColor1,
+                                                    fontWeight:
+                                                        FontWeight.w700)),
+                                            Text(
+                                                '${AppStrings.subPoints.getString(context)} : ${_viewModel.contractsList![index].subpointsCount!}',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        displayHeight(context) *
+                                                            0.015,
+                                                    color: ColorsManager
+                                                        .fontColor1,
+                                                    fontWeight:
+                                                        FontWeight.w700)),
+                                            Text(
+                                                '${AppStrings.price.getString(context)} : ${_viewModel.contractsList![index].contractValue!} SAR',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        displayHeight(context) *
+                                                            0.015,
+                                                    color: ColorsManager
+                                                        .fontColor1,
+                                                    fontWeight:
+                                                        FontWeight.w700)),
+                                            // Text(
+                                            //   _viewModel.contractsList![index].priorityName.toString().getString(context),
+                                            //   style: TextStyle(
+                                            //     fontSize:
+                                            //         displayHeight(context) * 0.017,
+                                            //     color: ColorsManager.fontColor2,
+                                            //   ),
+                                            // ),
+                                          ],
                                         ),
-                                        Text(
-                                          _viewModel
-                                              .contractsList![index].typeName
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize:
-                                                displayHeight(context) * 0.017,
-                                            overflow: TextOverflow.clip,
-                                            color: ColorsManager.fontColor1,
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: ColorsManager.iconsColor1,
+                                            borderRadius: BorderRadius.circular(
+                                                displayHeight(context) * 0.08),
                                           ),
-                                        ),
-                                        // Text(
-                                        //   _viewModel.contractsList![index].priorityName.toString().getString(context),
-                                        //   style: TextStyle(
-                                        //     fontSize:
-                                        //         displayHeight(context) * 0.017,
-                                        //     color: ColorsManager.fontColor2,
-                                        //   ),
-                                        // ),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal:
+                                                  displayWidth(context) * 0.04,
+                                              vertical: displayHeight(context) *
+                                                  0.005),
+                                          child: Text(
+                                            _viewModel.signedStats[_viewModel
+                                                    .contractsList![index]
+                                                    .signed]
+                                                .toString()
+                                                .getString(context),
+                                            style: TextStyle(
+                                                color: ColorsManager.fontColor3,
+                                                fontSize:
+                                                    displayHeight(context) *
+                                                        0.015),
+                                          ),
+                                        )
                                       ],
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: ColorsManager.iconsColor1,
-                                        borderRadius: BorderRadius.circular(
-                                            displayHeight(context) * 0.08),
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal:
-                                              displayWidth(context) * 0.04,
-                                          vertical:
-                                              displayHeight(context) * 0.005),
-                                      child: Text(
-                                        _viewModel.signedStats[_viewModel
-                                                .contractsList![index].signed]
-                                            .toString()
-                                            .getString(context),
-                                        style: TextStyle(
-                                            color: ColorsManager.fontColor3,
-                                            fontSize:
-                                                displayHeight(context) * 0.018),
-                                      ),
-                                    )
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                Align(
+                                  alignment: const Alignment(-0.88, 0),
+                                  child: PopupMenuButton(
+                                    itemBuilder: (BuildContext context) {
+                                      return [
+                                        PopupMenuItem(
+                                          child: TextButton(
+                                              onPressed: () {
+                                                context.push(
+                                                    Routes.contractTermsRoute,
+                                                    extra: _viewModel
+                                                        .contractsList![index]);
+                                              },
+                                              child: Text(
+                                                AppStrings.contractTerms
+                                                    .getString(context),
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        displayHeight(context) *
+                                                            0.015,
+                                                    color: ColorsManager
+                                                        .fontColor1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )),
+                                        ),
+                                        PopupMenuItem(
+                                          child: TextButton(
+                                              onPressed: () async {
+                                                if (_viewModel
+                                                        .contractsList![index]
+                                                        .signed! ==
+                                                    '1') {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                          content: Text(AppStrings
+                                                              .contractAlreadySigned
+                                                              .getString(
+                                                                  context))));
+                                                } else {
+                                                  context.push(
+                                                      Routes.signContractRoute,
+                                                      extra: _viewModel
+                                                              .contractsList![
+                                                          index]);
+                                                }
+                                              },
+                                              child: Text(
+                                                AppStrings.signContract
+                                                    .getString(context),
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        displayHeight(context) *
+                                                            0.015,
+                                                    color: ColorsManager
+                                                        .fontColor1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )),
+                                        )
+                                      ];
+                                    },
+                                    icon: Icon(Icons.menu),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
