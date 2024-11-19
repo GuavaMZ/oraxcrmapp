@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/presentation/contracts/viewmodel/contracts_viewmodel.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
@@ -155,9 +156,8 @@ class _ContractsViewState extends State<ContractsView> {
                                         _viewModel.contractsTypeAndCounts.keys
                                             .elementAt(index)
                                             .toString(),
-                                            textAlign: TextAlign.center,
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          
                                             fontSize:
                                                 displayHeight(context) * 0.014,
                                             fontWeight: FontWeight.bold))
@@ -180,7 +180,8 @@ class _ContractsViewState extends State<ContractsView> {
                                 bottom: displayHeight(context) * 0.01),
                             child: ElevatedButton(
                               onPressed: () {
-                                
+                                context.push(Routes.contractDetailsRoute,
+                                    extra: _viewModel.contractsList![index]);
                               },
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -262,7 +263,8 @@ class _ContractsViewState extends State<ContractsView> {
                                           vertical:
                                               displayHeight(context) * 0.005),
                                       child: Text(
-                                        _viewModel.signedStats[ _viewModel.contractsList![index].signed]
+                                        _viewModel.signedStats[_viewModel
+                                                .contractsList![index].signed]
                                             .toString()
                                             .getString(context),
                                         style: TextStyle(

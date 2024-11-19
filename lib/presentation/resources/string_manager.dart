@@ -127,6 +127,7 @@ mixin AppStrings {
   static const String knowledgeBase = 'Knowledge Base';
   static const String noArticles = 'noArticles';
   static const String articles = 'Articles';
+  static const String contractDetails = 'Contract Details';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -260,7 +261,8 @@ mixin AppStrings {
     noFilesToShow: "There is no any files to show",
     knowledgeBase: 'Knowledge Base',
     noArticles: "There is no any articles to show",
-    articles: 'Articles'
+    articles: 'Articles',
+    contractDetails: "Contract Details"
   };
 
   static Map<String, dynamic> AR = {
@@ -395,5 +397,6 @@ mixin AppStrings {
     knowledgeBase: 'منتدى الشروحات',
     noArticles: 'لا توجد شروحات لعرضها حاليا',
     articles: 'المقالات',
+    contractDetails: 'تفاصيل العقد'
   };
 }

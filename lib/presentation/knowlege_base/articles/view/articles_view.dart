@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/data/api-base/api_urls.dart';
 import 'package:oraxcrm/domain/model/knowledge_base_model.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
@@ -49,7 +50,9 @@ class _ArticlesViewState extends State<ArticlesView> {
                                   blurRadius: 25)
                             ]),
                         child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.pop();
+                            },
                             icon: const Icon(Icons.arrow_back))),
                     Text(AppStrings.articles.getString(context),
                         style: const TextStyle(
@@ -136,11 +139,31 @@ class _ArticlesViewState extends State<ArticlesView> {
                             HtmlWidget(
                               widget
                                   .articlesModel!.articles![index].description!,
+                              customStylesBuilder: (element) {
+                                print(element.attributes['style']);
+                                if (element.attributes['style'] ==
+                                    'font-size:24pt;') {
+                                  return {
+                                    'font-weight': '400',
+                                    'font-size': '10pt'
+                                  };
+                                }
+                              },
                               textStyle: TextStyle(
-                                  fontSize: displayHeight(context) * 0.015,
-                                  overflow: TextOverflow.clip,
-                                  color: ColorsManager.fontColor1,
-                                  fontWeight: FontWeight.w500),
+                                fontSize: displayHeight(context) * 0.015,
+                              ),
+                              customWidgetBuilder: (element) {
+                                // if (element.localName == 'strong') {
+                                //   return Text(
+                                //     '',
+                                //     style: TextStyle(
+                                //       fontSize: displayHeight(context) * 0.015,
+                                //       overflow: TextOverflow.clip,
+                                //       color: ColorsManager.fontColor1,
+                                //     ),
+                                //   );
+                                // }
+                              },
                             )
                           ],
                         ));
