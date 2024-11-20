@@ -4,35 +4,36 @@ import 'package:oraxcrm/domain/model/knowledge_base_model.dart';
 import 'package:oraxcrm/domain/model/project_tasks_model.dart';
 import 'package:oraxcrm/domain/model/projects_model.dart';
 import 'package:oraxcrm/domain/model/support_tickets_model.dart';
-import 'package:oraxcrm/presentation/about_us/view/about_us.dart';
-import 'package:oraxcrm/presentation/activities/view/activities.dart';
-import 'package:oraxcrm/presentation/changepassword/view/change_password.dart';
-import 'package:oraxcrm/presentation/contact_us/view/contact_us.dart';
+import 'package:oraxcrm/presentation/client/about_us/view/about_us.dart';
+import 'package:oraxcrm/presentation/client/activities/view/activities.dart';
+import 'package:oraxcrm/presentation/client/changepassword/view/change_password.dart';
+import 'package:oraxcrm/presentation/client/contact_us/view/contact_us.dart';
+import 'package:oraxcrm/presentation/client/contract_details/view/contract_details.dart';
+import 'package:oraxcrm/presentation/client/contracts/view/Contracts.dart';
+import 'package:oraxcrm/presentation/client/contractsigning/sign_contract/view/sign_contract_view.dart';
+import 'package:oraxcrm/presentation/client/contractsigning/view/contract_signing.dart';
+import 'package:oraxcrm/presentation/client/files/view/files.dart';
+import 'package:oraxcrm/presentation/client/homescreen/view/home_screen.dart';
+import 'package:oraxcrm/presentation/client/knowlege_base/articles/view/articles_view.dart';
+import 'package:oraxcrm/presentation/client/login/view/login_view.dart';
+import 'package:oraxcrm/presentation/client/mainpage/view/mainpage.dart';
+import 'package:oraxcrm/presentation/client/notifications/view/notifications.dart';
+import 'package:oraxcrm/presentation/client/openticket/view/open_ticket.dart';
+import 'package:oraxcrm/presentation/client/personalinfo/view/personal_info.dart';
+import 'package:oraxcrm/presentation/client/profile/view/profile.dart';
+import 'package:oraxcrm/presentation/client/project_discussions/discussion_details/view/discussion_details_view.dart';
+import 'package:oraxcrm/presentation/client/project_files/files_details/view/file_details_view.dart';
+import 'package:oraxcrm/presentation/client/projectdetails/view/project_details.dart';
+import 'package:oraxcrm/presentation/client/projects/view/projects.dart';
+import 'package:oraxcrm/presentation/client/splash_screen/view/splash.dart';
+import 'package:oraxcrm/presentation/client/tasks/tasks_details/view/tasks_details.dart';
+import 'package:oraxcrm/presentation/client/tasks/view/tasks.dart';
+import 'package:oraxcrm/presentation/client/tickets/view/tickets.dart';
+import 'package:oraxcrm/presentation/client/tickets_details/view/tickets_details.dart';
+import 'package:oraxcrm/presentation/client/ticketssummary/view/tickets_summary.dart';
+import 'package:oraxcrm/presentation/client/unified_number/view/unified_number.dart';
 import 'package:oraxcrm/presentation/contract_details/contract_terms/view/contract_terms_view.dart';
-import 'package:oraxcrm/presentation/contract_details/view/contract_details.dart';
-import 'package:oraxcrm/presentation/contracts/view/Contracts.dart';
-import 'package:oraxcrm/presentation/contractsigning/sign_contract/view/sign_contract_view.dart';
-import 'package:oraxcrm/presentation/contractsigning/view/contract_signing.dart';
-import 'package:oraxcrm/presentation/files/view/files.dart';
-import 'package:oraxcrm/presentation/homescreen/view/home_screen.dart';
-import 'package:oraxcrm/presentation/knowlege_base/articles/view/articles_view.dart';
-import 'package:oraxcrm/presentation/login/view/login_view.dart';
-import 'package:oraxcrm/presentation/mainpage/view/mainpage.dart';
-import 'package:oraxcrm/presentation/notifications/view/notifications.dart';
-import 'package:oraxcrm/presentation/openticket/view/open_ticket.dart';
-import 'package:oraxcrm/presentation/personalinfo/view/personal_info.dart';
-import 'package:oraxcrm/presentation/profile/view/profile.dart';
-import 'package:oraxcrm/presentation/project_discussions/discussion_details/view/discussion_details_view.dart';
-import 'package:oraxcrm/presentation/project_files/files_details/view/file_details_view.dart';
-import 'package:oraxcrm/presentation/projectdetails/view/project_details.dart';
-import 'package:oraxcrm/presentation/projects/view/projects.dart';
-import 'package:oraxcrm/presentation/splash_screen/view/splash.dart';
-import 'package:oraxcrm/presentation/tasks/tasks_details/view/tasks_details.dart';
-import 'package:oraxcrm/presentation/tasks/view/tasks.dart';
-import 'package:oraxcrm/presentation/tickets/view/tickets.dart';
-import 'package:oraxcrm/presentation/tickets_details/view/tickets_details.dart';
-import 'package:oraxcrm/presentation/ticketssummary/view/tickets_summary.dart';
-import 'package:oraxcrm/presentation/unified_number/view/unified_number.dart';
+import 'package:oraxcrm/presentation/employee/profile_emp/view/profile_emp.dart';
 
 class Routes {
   static const String mainRoute = "/";
@@ -64,7 +65,7 @@ class Routes {
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const SplashScreenView(),
+      builder: (context, state) => const ProfileEmp(),
     ),
     GoRoute(
       path: filesRoute,

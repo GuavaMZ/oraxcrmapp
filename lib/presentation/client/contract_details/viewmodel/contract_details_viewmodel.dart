@@ -34,4 +34,3 @@ class ContractDetailsViewModel extends ChangeNotifier {
     }
   }
 }
-
