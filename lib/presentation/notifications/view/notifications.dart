@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/presentation/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/notifications/viewmodel/notifications_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
@@ -78,111 +79,128 @@ class _NotificationsViewState extends State<NotificationsView> {
               SizedBox(
                 height: displayHeight(context) * 0.05,
               ),
-              Container(
-                  width: displayWidth(context) * 0.95,
-                  padding: EdgeInsets.only(
-                      top: displayHeight(context) * 0.03,
-                      bottom: displayHeight(context) * 0.03,
-                      left: displayWidth(context) * 0.07,
-                      right: displayWidth(context) * 0.07),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      borderRadius:
-                          BorderRadius.circular(displayHeight(context) * 0.05),
-                      boxShadow: [
-                        BoxShadow(
-                            color: const Color.fromARGB(255, 255, 255, 255)
-                                .withOpacity(0.1),
-                            spreadRadius: 0,
-                            offset: const Offset(0, 4),
-                            blurRadius: 25)
-                      ]),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'New ticket has been created.',
-                            style: TextStyle(
-                              fontSize: displayHeight(context) * 0.020,
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: displayHeight(context) * 0.01,
-                          ),
-                          SizedBox(
-                            width: displayWidth(context) * 0.81,
-                            child: Text(
-                              'A new ticket has been created and will be reviewed for you and responded to as soon as possible.',
-                              style: TextStyle(
-                                overflow: TextOverflow.clip,
-                                fontSize: displayHeight(context) * 0.015,
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
-              SizedBox(
-                height: displayHeight(context) * 0.04,
-              ),
-              Container(
-                  width: displayWidth(context) * 0.95,
-                  padding: EdgeInsets.only(
-                      top: displayHeight(context) * 0.03,
-                      bottom: displayHeight(context) * 0.03,
-                      left: displayWidth(context) * 0.07,
-                      right: displayWidth(context) * 0.07),
-                  decoration: BoxDecoration(
-                      color: ColorsManager.projectsContainerColor,
-                      borderRadius:
-                          BorderRadius.circular(displayHeight(context) * 0.05),
-                      boxShadow: [
-                        BoxShadow(
-                            color: ColorsManager.defaultShadowColor
-                                .withOpacity(0.1),
-                            spreadRadius: 0,
-                            offset: const Offset(0, 4),
-                            blurRadius: 25)
-                      ]),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'New ticket has been created.',
-                            style: TextStyle(
-                              fontSize: displayHeight(context) * 0.020,
+              FutureBuilder(
+                future: _viewModel.getNotifications(context),
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      margin:
+                          EdgeInsets.only(top: displayHeight(context) * 0.3),
+                      // height: displayHeight(context) * 0.17,
+                      alignment: Alignment.center,
+                      width: displayWidth(context) * 0.2,
+                      child: LoadingAnimationWidget.discreteCircle(
+                          color: ColorsManager.discreteCircleFirstColor,
+                          secondRingColor:
+                              ColorsManager.discreteCircleSecondColor,
+                          thirdRingColor:
+                              ColorsManager.discreteCircleThirdColor,
+                          size: displayWidth(context) * 0.1),
+                    );
+                  } else {
+                    if (_viewModel.notificationsList!.isEmpty) {
+                      return Center(
+                        child: Text(
+                          AppStrings.noNotifications.getString(context),
+                          style: const TextStyle(
+                              fontSize: 18,
                               color: ColorsManager.fontColor1,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: displayHeight(context) * 0.01,
-                          ),
-                          SizedBox(
-                            width: displayWidth(context) * 0.81,
-                            child: Text(
-                              'A new ticket has been created and will be reviewed for you and responded to as soon as possible.',
-                              style: TextStyle(
-                                overflow: TextOverflow.clip,
-                                fontSize: displayHeight(context) * 0.015,
-                                color: ColorsManager.fontColor1,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    } else {
+                      return ListView.builder(
+                          itemCount: _viewModel.notificationsList!.length,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: displayHeight(context) * 0.01),
+                          primary: false,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              width: displayWidth(context) * 0.95,
+                              padding: EdgeInsets.only(
+                                  top: displayHeight(context) * 0.03,
+                                  bottom: displayHeight(context) * 0.03,
+                                  left: displayWidth(context) * 0.07,
+                                  right: displayWidth(context) * 0.07),
+                              decoration: BoxDecoration(
+                                  color: _viewModel.notificationsList![index]
+                                                  .isread ==
+                                              'false' ||
+                                          _viewModel.notificationsList![index]
+                                                  .isread ==
+                                              '0'
+                                      ? const Color.fromARGB(255, 255, 255, 255)
+                                      : ColorsManager.fontColor1,
+                                  borderRadius: BorderRadius.circular(
+                                      displayHeight(context) * 0.05),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: const Color.fromARGB(
+                                                255, 255, 255, 255)
+                                            .withOpacity(0.1),
+                                        spreadRadius: 0,
+                                        offset: const Offset(0, 4),
+                                        blurRadius: 25)
+                                  ]),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    _viewModel
+                                        .notificationsList![index].description!,
+                                    style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.018,
+                                      color: _viewModel
+                                                      .notificationsList![index]
+                                                      .isread ==
+                                                  'false' ||
+                                              _viewModel
+                                                      .notificationsList![index]
+                                                      .isread ==
+                                                  '0'
+                                          ? const Color.fromARGB(
+                                              255, 255, 255, 255)
+                                          : ColorsManager.fontColor1,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: displayHeight(context) * 0.01,
+                                  ),
+                                  SizedBox(
+                                    width: displayWidth(context) * 0.81,
+                                    child: Text(
+                                      _viewModel
+                                          .notificationsList![index].date!,
+                                      style: TextStyle(
+                                        overflow: TextOverflow.clip,
+                                        fontSize:
+                                            displayHeight(context) * 0.014,
+                                        color:
+                                            _viewModel.notificationsList![index]
+                                                            .isread ==
+                                                        'false' ||
+                                                    _viewModel
+                                                            .notificationsList![
+                                                                index]
+                                                            .isread ==
+                                                        '0'
+                                                ? const Color.fromARGB(
+                                                    255, 255, 255, 255)
+                                                : ColorsManager.fontColor1,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
+                            );
+                          });
+                    }
+                  }
+                },
+              ),
             ]),
           ),
         ),

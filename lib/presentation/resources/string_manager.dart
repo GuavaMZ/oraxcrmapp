@@ -133,6 +133,7 @@ mixin AppStrings {
   static const String subPoints = 'subPoints';
   static const String contractStatus = 'contractStatus';
   static const String price = 'price';
+  static const String noNotifications = 'noNotifications';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -272,7 +273,8 @@ mixin AppStrings {
     mainPoints: "Main Points",
     subPoints: "Sub Points",
     contractStatus: "Contract Status",
-    price: "Price"
+    price: "Price",
+    noNotifications: "There is no any notifications",
   };
 
   static Map<String, dynamic> AR = {
@@ -412,6 +414,7 @@ mixin AppStrings {
     mainPoints: "النقاط الرئيسية",
     subPoints: "النقاط الفرعية",
     contractStatus: "حالة العقد",
-    price: "المبلغ"
+    price: "المبلغ",
+    noNotifications: "لا توجد اي اشعارات حاليا"
   };
 }
