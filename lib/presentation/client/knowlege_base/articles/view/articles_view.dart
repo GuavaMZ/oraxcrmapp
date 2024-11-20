@@ -128,7 +128,14 @@ class _ArticlesViewState extends State<ArticlesView> {
                               child: ExtendedImage.network(
                                 ApiLinks.baseUrl +
                                     widget.articlesModel!.articles![index]
-                                        .fileName!,
+                                        .fileName
+                                        .toString(),
+                                loadStateChanged: (state) {
+                                  if (state.extendedImageLoadState ==
+                                      LoadState.failed) {
+                                    return const Text('');
+                                  }
+                                },
                                 borderRadius: BorderRadius.circular(
                                     displayHeight(context) * 0.05),
                               ),
@@ -145,24 +152,25 @@ class _ArticlesViewState extends State<ArticlesView> {
                                     'font-size:24pt;') {
                                   return {
                                     'font-weight': '400',
-                                    'font-size': '10pt'
                                   };
                                 }
+                                return null;
                               },
                               textStyle: TextStyle(
                                 fontSize: displayHeight(context) * 0.015,
                               ),
                               customWidgetBuilder: (element) {
-                                // if (element.localName == 'strong') {
-                                //   return Text(
-                                //     '',
-                                //     style: TextStyle(
-                                //       fontSize: displayHeight(context) * 0.015,
-                                //       overflow: TextOverflow.clip,
-                                //       color: ColorsManager.fontColor1,
-                                //     ),
-                                //   );
-                                // }
+                                if (element.localName == 'strong') {
+                                  return Text(
+                                    element.text,
+                                    style: TextStyle(
+                                      fontSize: displayHeight(context) * 0.014,
+                                      overflow: TextOverflow.clip,
+                                      color: ColorsManager.fontColor1,
+                                    ),
+                                  );
+                                }
+                                return null;
                               },
                             )
                           ],

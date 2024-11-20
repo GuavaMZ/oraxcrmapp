@@ -12,7 +12,7 @@ class ContractsSigningRequests {
             method: 'GET',
             headers: header,
           ));
-          print(response);
+      print(response);
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -33,6 +33,7 @@ class ContractsSigningRequests {
             method: 'GET',
             headers: header,
           ));
+      print(response);
       return response;
     } on DioException catch (error) {
       if (error.response != null) {

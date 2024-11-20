@@ -24,10 +24,13 @@ class SignContractViewModel extends ChangeNotifier {
       await contractsSigningRequests.getSignCode(
           {'Authorization': prefs.getString('usrToken')},
           contractID).then((res) async {
-        print(res.data['message']);
         if (res.statusCode == 200) {
           signContractModel = SignContractModel.fromJson(res.data);
-          print(signContractModel);
+          if (signContractModel?.status == true) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content:
+                    Text(AppStrings.codeSentSuccessfully.getString(context))));
+          }
         } else if (res.statusCode == 401) {
           if (context.mounted) {
             context.pushReplacement(Routes.loginRoute);
@@ -50,11 +53,18 @@ class SignContractViewModel extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     CheckSignContractModel? checkSignContractModel;
     try {
-      final result = await contractsSigningRequests.getSignCode(
+      await contractsSigningRequests.checkSignCode(
           {'Authorization': prefs.getString('usrToken')},
-          contractID).then((res) async {
+          contractID,
+          code).then((res) async {
         if (res.statusCode == 200) {
           checkSignContractModel = CheckSignContractModel.fromJson(res.data);
+          print(checkSignContractModel?.status);
+          if (checkSignContractModel?.status == 1) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('${checkSignContractModel?.message}')));
+            isWhatsappCodeVerified = true;
+          }
         } else if (res.statusCode == 401) {
           if (context.mounted) {
             context.pushReplacement(Routes.loginRoute);
@@ -80,8 +90,10 @@ class SignContractViewModel extends ChangeNotifier {
           body: body).then((res) async {
         if (res.statusCode == 200) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              duration: const Duration(seconds: 6),
               content: Text(
                   AppStrings.contractSignedSuccessfully.getString(context))));
+          context.pushReplacement(Routes.mainScreenRoute);
         } else if (res.statusCode == 401) {
           if (context.mounted) {
             context.pushReplacement(Routes.loginRoute);

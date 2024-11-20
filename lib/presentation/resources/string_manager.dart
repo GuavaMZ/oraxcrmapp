@@ -134,6 +134,10 @@ mixin AppStrings {
   static const String contractStatus = 'contractStatus';
   static const String price = 'price';
   static const String noNotifications = 'noNotifications';
+  static const String codeSentSuccessfully = 'codeSentSuccessfully';
+  static const String noNetwork = 'No Network';
+  static const String backOnline = 'backOnline';
+  static const String replySent = 'replySent';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -275,6 +279,12 @@ mixin AppStrings {
     contractStatus: "Contract Status",
     price: "Price",
     noNotifications: "There is no any notifications",
+    codeSentSuccessfully: "Code Sent Successfully",
+    weWillSendYou:
+        "We will send you a one-time password via WhatsApp to confirm the signature.",
+    noNetwork: "You're currently offline",
+    backOnline: "Connected To Internet",
+    replySent: "Reply has been submitted successfully."
   };
 
   static Map<String, dynamic> AR = {
@@ -415,6 +425,12 @@ mixin AppStrings {
     subPoints: "النقاط الفرعية",
     contractStatus: "حالة العقد",
     price: "المبلغ",
-    noNotifications: "لا توجد اي اشعارات حاليا"
+    noNotifications: "لا توجد اي اشعارات حاليا",
+    codeSentSuccessfully: "تم ارسال الكود بنجاح",
+    weWillSendYou:
+        "سنقوم بارسال كود التحقق الى واتساب عند الضغط على زر ارسل كود التحقق الى واتساب",
+    noNetwork: "انت الان غير متصل بالانترنت",
+    backOnline: "متصل بالانترنت",
+    replySent: "تم ارسال الرد بنجاح"
   };
 }

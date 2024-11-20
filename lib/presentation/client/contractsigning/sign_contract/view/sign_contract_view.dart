@@ -26,7 +26,14 @@ class SignContractView extends StatefulWidget {
 
 class _SignContractViewState extends State<SignContractView> {
   final SignContractViewModel _viewModel = SignContractViewModel();
-  GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+  final GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+
+  @override
+  void dispose() {
+    _viewModel.whatsappCodeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -108,6 +115,7 @@ class _SignContractViewState extends State<SignContractView> {
                     height: displayHeight(context) * 0.08,
                     child: TextField(
                       obscureText: false,
+                      controller: _viewModel.whatsappCodeController,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xffF5F4F4),
@@ -167,10 +175,15 @@ class _SignContractViewState extends State<SignContractView> {
                       if (_viewModel.whatsappCodeController.text
                           .trim()
                           .isNotEmpty) {
+                        WidgetsConstants.showProgressIndicator(
+                            context, true, '');
                         await _viewModel.checkContractSignCode(
                             _viewModel.whatsappCodeController.text.trim(),
                             widget.contract!.id!,
                             context);
+                        if (context.mounted) {
+                          context.pop();
+                        }
                       }
                       setState(() {});
                     },
@@ -243,7 +256,12 @@ class _SignContractViewState extends State<SignContractView> {
                                 .toByteData(format: ui.ImageByteFormat.png);
                             String base64Image =
                                 base64Encode(byteData!.buffer.asUint8List());
-                            print(base64Image);
+                            await _viewModel.signTheContract({
+                              'id': widget.contract!.id!,
+                              'code':
+                                  _viewModel.whatsappCodeController.text.trim(),
+                              'signature': base64Image
+                            }, context);
                             if (context.mounted) {
                               context.pop();
                             }

@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:go_router/go_router.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:oraxcrm/presentation/resources/font_manager.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
@@ -22,6 +24,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late final AppLifecycleListener _listener;
+  late final StreamSubscription<InternetStatus> _subscription;
+
   @override
   void initState() {
     localization.init(mapLocales: [
@@ -29,11 +34,36 @@ class _MyAppState extends State<MyApp> {
       MapLocale('en', AppStrings.EN, fontFamily: FontManager.currentFont)
     ], initLanguageCode: 'ar');
     localization.onTranslatedLanguage = _onTranslatedLanguage;
+
+    _subscription =
+        InternetConnection().onStatusChange.listen((InternetStatus status) {
+      switch (status) {
+        case InternetStatus.connected:
+          break;
+        case InternetStatus.disconnected:
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(AppStrings.noNetwork.getString(context))));
+          break;
+      }
+    });
+
+    _listener = AppLifecycleListener(
+      onResume: _subscription.resume,
+      // onHide: _subscription.pause,
+      onPause: _subscription.pause,
+    );
     super.initState();
   }
 
   void _onTranslatedLanguage(Locale? locale) {
     setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    _listener.dispose();
+    super.dispose();
   }
 
   @override

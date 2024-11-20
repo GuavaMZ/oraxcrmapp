@@ -45,26 +45,29 @@ class TicketsSummaryViewModel extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     SupportTicketsModel? supportTicketsModel;
     print(prefs.getString('usrToken'));
-    try {
-      await ticketsRequests.listAllTickets(
-          {'Authorization': prefs.getString('usrToken')},
-          currentPage,
-          limit).then((res) async {
-        if (res.statusCode == 200) {
-          supportTicketsModel = SupportTicketsModel.fromJson(res.data);
-          supportTicketsList!.addAll(supportTicketsModel!.dataticket!);
-          assignTicketsStatusesCounts();
-        } else if (res.statusCode == 401) {
-          if (context.mounted) {
-            context.pushReplacement(Routes.loginRoute);
+    if (isLastPage == false) {
+      try {
+        await ticketsRequests.listAllTickets(
+            {'Authorization': prefs.getString('usrToken')},
+            currentPage,
+            limit).then((res) async {
+          if (res.statusCode == 200) {
+            supportTicketsModel = SupportTicketsModel.fromJson(res.data);
+            supportTicketsList!.addAll(supportTicketsModel!.dataticket!);
+            assignTicketsStatusesCounts();
+          } else if (res.statusCode == 401) {
+            if (context.mounted) {
+              context.pushReplacement(Routes.loginRoute);
+            }
+          } else {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(res.data['message'])));
           }
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(res.data['message'])));
-        }
-      });
-      return supportTicketsModel?.dataticket;
-    } catch (e) {
-      print(e);
+        });
+        return supportTicketsModel?.dataticket;
+      } catch (e) {
+        print(e);
+      }
     }
   }
 

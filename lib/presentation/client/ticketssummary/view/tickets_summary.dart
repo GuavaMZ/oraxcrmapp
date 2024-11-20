@@ -21,6 +21,12 @@ class TicketsSummaryView extends StatefulWidget {
 class _TicketsSummaryViewState extends State<TicketsSummaryView> {
   final TicketsSummaryViewModel _viewModel = TicketsSummaryViewModel();
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => _viewModel,
@@ -121,6 +127,7 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                             itemCount: _viewModel.ticketsStatuses.length,
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
+                            controller: _viewModel.scrollController,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
                                 margin: EdgeInsets.symmetric(
@@ -140,7 +147,9 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 10),
-                                      child: Text(_viewModel.ticketsStatusesCount[index].toString(),
+                                      child: Text(
+                                          _viewModel.ticketsStatusesCount[index]
+                                              .toString(),
                                           style: TextStyle(
                                               fontSize: displayHeight(context) *
                                                   0.037,
@@ -173,7 +182,9 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                 bottom: displayHeight(context) * 0.02),
                             child: ElevatedButton(
                               onPressed: () {
-                                context.push(Routes.ticketsDetailsRoute,extra: _viewModel.supportTicketsList![index]);
+                                context.push(Routes.ticketsDetailsRoute,
+                                    extra:
+                                        _viewModel.supportTicketsList![index]);
                               },
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -224,8 +235,8 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                         ),
                                         Text(
                                           _viewModel.supportTicketsList![index]
-                                                      .departmentName
-                                                      .toString(),
+                                              .departmentName
+                                              .toString(),
                                           style: TextStyle(
                                             fontSize:
                                                 displayHeight(context) * 0.017,
@@ -234,7 +245,10 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                           ),
                                         ),
                                         Text(
-                                          _viewModel.supportTicketsList![index].priorityName.toString().getString(context),
+                                          _viewModel.supportTicketsList![index]
+                                              .priorityName
+                                              .toString()
+                                              .getString(context),
                                           style: TextStyle(
                                             fontSize:
                                                 displayHeight(context) * 0.017,
@@ -255,7 +269,10 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                           vertical:
                                               displayHeight(context) * 0.005),
                                       child: Text(
-                                        _viewModel.supportTicketsList![index].statusName.toString().getString(context),
+                                        _viewModel.supportTicketsList![index]
+                                            .statusName
+                                            .toString()
+                                            .getString(context),
                                         style: TextStyle(
                                             color: ColorsManager.fontColor3,
                                             fontSize:

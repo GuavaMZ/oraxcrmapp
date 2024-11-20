@@ -39,4 +39,22 @@ class TicketsRequests {
       }
     }
   }
+
+  Future addReply(Map<String, dynamic> header, String id, dynamic body) async {
+    Response response;
+    try {
+      response = await dio.request('${ApiLinks.baseUrl}${ApiLinks.addReply}$id',
+          data: body,
+          options: Options(
+            method: 'POST',
+            headers: header,
+          ));
+      return response;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        response = error.response!;
+        return response;
+      }
+    }
+  }
 }
