@@ -127,6 +127,12 @@ mixin AppStrings {
   static const String knowledgeBase = 'Knowledge Base';
   static const String noArticles = 'noArticles';
   static const String articles = 'Articles';
+  static const String contractDetails = 'Contract Details';
+  static const String contractAlreadySigned = 'contractAlreadySigned';
+  static const String mainPoints = 'mainPoints';
+  static const String subPoints = 'subPoints';
+  static const String contractStatus = 'contractStatus';
+  static const String price = 'price';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -260,7 +266,13 @@ mixin AppStrings {
     noFilesToShow: "There is no any files to show",
     knowledgeBase: 'Knowledge Base',
     noArticles: "There is no any articles to show",
-    articles: 'Articles'
+    articles: 'Articles',
+    contractDetails: "Contract Details",
+    contractAlreadySigned: "This Contract Is Already Signed",
+    mainPoints: "Main Points",
+    subPoints: "Sub Points",
+    contractStatus: "Contract Status",
+    price: "Price"
   };
 
   static Map<String, dynamic> AR = {
@@ -395,5 +407,11 @@ mixin AppStrings {
     knowledgeBase: 'منتدى الشروحات',
     noArticles: 'لا توجد شروحات لعرضها حاليا',
     articles: 'المقالات',
+    contractDetails: 'تفاصيل العقد',
+    contractAlreadySigned: 'هذا العقد تم توقيعه مسبقا',
+    mainPoints: "النقاط الرئيسية",
+    subPoints: "النقاط الفرعية",
+    contractStatus: "حالة العقد",
+    price: "المبلغ"
   };
 }

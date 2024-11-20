@@ -8,6 +8,7 @@ import 'package:oraxcrm/presentation/client/about_us/view/about_us.dart';
 import 'package:oraxcrm/presentation/client/activities/view/activities.dart';
 import 'package:oraxcrm/presentation/client/changepassword/view/change_password.dart';
 import 'package:oraxcrm/presentation/client/contact_us/view/contact_us.dart';
+import 'package:oraxcrm/presentation/client/contract_details/view/contract_details.dart';
 import 'package:oraxcrm/presentation/client/contracts/view/Contracts.dart';
 import 'package:oraxcrm/presentation/client/contractsigning/sign_contract/view/sign_contract_view.dart';
 import 'package:oraxcrm/presentation/client/contractsigning/view/contract_signing.dart';
@@ -31,6 +32,7 @@ import 'package:oraxcrm/presentation/client/tickets/view/tickets.dart';
 import 'package:oraxcrm/presentation/client/tickets_details/view/tickets_details.dart';
 import 'package:oraxcrm/presentation/client/ticketssummary/view/tickets_summary.dart';
 import 'package:oraxcrm/presentation/client/unified_number/view/unified_number.dart';
+import 'package:oraxcrm/presentation/contract_details/contract_terms/view/contract_terms_view.dart';
 import 'package:oraxcrm/presentation/employee/profile_emp/view/profile_emp.dart';
 
 class Routes {
@@ -48,6 +50,8 @@ class Routes {
   static const String openTicketRoute = "/openTicket/view";
   static const String personalInfoRoute = "/personalInfo/view";
   static const String contractsRoute = "/contracts/view";
+  static const String contractDetailsRoute = "/contract_details/view";
+  static const String contractTermsRoute = "/contract_terms/view";
   static const String contractSigningRoute = "/contractSigning/view";
   static const String activitiesRoute = "/activities/view";
   static const String changePasswordRoute = "/changePassword/view";
@@ -86,6 +90,16 @@ class Routes {
     GoRoute(
       path: contractsRoute,
       builder: (context, state) => const ContractsView(),
+    ),
+    GoRoute(
+      path: contractDetailsRoute,
+      builder: (context, state) =>
+          ContractDetailsView(contract: state.extra as DataContract),
+    ),
+    GoRoute(
+      path: contractTermsRoute,
+      builder: (context, state) =>
+          ContractTermsView(contract: state.extra as DataContract),
     ),
     GoRoute(
       path: contractSigningRoute,
