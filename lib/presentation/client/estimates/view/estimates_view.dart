@@ -112,6 +112,71 @@ class _EstimatesViewState extends State<EstimatesView> {
                                   ],
                                 ),
                               ),
+                              SizedBox(height: displayHeight(context) * 0.04),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: _viewModel.estimatesList?.length,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          displayHeight(context) * 0.02),
+                                  primary: false,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Container(
+                                        margin: EdgeInsets.only(
+                                            bottom:
+                                                displayHeight(context) * 0.02),
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              // context.push(
+                                              //     Routes.projectDetailsRoute,
+                                              //     extra: _viewModel
+                                              //         .projectsList![index]);
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          displayHeight(
+                                                                  context) *
+                                                              0.05),
+                                                ),
+                                                elevation: 0,
+                                                padding:
+                                                    const EdgeInsets.all(0)),
+                                            child: Container(
+                                                width: displayWidth(context) *
+                                                    0.95,
+                                                padding: EdgeInsets.only(
+                                                    top: displayHeight(context) *
+                                                        0.03,
+                                                    bottom:
+                                                        displayHeight(context) *
+                                                            0.03,
+                                                    left: displayWidth(context) *
+                                                        0.07,
+                                                    right:
+                                                        displayWidth(context) *
+                                                            0.04),
+                                                decoration: BoxDecoration(
+                                                    color: ColorsManager
+                                                        .projectsContainerColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            displayHeight(context) *
+                                                                0.05),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: ColorsManager
+                                                              .defaultShadowColor
+                                                              .withOpacity(0.1),
+                                                          spreadRadius: 0,
+                                                          offset: const Offset(
+                                                              0, 4),
+                                                          blurRadius: 25)
+                                                    ]),
+                                                child: null)));
+                                  })
                             ]);
                           }
                         }),

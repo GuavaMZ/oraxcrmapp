@@ -1,3 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-class EstimatesViewModel extends ChangeNotifier {}
+class EstimatesViewModel extends ChangeNotifier {
+  List estimatesList = [];
+}
