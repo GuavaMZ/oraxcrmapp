@@ -138,6 +138,10 @@ mixin AppStrings {
   static const String noNetwork = 'No Network';
   static const String backOnline = 'backOnline';
   static const String replySent = 'replySent';
+  static const String estimates = 'Estimates';
+  static const String proposals = 'Proposals';
+  static const String noProposalsToShow = 'noProposalsToShow';
+  static const String noEstimatesToShow = 'noEstimatesToShow';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -284,7 +288,11 @@ mixin AppStrings {
         "We will send you a one-time password via WhatsApp to confirm the signature.",
     noNetwork: "You're currently offline",
     backOnline: "Connected To Internet",
-    replySent: "Reply has been submitted successfully."
+    replySent: "Reply has been submitted successfully.",
+    estimates: "Estimates",
+    proposals: "Proposals",
+    noProposalsToShow: "There is no proposals to show",
+    noEstimatesToShow: "There is no estimates to show"
   };
 
   static Map<String, dynamic> AR = {
@@ -431,6 +439,10 @@ mixin AppStrings {
         "سنقوم بارسال كود التحقق الى واتساب عند الضغط على زر ارسل كود التحقق الى واتساب",
     noNetwork: "انت الان غير متصل بالانترنت",
     backOnline: "متصل بالانترنت",
-    replySent: "تم ارسال الرد بنجاح"
+    replySent: "تم ارسال الرد بنجاح",
+    estimates: "عرض الاسعار",
+    proposals: "الاقتراحات",
+    noProposalsToShow: "لا توجد اقتراحات لعرضها",
+    noEstimatesToShow: "لا توجد عروض اسعار لعرضها",
   };
 }
