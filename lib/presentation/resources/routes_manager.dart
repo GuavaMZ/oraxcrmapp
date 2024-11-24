@@ -16,6 +16,7 @@ import 'package:oraxcrm/presentation/client/estimates/view/estimates_view.dart';
 import 'package:oraxcrm/presentation/client/files/view/files.dart';
 import 'package:oraxcrm/presentation/client/homescreen/view/home_screen.dart';
 import 'package:oraxcrm/presentation/client/knowlege_base/articles/view/articles_view.dart';
+import 'package:oraxcrm/presentation/client/knowlege_base/view/knowledge_base_view.dart';
 import 'package:oraxcrm/presentation/client/login/view/login_view.dart';
 import 'package:oraxcrm/presentation/client/mainpage/view/mainpage.dart';
 import 'package:oraxcrm/presentation/client/notifications/view/notifications.dart';
@@ -65,6 +66,9 @@ class Routes {
   static const String articlesRoute = "/articles/view";
   static const String proposalsRoute = "/proposals/view";
   static const String estimatesRoute = "/estimates/view";
+  static const String aboutUsRoute = "/about_us/view";
+  static const String contactUsRoute = "/contact_us/view";
+  static const String knowledgeBaseRoute = "/knowledge_base/view";
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -122,6 +126,10 @@ class Routes {
       builder: (context, state) => const ProfileView(),
     ),
     GoRoute(
+      path: knowledgeBaseRoute,
+      builder: (context, state) => const KnowledgeBaseView(),
+    ),
+    GoRoute(
       path: projectDetailsRoute,
       builder: (context, state) =>
           ProjectDetailsView(projectData: state.extra as Dataprojects),
@@ -157,6 +165,14 @@ class Routes {
       builder: (context, state) => const LoginView(),
     ),
     GoRoute(
+      path: aboutUsRoute,
+      builder: (context, state) => const AboutUsView(),
+    ),
+    GoRoute(
+      path: contactUsRoute,
+      builder: (context, state) => const ContactUsView(),
+    ),
+    GoRoute(
       path: ticketsDetailsRoute,
       builder: (context, state) => TicketsDetailsView(
         ticketDetails: state.extra as Dataticket,
@@ -181,7 +197,7 @@ class Routes {
           ),
     ),
     GoRoute(
-      path: discussionDetailsRoute,
+      path: fileDetailsRoute,
       builder: (context, state) => FileDetailsView(
           // projectTaskDetails: state.extra as DataTasksProject,
           ),

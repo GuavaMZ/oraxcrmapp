@@ -32,7 +32,7 @@ class _EstimatesViewState extends State<EstimatesView> {
               child: Consumer<EstimatesViewModel>(
                 builder: (BuildContext context, value, Widget? child) =>
                     FutureBuilder(
-                        future: null,
+                        future: _viewModel.getEstimates(context),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           if (snapshot.connectionState ==
@@ -85,8 +85,7 @@ class _EstimatesViewState extends State<EstimatesView> {
                                                   'assets/images/menu-1 3.svg'));
                                         })),
                                     Text(
-                                        AppStrings.ticketDetails
-                                            .getString(context),
+                                        AppStrings.estimates.getString(context),
                                         style: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold)),
@@ -204,7 +203,7 @@ class _EstimatesViewState extends State<EstimatesView> {
                                                           _viewModel
                                                               .estimatesList![
                                                                   index]
-                                                              .subject
+                                                              .clientName
                                                               .toString(),
                                                           style: TextStyle(
                                                             fontSize:
@@ -233,7 +232,7 @@ class _EstimatesViewState extends State<EstimatesView> {
                                                           ),
                                                         ),
                                                         Text(
-                                                          '${_viewModel.estimatesList![index].dateCreated} : ${_viewModel.estimatesList![index].openTill}',
+                                                          '${_viewModel.estimatesList![index].dateCreated} : ${_viewModel.estimatesList![index].expiryDate}',
                                                           style: TextStyle(
                                                             fontSize:
                                                                 displayHeight(

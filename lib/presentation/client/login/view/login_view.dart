@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/presentation/client/login/viewmodel/login_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
+import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:oraxcrm/presentation/resources/widgets_constants.dart';
@@ -34,11 +35,48 @@ class _LoginViewState extends State<LoginView> {
       create: (_) => _viewModel,
       child: Scaffold(
         backgroundColor: ColorsManager.bgColor,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarHeight: displayHeight(context) * 0.1,
+          actions: [
+            SizedBox(
+              width: displayWidth(context),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.announcement_rounded),
+                        Text(AppStrings.advertises.getString(context))
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      context.push(Routes.knowledgeBaseRoute);
+                    },
+                    icon: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.developer_board_rounded),
+                        Text(AppStrings.tutorials.getString(context))
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+          automaticallyImplyLeading: false,
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: Column(children: [
               SizedBox(
-                height: displayHeight(context) * 0.07,
+                height: displayHeight(context) * 0.01,
               ),
               SvgPicture.asset('assets/images/tablet.svg'),
               SizedBox(

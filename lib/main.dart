@@ -17,5 +17,5 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-final shorebirdCodePush = ShorebirdCodePush();
+final shorebirdCodePush = ShorebirdUpdater();
 final supabase = Supabase.instance.client;

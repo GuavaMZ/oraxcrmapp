@@ -142,6 +142,9 @@ mixin AppStrings {
   static const String proposals = 'Proposals';
   static const String noProposalsToShow = 'noProposalsToShow';
   static const String noEstimatesToShow = 'noEstimatesToShow';
+  static const String more = 'More';
+  static const String advertises = 'Advertises';
+  static const String tutorials = 'Tutorials';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -292,7 +295,10 @@ mixin AppStrings {
     estimates: "Estimates",
     proposals: "Proposals",
     noProposalsToShow: "There is no proposals to show",
-    noEstimatesToShow: "There is no estimates to show"
+    noEstimatesToShow: "There is no estimates to show",
+    more: "More",
+    advertises: "Advertises",
+    tutorials: 'Tutorials'
   };
 
   static Map<String, dynamic> AR = {
@@ -444,5 +450,8 @@ mixin AppStrings {
     proposals: "الاقتراحات",
     noProposalsToShow: "لا توجد اقتراحات لعرضها",
     noEstimatesToShow: "لا توجد عروض اسعار لعرضها",
+    more: "المزيد",
+    advertises: "الاعلانات",
+    tutorials: 'الشروحات'
   };
 }

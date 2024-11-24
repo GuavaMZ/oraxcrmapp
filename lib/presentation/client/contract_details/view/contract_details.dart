@@ -53,14 +53,17 @@ class _ContractDetailsViewState extends State<ContractDetailsView> {
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
                                 ]),
-                            child: IconButton(
-                                onPressed: () {
-                                  context.pop();
-                                },
-                                icon: const Icon(Icons.arrow_back))),
-                        Text(AppStrings.contractDetails.getString(context),
+                            child: Builder(builder: (context) {
+                              return IconButton(
+                                  onPressed: () {
+                                    Scaffold.of(context).openDrawer();
+                                  },
+                                  icon: SvgPicture.asset(
+                                      'assets/images/menu-1 3.svg'));
+                            })),
+                        Text(AppStrings.ticketDetails.getString(context),
                             style: const TextStyle(
-                                fontSize: 19, fontWeight: FontWeight.bold)),
+                                fontSize: 20, fontWeight: FontWeight.bold)),
                         Container(
                             decoration: BoxDecoration(
                                 color: ColorsManager.iconsColor3,
@@ -75,10 +78,10 @@ class _ContractDetailsViewState extends State<ContractDetailsView> {
                                 ]),
                             child: IconButton(
                                 onPressed: () {
-                                  Scaffold.of(context).openDrawer();
+                                  context.pop();
                                 },
                                 icon: SvgPicture.asset(
-                                    'assets/images/menu-1 3.svg'))),
+                                    'assets/images/arrow-left 2.svg'))),
                       ],
                     ),
                   ),

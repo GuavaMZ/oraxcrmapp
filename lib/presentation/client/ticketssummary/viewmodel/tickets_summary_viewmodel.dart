@@ -53,12 +53,19 @@ class TicketsSummaryViewModel extends ChangeNotifier {
             limit).then((res) async {
           if (res.statusCode == 200) {
             supportTicketsModel = SupportTicketsModel.fromJson(res.data);
-            supportTicketsList!.addAll(supportTicketsModel!.dataticket!);
+            if (supportTicketsModel!.status == true &&
+                supportTicketsModel!.dataticket!.isNotEmpty) {
+              supportTicketsList!.addAll(supportTicketsModel!.dataticket!);
+            } else if (supportTicketsModel!.dataticket!.isEmpty) {}
+
             assignTicketsStatusesCounts();
           } else if (res.statusCode == 401) {
             if (context.mounted) {
               context.pushReplacement(Routes.loginRoute);
             }
+          } else if (res.statusCode == 404 &&
+              res.data['message'] == "No data found") {
+            isLastPage = true;
           } else {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(res.data['message'])));
@@ -94,17 +101,17 @@ class TicketsSummaryViewModel extends ChangeNotifier {
     }
   }
 
-  loadMoreData() async {
+  loadMoreData(BuildContext context) async {
     currentPage++;
     print(currentPage);
-    // await getSupportTickets(currentPage, limit);
+    await getSupportTickets(context);
   }
 
-  void scrollListener() async {
+  void scrollListener({context}) async {
     if (scrollController.position.pixels ==
             scrollController.position.maxScrollExtent &&
         isLastPage == false) {
-      await loadMoreData();
+      await loadMoreData(context);
     }
   }
 }

@@ -75,11 +75,14 @@ class _ContractsViewState extends State<ContractsView> {
                                             offset: const Offset(0, 4),
                                             blurRadius: 25)
                                       ]),
-                                  child: IconButton(
-                                      onPressed: () {
-                                        context.pop();
-                                      },
-                                      icon: const Icon(Icons.arrow_back))),
+                                  child: Builder(builder: (context) {
+                                    return IconButton(
+                                        onPressed: () {
+                                          Scaffold.of(context).openDrawer();
+                                        },
+                                        icon: SvgPicture.asset(
+                                            'assets/images/menu-1 3.svg'));
+                                  })),
                               Text(AppStrings.contracts.getString(context),
                                   style: const TextStyle(
                                       fontSize: 20,
@@ -99,10 +102,10 @@ class _ContractsViewState extends State<ContractsView> {
                                       ]),
                                   child: IconButton(
                                       onPressed: () {
-                                        Scaffold.of(context).openDrawer();
+                                        context.pop();
                                       },
                                       icon: SvgPicture.asset(
-                                          'assets/images/menu-1 3.svg')))
+                                          'assets/images/arrow-left 2.svg'))),
                             ],
                           ),
                         ),
@@ -387,7 +390,29 @@ class _ContractsViewState extends State<ContractsView> {
                                         )
                                       ];
                                     },
-                                    icon: Icon(Icons.menu),
+                                    // icon: Icon(Icons.menu),
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                          top: displayHeight(context) * 0.023,
+                                          left: displayWidth(context) * 0.018),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.withOpacity(0.3),
+                                        borderRadius: BorderRadius.circular(
+                                            displayHeight(context) * 0.08),
+                                      ),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              displayWidth(context) * 0.04,
+                                          vertical:
+                                              displayHeight(context) * 0.005),
+                                      child: Text(
+                                        AppStrings.more.getString(context),
+                                        style: TextStyle(
+                                            color: ColorsManager.fontColor1,
+                                            fontSize:
+                                                displayHeight(context) * 0.015),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],

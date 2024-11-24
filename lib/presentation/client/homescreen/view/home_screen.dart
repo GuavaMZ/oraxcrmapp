@@ -64,10 +64,14 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
                                 ]),
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                    'assets/images/notification 2.svg'))),
+                            child: Builder(builder: (context) {
+                              return IconButton(
+                                  onPressed: () {
+                                    Scaffold.of(context).openDrawer();
+                                  },
+                                  icon: SvgPicture.asset(
+                                      'assets/images/menu-1 3.svg'));
+                            })),
                         Text(AppStrings.home.getString(context),
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
@@ -83,14 +87,10 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
                                 ]),
-                            child: Builder(builder: (context) {
-                              return IconButton(
-                                  onPressed: () {
-                                    Scaffold.of(context).openDrawer();
-                                  },
-                                  icon: SvgPicture.asset(
-                                      'assets/images/menu-1 3.svg'));
-                            }))
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: SvgPicture.asset(
+                                    'assets/images/notification 2.svg'))),
                       ],
                     ),
                   ),
@@ -176,76 +176,77 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                           );
                         }
                       }),
-                  
-                        SizedBox(
-                      height: 45,
-                      width: displayWidth(context) * 0.95,
-                      child: FutureBuilder(
-                        future: _viewModel.getCategories(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<dynamic> snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const SizedBox();
-                          } else {
-                            return Consumer<HomeScreenViewmodel>(
-                              builder: (BuildContext context, viewModel, Widget? child) =>
-                              ListView.separated(
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount: snapshot.data.data.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return ChoiceChip(
-                                      label: Text(
-                                          localization.currentLocale.toString() ==
-                                                  'ar'
-                                              ? snapshot
-                                                  .data.data[index].categoryNameAr
-                                              : snapshot.data.data[index]
-                                                  .categoryNameEn,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w400,
-                                            color: selectedFilter ==
-                                                    snapshot.data.data[index]
-                                                        .categoryNameEn
-                                                ? const Color(0xffffffff)
-                                                : const Color(0xff000000),
-                                          )),
-                                      showCheckmark: false,
-                                      labelPadding: EdgeInsets.symmetric(
-                                          horizontal:
-                                              displayWidth(context) * 0.045),
-                                      onSelected: (b) {
-                                        
-                                        viewModel.changeCategory(selectedFilter!, snapshot.data.data[index].categoryNameEn);
-                                      },
-                                      side: const BorderSide(
-                                          width: 0, color: Color(0xffffffff)),
-                                      selectedColor: const Color(0xff000000),
-                                      backgroundColor: const Color(0xfff1f1f1),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(
-                                                displayHeight(context) * 0.02)),
-                                      ),
-                                      selected: selectedFilter ==
+                  SizedBox(
+                    height: 45,
+                    width: displayWidth(context) * 0.95,
+                    child: FutureBuilder(
+                      future: _viewModel.getCategories(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<dynamic> snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const SizedBox();
+                        } else {
+                          return Consumer<HomeScreenViewmodel>(
+                            builder: (BuildContext context, viewModel,
+                                    Widget? child) =>
+                                ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: snapshot.data.data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ChoiceChip(
+                                    label: Text(
+                                        localization.currentLocale.toString() ==
+                                                'ar'
+                                            ? snapshot
+                                                .data.data[index].categoryNameAr
+                                            : snapshot.data.data[index]
+                                                .categoryNameEn,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400,
+                                          color: selectedFilter ==
+                                                  snapshot.data.data[index]
+                                                      .categoryNameEn
+                                              ? const Color(0xffffffff)
+                                              : const Color(0xff000000),
+                                        )),
+                                    showCheckmark: false,
+                                    labelPadding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            displayWidth(context) * 0.045),
+                                    onSelected: (b) {
+                                      viewModel.changeCategory(
+                                          selectedFilter!,
                                           snapshot
                                               .data.data[index].categoryNameEn);
-                                },
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return SizedBox(
-                                    width: displayWidth(context) * 0.035,
-                                  );
-                                },
-                              ),
-                            );
-                          }
-                        },
-                      ),
+                                    },
+                                    side: const BorderSide(
+                                        width: 0, color: Color(0xffffffff)),
+                                    selectedColor: const Color(0xff000000),
+                                    backgroundColor: const Color(0xfff1f1f1),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(
+                                              displayHeight(context) * 0.02)),
+                                    ),
+                                    selected: selectedFilter ==
+                                        snapshot
+                                            .data.data[index].categoryNameEn);
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return SizedBox(
+                                  width: displayWidth(context) * 0.035,
+                                );
+                              },
+                            ),
+                          );
+                        }
+                      },
                     ),
-                  
+                  ),
                   FutureBuilder(
                     future: _viewModel.currentCategoryFilterFuture,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {

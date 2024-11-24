@@ -22,8 +22,14 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
   final TicketsSummaryViewModel _viewModel = TicketsSummaryViewModel();
   @override
   void initState() {
-    // TODO: implement initState
+    _viewModel.scrollController.addListener(_viewModel.scrollListener);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _viewModel.scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -83,10 +89,9 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                             blurRadius: 25)
                                       ]),
                                   child: IconButton(
-                                      onPressed: () {
-                                        context.pop();
-                                      },
-                                      icon: const Icon(Icons.arrow_back))),
+                                      onPressed: () {},
+                                      icon: SvgPicture.asset(
+                                          'assets/images/menu-1 3.svg'))),
                               Text(AppStrings.ticketsSummary.getString(context),
                                   style: const TextStyle(
                                       fontSize: 20,
@@ -105,9 +110,11 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                             blurRadius: 25)
                                       ]),
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context.pop();
+                                      },
                                       icon: SvgPicture.asset(
-                                          'assets/images/menu-1 3.svg')))
+                                          'assets/images/arrow-left 2.svg'))),
                             ],
                           ),
                         ),

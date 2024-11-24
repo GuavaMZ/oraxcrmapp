@@ -125,45 +125,45 @@ class _ProfileViewState extends State<ProfileView> {
                     height: 1,
                     color: ColorsManager.separatorColor,
                   ),
-                  ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorsManager.bgColor,
-                          elevation: 0,
-                          shape: const RoundedRectangleBorder(),
-                          padding:
-                              EdgeInsets.all(displayHeight(context) * 0.025)),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset('assets/images/edit.svg'),
-                                const Padding(
-                                  padding: EdgeInsets.only(right: 15),
-                                ),
-                                SizedBox(
-                                  child: Text(
-                                    AppStrings.changePassword
-                                        .getString(context),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      color: ColorsManager.fontColor1,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: displayHeight(context) * 0.02,
-                              color: ColorsManager.iconsColor1,
-                            )
-                          ])),
-                  Container(
-                    height: 1,
-                    color: ColorsManager.separatorColor,
-                  ),
+                  // ElevatedButton(
+                  //     onPressed: () {},
+                  //     style: ElevatedButton.styleFrom(
+                  //         backgroundColor: ColorsManager.bgColor,
+                  //         elevation: 0,
+                  //         shape: const RoundedRectangleBorder(),
+                  //         padding:
+                  //             EdgeInsets.all(displayHeight(context) * 0.025)),
+                  //     child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           Row(
+                  //             children: [
+                  //               SvgPicture.asset('assets/images/edit.svg'),
+                  //               const Padding(
+                  //                 padding: EdgeInsets.only(right: 15),
+                  //               ),
+                  //               SizedBox(
+                  //                 child: Text(
+                  //                   AppStrings.changePassword
+                  //                       .getString(context),
+                  //                   style: const TextStyle(
+                  //                     fontSize: 16,
+                  //                     color: ColorsManager.fontColor1,
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //           Icon(
+                  //             Icons.arrow_forward_ios_rounded,
+                  //             size: displayHeight(context) * 0.02,
+                  //             color: ColorsManager.iconsColor1,
+                  //           )
+                  //         ])),
+                  // Container(
+                  //   height: 1,
+                  //   color: ColorsManager.separatorColor,
+                  // ),
                   ElevatedButton(
                       onPressed: () async {
                         await context.push(Routes.ticketsSummaryRoute);

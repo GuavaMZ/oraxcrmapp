@@ -75,10 +75,9 @@ class _ProjectsViewState extends State<ProjectsView> {
                                               blurRadius: 25)
                                         ]),
                                     child: IconButton(
-                                        onPressed: () {
-                                          context.pop();
-                                        },
-                                        icon: const Icon(Icons.arrow_back))),
+                                        onPressed: () {},
+                                        icon: SvgPicture.asset(
+                                            'assets/images/menu-1 3.svg'))),
                                 Text(AppStrings.projects.getString(context),
                                     style: const TextStyle(
                                         fontSize: 20,
@@ -97,9 +96,11 @@ class _ProjectsViewState extends State<ProjectsView> {
                                               blurRadius: 25)
                                         ]),
                                     child: IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          context.pop();
+                                        },
                                         icon: SvgPicture.asset(
-                                            'assets/images/menu-1 3.svg')))
+                                            'assets/images/arrow-left 2.svg'))),
                               ],
                             ),
                           ),

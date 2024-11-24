@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:oraxcrm/presentation/client/drawer/viewmodel/drawer_viewmodel.dart';
+// import 'package:oraxcrm/presentation/client/drawer/viewmodel/drawer_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
-
 
 class DrawerView extends StatefulWidget {
   const DrawerView({super.key});
@@ -17,7 +16,7 @@ class DrawerView extends StatefulWidget {
 }
 
 class _DrawerViewState extends State<DrawerView> {
-  final DrawerViewmodel _viewModel = DrawerViewmodel();
+  // final DrawerViewmodel _viewModel = DrawerViewmodel();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -32,7 +31,7 @@ class _DrawerViewState extends State<DrawerView> {
           ),
           ElevatedButton(
               onPressed: () {
-                // context.push(Routes.personalInfoRoute);
+                context.pushReplacement(Routes.mainScreenRoute);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.bgColor,
@@ -74,7 +73,7 @@ class _DrawerViewState extends State<DrawerView> {
           ),
           ElevatedButton(
               onPressed: () {
-                // context.push(Routes.personalInfoRoute);
+                context.push(Routes.aboutUsRoute);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.bgColor,
@@ -116,7 +115,7 @@ class _DrawerViewState extends State<DrawerView> {
           ),
           ElevatedButton(
               onPressed: () {
-                // context.push(Routes.personalInfoRoute);
+                context.push(Routes.contactUsRoute);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.bgColor,
@@ -156,48 +155,48 @@ class _DrawerViewState extends State<DrawerView> {
             height: 1,
             color: ColorsManager.separatorColor,
           ),
-          ElevatedButton(
-              onPressed: () {
-                // context.push(Routes.personalInfoRoute);
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsManager.bgColor,
-                  elevation: 0,
-                  shape: const RoundedRectangleBorder(),
-                  padding: EdgeInsets.all(displayHeight(context) * 0.025)),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/images/repeat 1.svg',
-                          color: ColorsManager.iconsColor1,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 15),
-                        ),
-                        SizedBox(
-                          child: Text(
-                            AppStrings.arabic.getString(context),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: ColorsManager.fontColor1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: displayHeight(context) * 0.02,
-                      color: ColorsManager.iconsColor1,
-                    )
-                  ])),
-          Container(
-            height: 1,
-            color: ColorsManager.separatorColor,
-          ),
+          // ElevatedButton(
+          //     onPressed: () {
+          //       // context.push(Routes.personalInfoRoute);
+          //     },
+          //     style: ElevatedButton.styleFrom(
+          //         backgroundColor: ColorsManager.bgColor,
+          //         elevation: 0,
+          //         shape: const RoundedRectangleBorder(),
+          //         padding: EdgeInsets.all(displayHeight(context) * 0.025)),
+          //     child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Row(
+          //             children: [
+          //               SvgPicture.asset(
+          //                 'assets/images/repeat 1.svg',
+          //                 color: ColorsManager.iconsColor1,
+          //               ),
+          //               const Padding(
+          //                 padding: EdgeInsets.only(right: 15),
+          //               ),
+          //               SizedBox(
+          //                 child: Text(
+          //                   AppStrings.arabic.getString(context),
+          //                   style: const TextStyle(
+          //                     fontSize: 16,
+          //                     color: ColorsManager.fontColor1,
+          //                   ),
+          //                 ),
+          //               ),
+          //             ],
+          //           ),
+          //           Icon(
+          //             Icons.arrow_forward_ios_rounded,
+          //             size: displayHeight(context) * 0.02,
+          //             color: ColorsManager.iconsColor1,
+          //           )
+          //         ])),
+          // Container(
+          //   height: 1,
+          //   color: ColorsManager.separatorColor,
+          // ),
         ],
       ),
     );
