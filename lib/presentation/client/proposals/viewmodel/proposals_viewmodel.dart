@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ProposalsViewModel extends ChangeNotifier {
   bool lastPageFlag = false;
 
-  List<Data>? proposalsList = [];
+  List<ProposalsData>? proposalsList = [];
 
   Future getProposals(BuildContext context) async {
     ProposalsRequests proposalsRequests = ProposalsRequests();
@@ -24,6 +24,7 @@ class ProposalsViewModel extends ChangeNotifier {
             proposalsModel = ProposalsModel.fromJson(res.data);
             proposalsList!.addAll(proposalsModel!.data!);
             lastPageFlag = true;
+            print(proposalsList);
           } else if (res.statusCode == 401) {
             if (context.mounted) {
               context.pushReplacement(Routes.loginRoute);

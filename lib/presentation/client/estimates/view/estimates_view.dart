@@ -113,48 +113,62 @@ class _EstimatesViewState extends State<EstimatesView> {
                                 ),
                               ),
                               SizedBox(height: displayHeight(context) * 0.04),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: _viewModel.estimatesList?.length,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          displayHeight(context) * 0.02),
-                                  primary: false,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Container(
-                                        margin: EdgeInsets.only(
-                                            bottom:
-                                                displayHeight(context) * 0.02),
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              // context.push(
-                                              //     Routes.projectDetailsRoute,
-                                              //     extra: _viewModel
-                                              //         .projectsList![index]);
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          displayHeight(
-                                                                  context) *
-                                                              0.05),
-                                                ),
-                                                elevation: 0,
-                                                padding:
-                                                    const EdgeInsets.all(0)),
-                                            child: Container(
+                              if (_viewModel.estimatesList!.isEmpty)
+                                Center(
+                                  child: Text(
+                                    AppStrings.noEstimatesToShow
+                                        .getString(context),
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        color: ColorsManager.fontColor1,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              if (_viewModel.estimatesList!.isNotEmpty)
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: _viewModel.estimatesList!.length,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            displayHeight(context) * 0.02),
+                                    primary: false,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: displayHeight(context) *
+                                                  0.02),
+                                          child: ElevatedButton(
+                                              onPressed: () {
+                                                // context.push(
+                                                //     Routes.projectDetailsRoute,
+                                                //     extra: _viewModel
+                                                //         .projectsList![index]);
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            displayHeight(
+                                                                    context) *
+                                                                0.05),
+                                                  ),
+                                                  elevation: 0,
+                                                  padding:
+                                                      const EdgeInsets.all(0)),
+                                              child: Container(
                                                 width: displayWidth(context) *
                                                     0.95,
                                                 padding: EdgeInsets.only(
-                                                    top: displayHeight(context) *
-                                                        0.03,
+                                                    top:
+                                                        displayHeight(context) *
+                                                            0.03,
                                                     bottom:
                                                         displayHeight(context) *
                                                             0.03,
-                                                    left: displayWidth(context) *
-                                                        0.07,
+                                                    left:
+                                                        displayWidth(context) *
+                                                            0.07,
                                                     right:
                                                         displayWidth(context) *
                                                             0.04),
@@ -163,7 +177,8 @@ class _EstimatesViewState extends State<EstimatesView> {
                                                         .projectsContainerColor,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            displayHeight(context) *
+                                                            displayHeight(
+                                                                    context) *
                                                                 0.05),
                                                     boxShadow: [
                                                       BoxShadow(
@@ -175,8 +190,99 @@ class _EstimatesViewState extends State<EstimatesView> {
                                                               0, 4),
                                                           blurRadius: 25)
                                                     ]),
-                                                child: null)));
-                                  })
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          _viewModel
+                                                              .estimatesList![
+                                                                  index]
+                                                              .subject
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.017,
+                                                            color: ColorsManager
+                                                                .fontColor1,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          _viewModel
+                                                              .estimatesList![
+                                                                  index]
+                                                              .total
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.017,
+                                                            color: ColorsManager
+                                                                .fontColor1,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          '${_viewModel.estimatesList![index].dateCreated} : ${_viewModel.estimatesList![index].openTill}',
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.017,
+                                                            color: ColorsManager
+                                                                .fontColor2,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: ColorsManager
+                                                            .iconsColor1,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.08),
+                                                      ),
+                                                      padding: EdgeInsets.symmetric(
+                                                          horizontal:
+                                                              displayWidth(
+                                                                      context) *
+                                                                  0.04,
+                                                          vertical:
+                                                              displayHeight(
+                                                                      context) *
+                                                                  0.005),
+                                                      child: Text(
+                                                        _viewModel
+                                                            .estimatesList![
+                                                                index]
+                                                            .statusName
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color: ColorsManager
+                                                                .fontColor3,
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.015),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              )));
+                                    })
                             ]);
                           }
                         }),

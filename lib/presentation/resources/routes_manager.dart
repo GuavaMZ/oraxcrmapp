@@ -12,6 +12,7 @@ import 'package:oraxcrm/presentation/client/contract_details/view/contract_detai
 import 'package:oraxcrm/presentation/client/contracts/view/Contracts.dart';
 import 'package:oraxcrm/presentation/client/contractsigning/sign_contract/view/sign_contract_view.dart';
 import 'package:oraxcrm/presentation/client/contractsigning/view/contract_signing.dart';
+import 'package:oraxcrm/presentation/client/estimates/view/estimates_view.dart';
 import 'package:oraxcrm/presentation/client/files/view/files.dart';
 import 'package:oraxcrm/presentation/client/homescreen/view/home_screen.dart';
 import 'package:oraxcrm/presentation/client/knowlege_base/articles/view/articles_view.dart';
@@ -25,6 +26,7 @@ import 'package:oraxcrm/presentation/client/project_discussions/discussion_detai
 import 'package:oraxcrm/presentation/client/project_files/files_details/view/file_details_view.dart';
 import 'package:oraxcrm/presentation/client/projectdetails/view/project_details.dart';
 import 'package:oraxcrm/presentation/client/projects/view/projects.dart';
+import 'package:oraxcrm/presentation/client/proposals/view/proposals_view.dart';
 import 'package:oraxcrm/presentation/client/splash_screen/view/splash.dart';
 import 'package:oraxcrm/presentation/client/tasks/tasks_details/view/tasks_details.dart';
 import 'package:oraxcrm/presentation/client/tasks/view/tasks.dart';
@@ -61,11 +63,13 @@ class Routes {
   static const String discussionDetailsRoute = "/discussion_details/view";
   static const String fileDetailsRoute = "/file_details/view";
   static const String articlesRoute = "/articles/view";
+  static const String proposalsRoute = "/proposals/view";
+  static const String estimatesRoute = "/estimates/view";
 
   static final router = GoRouter(routes: [
     GoRoute(
       path: mainRoute,
-      builder: (context, state) => const ProfileEmp(),
+      builder: (context, state) => const SplashScreenView(),
     ),
     GoRoute(
       path: filesRoute,
@@ -125,6 +129,14 @@ class Routes {
     GoRoute(
       path: projectsRoute,
       builder: (context, state) => const ProjectsView(),
+    ),
+    GoRoute(
+      path: estimatesRoute,
+      builder: (context, state) => const EstimatesView(),
+    ),
+    GoRoute(
+      path: proposalsRoute,
+      builder: (context, state) => const ProposalsView(),
     ),
     GoRoute(
       path: tasksRoute,

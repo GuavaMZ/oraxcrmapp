@@ -6,7 +6,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oraxcrm/presentation/client/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/client/proposals/viewmodel/proposals_viewmodel.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
-import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
@@ -33,9 +32,10 @@ class _ProposalsViewState extends State<ProposalsView> {
               child: Consumer<ProposalsViewModel>(
                 builder: (BuildContext context, value, Widget? child) =>
                     FutureBuilder(
-                        future: null,
+                        future: _viewModel.getProposals(context),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
+                          print(snapshot.data);
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return Container(
@@ -113,48 +113,62 @@ class _ProposalsViewState extends State<ProposalsView> {
                                 ),
                               ),
                               SizedBox(height: displayHeight(context) * 0.02),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: _viewModel.proposalsList?.length,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          displayHeight(context) * 0.02),
-                                  primary: false,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Container(
-                                        margin: EdgeInsets.only(
-                                            bottom:
-                                                displayHeight(context) * 0.02),
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              // context.push(
-                                              //     Routes.projectDetailsRoute,
-                                              //     extra: _viewModel
-                                              //         .projectsList![index]);
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          displayHeight(
-                                                                  context) *
-                                                              0.05),
-                                                ),
-                                                elevation: 0,
-                                                padding:
-                                                    const EdgeInsets.all(0)),
-                                            child: Container(
+                              if (_viewModel.proposalsList!.isEmpty)
+                                Center(
+                                  child: Text(
+                                    AppStrings.noProposalsToShow
+                                        .getString(context),
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        color: ColorsManager.fontColor1,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              if (_viewModel.proposalsList!.isNotEmpty)
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: _viewModel.proposalsList?.length,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            displayHeight(context) * 0.02),
+                                    primary: false,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: displayHeight(context) *
+                                                  0.02),
+                                          child: ElevatedButton(
+                                              onPressed: () {
+                                                // context.push(
+                                                //     Routes.projectDetailsRoute,
+                                                //     extra: _viewModel
+                                                //         .projectsList![index]);
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            displayHeight(
+                                                                    context) *
+                                                                0.05),
+                                                  ),
+                                                  elevation: 0,
+                                                  padding:
+                                                      const EdgeInsets.all(0)),
+                                              child: Container(
                                                 width: displayWidth(context) *
                                                     0.95,
                                                 padding: EdgeInsets.only(
-                                                    top: displayHeight(context) *
-                                                        0.03,
+                                                    top:
+                                                        displayHeight(context) *
+                                                            0.03,
                                                     bottom:
                                                         displayHeight(context) *
                                                             0.03,
-                                                    left: displayWidth(context) *
-                                                        0.07,
+                                                    left:
+                                                        displayWidth(context) *
+                                                            0.07,
                                                     right:
                                                         displayWidth(context) *
                                                             0.04),
@@ -163,7 +177,8 @@ class _ProposalsViewState extends State<ProposalsView> {
                                                         .projectsContainerColor,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            displayHeight(context) *
+                                                            displayHeight(
+                                                                    context) *
                                                                 0.05),
                                                     boxShadow: [
                                                       BoxShadow(
@@ -175,8 +190,99 @@ class _ProposalsViewState extends State<ProposalsView> {
                                                               0, 4),
                                                           blurRadius: 25)
                                                     ]),
-                                                child: null)));
-                                  })
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          _viewModel
+                                                              .proposalsList![
+                                                                  index]
+                                                              .subject
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.017,
+                                                            color: ColorsManager
+                                                                .fontColor1,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          _viewModel
+                                                              .proposalsList![
+                                                                  index]
+                                                              .total
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.017,
+                                                            color: ColorsManager
+                                                                .fontColor1,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          '${_viewModel.proposalsList![index].dateCreated} : ${_viewModel.proposalsList![index].openTill}',
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.017,
+                                                            color: ColorsManager
+                                                                .fontColor2,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: ColorsManager
+                                                            .iconsColor1,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.08),
+                                                      ),
+                                                      padding: EdgeInsets.symmetric(
+                                                          horizontal:
+                                                              displayWidth(
+                                                                      context) *
+                                                                  0.04,
+                                                          vertical:
+                                                              displayHeight(
+                                                                      context) *
+                                                                  0.005),
+                                                      child: Text(
+                                                        _viewModel
+                                                            .proposalsList![
+                                                                index]
+                                                            .statusName
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color: ColorsManager
+                                                                .fontColor3,
+                                                            fontSize:
+                                                                displayHeight(
+                                                                        context) *
+                                                                    0.015),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              )));
+                                    })
                             ]);
                           }
                         }),

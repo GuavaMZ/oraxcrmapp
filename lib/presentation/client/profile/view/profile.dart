@@ -287,6 +287,92 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                   ElevatedButton(
                       onPressed: () {
+                        context.push(Routes.estimatesRoute);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorsManager.bgColor,
+                          elevation: 0,
+                          shape: const RoundedRectangleBorder(),
+                          padding:
+                              EdgeInsets.all(displayHeight(context) * 0.025)),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/estimates.svg',
+                                  height: displayHeight(context) * 0.034,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(right: 15),
+                                ),
+                                SizedBox(
+                                  child: Text(
+                                    AppStrings.estimates.getString(context),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: ColorsManager.fontColor1,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: displayHeight(context) * 0.02,
+                              color: ColorsManager.iconsColor1,
+                            )
+                          ])),
+                  Container(
+                    height: 1,
+                    color: ColorsManager.separatorColor,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        context.push(Routes.proposalsRoute);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorsManager.bgColor,
+                          elevation: 0,
+                          shape: const RoundedRectangleBorder(),
+                          padding:
+                              EdgeInsets.all(displayHeight(context) * 0.025)),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/proposals.svg',
+                                  height: displayHeight(context) * 0.045,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(right: 15),
+                                ),
+                                SizedBox(
+                                  child: Text(
+                                    AppStrings.proposals.getString(context),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: ColorsManager.fontColor1,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: displayHeight(context) * 0.02,
+                              color: ColorsManager.iconsColor1,
+                            )
+                          ])),
+                  Container(
+                    height: 1,
+                    color: ColorsManager.separatorColor,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
                         context.push(Routes.filesRoute);
                       },
                       style: ElevatedButton.styleFrom(
@@ -394,6 +480,9 @@ class _ProfileViewState extends State<ProfileView> {
                               ],
                             ),
                           ])),
+                  SizedBox(
+                    height: displayHeight(context) * 0.1,
+                  ),
                 ],
               ),
             ),
