@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:oraxcrm/data/api-request/login_requests.dart';
 import 'package:oraxcrm/domain/model/client_login_model.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
+import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginViewModel extends ChangeNotifier {
@@ -22,7 +23,9 @@ class LoginViewModel extends ChangeNotifier {
         if (res.statusCode == 200) {
           LoginModel loginModel = LoginModel.fromJson(res.data);
           if (loginModel.status == false) {
-            // Fluttertoast.showToast(msg: AppStrings.invalidEmailOrPassword);
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text(AppStrings.invalidEmailOrPassword),
+            ));
           } else if (loginModel.status == true) {
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
@@ -33,7 +36,9 @@ class LoginViewModel extends ChangeNotifier {
             }
           }
         } else if (res.statusCode == 400) {
-          // Fluttertoast.showToast(msg: AppStrings.invalidEmailOrPassword);
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(AppStrings.invalidEmailOrPassword),
+          ));
         }
       });
     } catch (e) {
