@@ -117,7 +117,8 @@ class _LoginViewState extends State<LoginView> {
                             ),
                             filled: true,
                             fillColor: const Color(0xffF5F4F4),
-                            hintText: AppStrings.phoneNumber.getString(context),
+                            hintText:
+                                AppStrings.emailAddress.getString(context),
                             enabledBorder: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30)),

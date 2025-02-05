@@ -61,17 +61,18 @@ class HomeScreenViewmodel extends ChangeNotifier {
     }
   }
 
-   Future getSystemsAndAppsBasedOnCategory(int categoryId) async {
+  Future getSystemsAndAppsBasedOnCategory(int categoryId) async {
     CRMAdsRequests crmAdsRequests = CRMAdsRequests();
     try {
-      final res = await crmAdsRequests.getSystemsAndAppsBasedOnCategory(categoryId);
+      final res =
+          await crmAdsRequests.getSystemsAndAppsBasedOnCategory(categoryId);
       return res;
     } catch (e) {
       return e;
     }
   }
 
-  changeCategory(String selectedFilter,String filter){
+  changeCategory(String selectedFilter, String filter) {
     selectedFilter = filter;
     notifyListeners();
   }

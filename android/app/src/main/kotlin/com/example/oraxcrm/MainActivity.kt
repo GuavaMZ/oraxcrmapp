@@ -1,4 +1,4 @@
-package com.example.oraxcrm
+package com.oraxsoft.oraxcrm
 
 import io.flutter.embedding.android.FlutterActivity
 

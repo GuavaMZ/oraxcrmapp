@@ -22,7 +22,13 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
   final TicketsSummaryViewModel _viewModel = TicketsSummaryViewModel();
   @override
   void initState() {
-    _viewModel.scrollController.addListener(_viewModel.scrollListener);
+    _viewModel.scrollController.addListener(() async {
+      if (_viewModel.scrollController.position.pixels ==
+              _viewModel.scrollController.position.maxScrollExtent &&
+          _viewModel.isLastPage == false) {
+        await _viewModel.loadMoreData(context);
+      }
+    });
     super.initState();
   }
 
@@ -41,91 +47,90 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
         resizeToAvoidBottomInset: false,
         drawer: const DrawerView(),
         body: SingleChildScrollView(
+          controller: _viewModel.scrollController,
           child: Center(
-            child: Consumer<TicketsSummaryViewModel>(
-              builder: (BuildContext context, TicketsSummaryViewModel value,
-                      Widget? child) =>
-                  FutureBuilder(
-                future: _viewModel.getSupportTickets(context),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Container(
-                      margin:
-                          EdgeInsets.only(top: displayHeight(context) * 0.5),
-                      // height: displayHeight(context) * 0.17,
-                      alignment: Alignment.center,
-                      width: displayWidth(context) * 0.2,
-                      child: LoadingAnimationWidget.discreteCircle(
-                          color: ColorsManager.discreteCircleFirstColor,
-                          secondRingColor:
-                              ColorsManager.discreteCircleSecondColor,
-                          thirdRingColor:
-                              ColorsManager.discreteCircleThirdColor,
-                          size: displayWidth(context) * 0.1),
-                    );
-                  } else {
-                    // print(snapshot.data);
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: displayHeight(context) * 0.06,
+            child: FutureBuilder(
+              future: _viewModel.getSupportTickets(context),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container(
+                    margin: EdgeInsets.only(top: displayHeight(context) * 0.5),
+                    // height: displayHeight(context) * 0.17,
+                    alignment: Alignment.center,
+                    width: displayWidth(context) * 0.2,
+                    child: LoadingAnimationWidget.discreteCircle(
+                        color: ColorsManager.discreteCircleFirstColor,
+                        secondRingColor:
+                            ColorsManager.discreteCircleSecondColor,
+                        thirdRingColor: ColorsManager.discreteCircleThirdColor,
+                        size: displayWidth(context) * 0.1),
+                  );
+                } else {
+                  // print(snapshot.data);
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: displayHeight(context) * 0.06,
+                      ),
+                      SizedBox(
+                        width: displayWidth(context) * 0.9,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: ColorsManager.iconsColor3,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorsManager
+                                              .defaultShadowColor
+                                              .withValues(alpha: 0.1),
+                                          spreadRadius: 0,
+                                          offset: const Offset(0, 4),
+                                          blurRadius: 25)
+                                    ]),
+                                child: IconButton(
+                                    onPressed: () {
+                                      Scaffold.of(context).openDrawer();
+                                    },
+                                    icon: SvgPicture.asset(
+                                        'assets/images/menu-1 3.svg'))),
+                            Text(AppStrings.ticketsSummary.getString(context),
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: ColorsManager.iconsColor3,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorsManager
+                                              .defaultShadowColor
+                                              .withValues(alpha: 0.1),
+                                          spreadRadius: 0,
+                                          offset: const Offset(0, 4),
+                                          blurRadius: 25)
+                                    ]),
+                                child: IconButton(
+                                    onPressed: () {
+                                      context.pop();
+                                    },
+                                    icon: SvgPicture.asset(
+                                        'assets/images/arrow-left 2.svg'))),
+                          ],
                         ),
-                        SizedBox(
-                          width: displayWidth(context) * 0.9,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  decoration: BoxDecoration(
-                                      color: ColorsManager.iconsColor3,
-                                      shape: BoxShape.circle,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: ColorsManager
-                                                .defaultShadowColor
-                                                .withOpacity(0.1),
-                                            spreadRadius: 0,
-                                            offset: const Offset(0, 4),
-                                            blurRadius: 25)
-                                      ]),
-                                  child: IconButton(
-                                      onPressed: () {},
-                                      icon: SvgPicture.asset(
-                                          'assets/images/menu-1 3.svg'))),
-                              Text(AppStrings.ticketsSummary.getString(context),
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
-                              Container(
-                                  decoration: BoxDecoration(
-                                      color: ColorsManager.iconsColor3,
-                                      shape: BoxShape.circle,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: ColorsManager
-                                                .defaultShadowColor
-                                                .withOpacity(0.1),
-                                            spreadRadius: 0,
-                                            offset: const Offset(0, 4),
-                                            blurRadius: 25)
-                                      ]),
-                                  child: IconButton(
-                                      onPressed: () {
-                                        context.pop();
-                                      },
-                                      icon: SvgPicture.asset(
-                                          'assets/images/arrow-left 2.svg'))),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: displayHeight(context) * 0.04),
-                        Container(
+                      ),
+                      SizedBox(height: displayHeight(context) * 0.04),
+                      Consumer<TicketsSummaryViewModel>(
+                        builder: (BuildContext context, value, Widget? child) =>
+                            Container(
                           // width: displayWidth(context) * 0.95,
                           height: displayHeight(context) * 0.17,
                           decoration: BoxDecoration(boxShadow: [
                             BoxShadow(
                                 color: ColorsManager.defaultShadowColor
-                                    .withOpacity(0.1),
+                                    .withValues(alpha: 0.1),
                                 spreadRadius: 0,
                                 offset: const Offset(0, 4),
                                 blurRadius: 25)
@@ -134,50 +139,84 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                             itemCount: _viewModel.ticketsStatuses.length,
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            controller: _viewModel.scrollController,
                             itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: displayWidth(context) * 0.01),
-                                decoration: BoxDecoration(
-                                  color: ColorsManager.statisticsContainerColor,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                        displayHeight(context) * 0.05),
+                              return InkWell(
+                                onTap: () {
+                                  _viewModel.selectedStatus = _viewModel
+                                      .ticketsStatuses[index]
+                                      .toString();
+                                  _viewModel.toggleNotifyListeners();
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: displayWidth(context) * 0.01),
+                                  decoration: BoxDecoration(
+                                    color: _viewModel.selectedStatus ==
+                                            _viewModel.ticketsStatuses[index]
+                                                .toString()
+                                        ? ColorsManager.selectedChoiceChipColor
+                                        : ColorsManager
+                                            .statisticsContainerColor,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(
+                                          displayHeight(context) * 0.05),
+                                    ),
                                   ),
-                                ),
-                                height: displayHeight(context) * 0.17,
-                                width: displayWidth(context) * 0.3,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10),
-                                      child: Text(
-                                          _viewModel.ticketsStatusesCount[index]
-                                              .toString(),
+                                  height: displayHeight(context) * 0.17,
+                                  width: displayWidth(context) * 0.3,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Text(
+                                            _viewModel
+                                                .ticketsStatusesCount[index]
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize:
+                                                    displayHeight(context) *
+                                                        0.037,
+                                                fontWeight: FontWeight.bold,
+                                                color: _viewModel
+                                                            .selectedStatus ==
+                                                        _viewModel
+                                                            .ticketsStatuses[
+                                                                index]
+                                                            .toString()
+                                                    ? ColorsManager.fontColor3
+                                                    : ColorsManager
+                                                        .fontColor1)),
+                                      ),
+                                      Text(
+                                          _viewModel.ticketsStatuses[index]
+                                              .toString()
+                                              .getString(context),
                                           style: TextStyle(
                                               fontSize: displayHeight(context) *
-                                                  0.037,
-                                              fontWeight: FontWeight.bold)),
-                                    ),
-                                    Text(
-                                        _viewModel.ticketsStatuses[index]
-                                            .toString()
-                                            .getString(context),
-                                        style: TextStyle(
-                                            fontSize:
-                                                displayHeight(context) * 0.014,
-                                            fontWeight: FontWeight.bold))
-                                  ],
+                                                  0.014,
+                                              fontWeight: FontWeight.bold,
+                                              color: _viewModel
+                                                          .selectedStatus ==
+                                                      _viewModel
+                                                          .ticketsStatuses[
+                                                              index]
+                                                          .toString()
+                                                  ? ColorsManager.fontColor3
+                                                  : ColorsManager.fontColor1))
+                                    ],
+                                  ),
                                 ),
                               );
                             },
                           ),
                         ),
-                        SizedBox(height: displayHeight(context) * 0.02),
-                        ListView.builder(
+                      ),
+                      SizedBox(height: displayHeight(context) * 0.02),
+                      Consumer<TicketsSummaryViewModel>(
+                        builder: (BuildContext context, value, Widget? child) =>
+                            ListView.builder(
                           shrinkWrap: true,
                           itemCount: _viewModel.supportTicketsList?.length,
                           padding: EdgeInsets.symmetric(
@@ -216,7 +255,7 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                       BoxShadow(
                                           color: ColorsManager
                                               .defaultShadowColor
-                                              .withOpacity(0.1),
+                                              .withValues(alpha: 0.1),
                                           spreadRadius: 0,
                                           offset: const Offset(0, 4),
                                           blurRadius: 25)
@@ -292,11 +331,11 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                             ),
                           ),
                         ),
-                      ],
-                    );
-                  }
-                },
-              ),
+                      ),
+                    ],
+                  );
+                }
+              },
             ),
           ),
         ),

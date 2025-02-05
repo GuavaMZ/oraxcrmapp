@@ -23,19 +23,19 @@ class ProjectDetailsViewModel extends ChangeNotifier {
 
   List<Widget> projectDetailsPages = const [
     ProjectSummaryView(),
-    TasksView(),
-    TicketsView(),
-    ProjectDiscussionsView(),
-    ProjectFiles()
+    // TasksView(),
+    // TicketsView(),
+    // ProjectDiscussionsView(),
+    // ProjectFiles()
     // ActivitiesView()
   ];
 
   List<String> projectDetailsTitles = [
     AppStrings.projectSummary,
-    AppStrings.tasks,
-    AppStrings.tickets,
-    AppStrings.discussions,
-    AppStrings.files
+    // AppStrings.tasks,
+    // AppStrings.tickets,
+    // AppStrings.discussions,
+    // AppStrings.files
     // AppStrings.activities
   ];
 

@@ -28,9 +28,10 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
 
   @override
   void initState() {
-    _viewModel.assignProjectTasksStatusesCounts(widget.projectTasksDetails!);
-    print(_viewModel.tasksStatusesCount);
-    print(_viewModel.taskCounts);
+    Future.wait([
+      _viewModel.assignProjectTasksStatusesCounts(widget.projectTasksDetails!)
+    ]);
+
     super.initState();
   }
 
@@ -166,7 +167,7 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               boxShadow: [
                                 BoxShadow(
                                     color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
+                                        .withValues(alpha: 0.1),
                                     spreadRadius: 0,
                                     offset: const Offset(0, 4),
                                     blurRadius: 25)
@@ -174,15 +175,12 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                // alignment: Alignment.centerLeft,
-                                child: Text(
-                                  AppStrings.tasksSummary.getString(context),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: ColorsManager.fontColor1,
-                                      fontSize: displayHeight(context) * 0.022),
-                                ),
+                              Text(
+                                AppStrings.tasksSummary.getString(context),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorsManager.fontColor1,
+                                    fontSize: displayHeight(context) * 0.022),
                               ),
                               SizedBox(
                                 height: displayHeight(context) * 0.035,

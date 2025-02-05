@@ -70,6 +70,7 @@ class ProjectSummaryViewModel extends ChangeNotifier {
       return res.data;
     } catch (e) {
       print(e);
+      return e;
     }
   }
 

@@ -7,6 +7,8 @@ import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TicketsSummaryViewModel extends ChangeNotifier {
+  String? selectedStatus;
+
   List<String> ticketsStatuses = [
     AppStrings.open,
     AppStrings.inProgress,
@@ -44,7 +46,6 @@ class TicketsSummaryViewModel extends ChangeNotifier {
     TicketsRequests ticketsRequests = TicketsRequests();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     SupportTicketsModel? supportTicketsModel;
-    print(prefs.getString('usrToken'));
     if (isLastPage == false) {
       try {
         await ticketsRequests.listAllTickets(
@@ -58,7 +59,7 @@ class TicketsSummaryViewModel extends ChangeNotifier {
               supportTicketsList!.addAll(supportTicketsModel!.dataticket!);
             } else if (supportTicketsModel!.dataticket!.isEmpty) {}
 
-            assignTicketsStatusesCounts();
+            assignTicketsStatusesCounts(supportTicketsModel!.dataticket!);
           } else if (res.statusCode == 401) {
             if (context.mounted) {
               context.pushReplacement(Routes.loginRoute);
@@ -67,8 +68,10 @@ class TicketsSummaryViewModel extends ChangeNotifier {
               res.data['message'] == "No data found") {
             isLastPage = true;
           } else {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(res.data['message'])));
+            if (context.mounted) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(res.data['message'])));
+            }
           }
         });
         return supportTicketsModel?.dataticket;
@@ -78,8 +81,8 @@ class TicketsSummaryViewModel extends ChangeNotifier {
     }
   }
 
-  assignTicketsStatusesCounts() {
-    for (Dataticket data in supportTicketsList!) {
+  assignTicketsStatusesCounts(ticketList) {
+    for (Dataticket data in ticketList!) {
       switch (data.status) {
         case "1":
           ticketsStatusesCount[0]++;
@@ -103,15 +106,13 @@ class TicketsSummaryViewModel extends ChangeNotifier {
 
   loadMoreData(BuildContext context) async {
     currentPage++;
-    print(currentPage);
     await getSupportTickets(context);
+    notifyListeners();
   }
 
-  void scrollListener({context}) async {
-    if (scrollController.position.pixels ==
-            scrollController.position.maxScrollExtent &&
-        isLastPage == false) {
-      await loadMoreData(context);
-    }
+  void scrollListener({context}) async {}
+
+  toggleNotifyListeners() {
+    notifyListeners();
   }
 }

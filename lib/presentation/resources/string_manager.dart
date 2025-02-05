@@ -145,6 +145,7 @@ mixin AppStrings {
   static const String more = 'More';
   static const String advertises = 'Advertises';
   static const String tutorials = 'Tutorials';
+  static const String fixedPrice = 'Fixed Price';
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -230,7 +231,6 @@ mixin AppStrings {
     website: "Website",
     contactUs: "Contact Us",
     unifiedNumber: 'Unified Number',
-    emailAddress: 'Email Address',
     location: 'Location',
     call: 'Call',
     textMessage: 'Text Message',
@@ -298,7 +298,8 @@ mixin AppStrings {
     noEstimatesToShow: "There is no estimates to show",
     more: "More",
     advertises: "Advertises",
-    tutorials: 'Tutorials'
+    tutorials: 'Tutorials',
+    fixedPrice: 'Fixed Price'
   };
 
   static Map<String, dynamic> AR = {
@@ -335,7 +336,7 @@ mixin AppStrings {
     signOut: 'تسجيل الخروج',
     firstName: 'الأسم الأول',
     lastName: 'الأسم الأخير',
-    emailaddress: 'البريد الألكتروني',
+    emailaddress: 'البريد الإلكتروني',
     direction: 'اتجاه',
     position: 'المنصب',
     update: 'تحديث',
@@ -452,6 +453,7 @@ mixin AppStrings {
     noEstimatesToShow: "لا توجد عروض اسعار لعرضها",
     more: "المزيد",
     advertises: "الاعلانات",
-    tutorials: 'الشروحات'
+    tutorials: 'الشروحات',
+    fixedPrice: 'سعر الصرف ثابت'
   };
 }

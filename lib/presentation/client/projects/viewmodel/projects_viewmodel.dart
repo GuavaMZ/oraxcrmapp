@@ -27,6 +27,10 @@ class ProjectsViewModel extends ChangeNotifier {
 
   List<Dataprojects>? projectsList = [];
 
+  Map<String, dynamic> projectBillType = {
+    '1': AppStrings.fixedPrice,
+  };
+
   Future getProjects(BuildContext context) async {
     ProjectsRequests projectsRequests = ProjectsRequests();
     SharedPreferences prefs = await SharedPreferences.getInstance();

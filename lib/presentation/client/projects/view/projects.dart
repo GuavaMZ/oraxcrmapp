@@ -227,9 +227,13 @@ class _ProjectsViewState extends State<ProjectsView> {
                                             ),
                                           ),
                                           Text(
-                                            _viewModel.projectsList![index]
-                                                .billingType
-                                                .toString(),
+                                            _viewModel.projectBillType[
+                                                    _viewModel
+                                                        .projectsList![index]
+                                                        .billingType
+                                                        .toString()]
+                                                .toString()
+                                                .getString(context),
                                             style: TextStyle(
                                               fontSize: displayHeight(context) *
                                                   0.017,
