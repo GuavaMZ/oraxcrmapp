@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/data/api-base/api_urls.dart';
 
 class ProposalsRequests {
@@ -8,13 +9,15 @@ class ProposalsRequests {
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body}) async {
     try {
-      final response = await dio.post(
-        ApiLinks.baseUrl + ApiLinks.addProposalsComment,
-        options: Options(headers: header),
-        data: FormData.fromMap(body),
-        /*onSendProgress: (count, total) =>
+      final response = await dio
+          .post(
+            ApiLinks.baseUrl + ApiLinks.addProposalsComment,
+            options: Options(headers: header),
+            data: FormData.fromMap(body),
+            /*onSendProgress: (count, total) =>
             Center(child: CircularProgressIndicator()*/
-      );
+          )
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       // print(error);
@@ -28,11 +31,13 @@ class ProposalsRequests {
   Future getProposals(Map<String, dynamic> header) async {
     Response response;
     try {
-      response = await dio.get(ApiLinks.baseUrl + ApiLinks.getProposals,
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(ApiLinks.baseUrl + ApiLinks.getProposals,
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       //dio.Options(headers: {'Authorization': tokenn,
       //   print("\nresponse.statusCode \n${response.statusCode}\n");
       //   print("\nresponse.body\nresponse.body ${response.data}\n");
@@ -47,15 +52,17 @@ class ProposalsRequests {
     }
   }
 
-  Future getProposalsDetails(Map<String, dynamic> header,String id) async {
+  Future getProposalsDetails(Map<String, dynamic> header, String id) async {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(ApiLinks.baseUrl + ApiLinks.getProposalsDetailsById + id,
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(ApiLinks.baseUrl + ApiLinks.getProposalsDetailsById + id,
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {

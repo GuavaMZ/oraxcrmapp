@@ -45,8 +45,8 @@ class _TasksViewState extends State<TasksView> {
                   height: displayHeight(context) * 0.17,
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
-                        color:
-                            ColorsManager.defaultShadowColor.withOpacity(0.1),
+                        color: ColorsManager.defaultShadowColor
+                            .withValues(alpha: 0.1),
                         spreadRadius: 0,
                         offset: const Offset(0, 4),
                         blurRadius: 25)
@@ -133,7 +133,7 @@ class _TasksViewState extends State<TasksView> {
                                 boxShadow: [
                                   BoxShadow(
                                       color: ColorsManager.defaultShadowColor
-                                          .withOpacity(0.1),
+                                          .withValues(alpha: 0.1),
                                       spreadRadius: 0,
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)

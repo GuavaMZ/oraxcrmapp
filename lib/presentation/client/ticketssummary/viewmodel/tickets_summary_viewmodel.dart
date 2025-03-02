@@ -9,6 +9,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class TicketsSummaryViewModel extends ChangeNotifier {
   String? selectedStatus;
 
+  String? searchQuery;
+  TextEditingController searchController = TextEditingController();
+
+  List filteredTicketsBasedOnStatus = [];
+
   List<String> ticketsStatuses = [
     AppStrings.open,
     AppStrings.inProgress,
@@ -26,11 +31,11 @@ class TicketsSummaryViewModel extends ChangeNotifier {
   ]; //Open,InProgress,Answered,OnHold,Closed
 
   Map<String, String> ticketsStatusesDictionary = {
-    "1": AppStrings.open,
-    "2": AppStrings.open,
-    "3": AppStrings.open,
-    "4": AppStrings.open,
-    "5": AppStrings.open,
+    AppStrings.open: "1",
+    AppStrings.inProgress: "2",
+    AppStrings.answered: "3",
+    AppStrings.onHold: "4",
+    AppStrings.closed: "5",
   };
 
   int currentPage = 1;
@@ -41,6 +46,10 @@ class TicketsSummaryViewModel extends ChangeNotifier {
   ScrollController scrollController = ScrollController();
 
   List<Dataticket>? supportTicketsList = []; //Added for the sake of pagination
+
+  List currentList = [];
+
+  List searchResultList = [];
 
   Future getSupportTickets(BuildContext context) async {
     TicketsRequests ticketsRequests = TicketsRequests();
@@ -110,9 +119,43 @@ class TicketsSummaryViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void scrollListener({context}) async {}
-
   toggleNotifyListeners() {
     notifyListeners();
+  }
+
+  Future searchForSupportTickets(BuildContext context) async {
+    TicketsRequests ticketsRequests = TicketsRequests();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    SupportTicketsModel? supportTicketsModel;
+    if (isLastPage == false) {
+      try {
+        await ticketsRequests.listAllTicketsNoPagination(
+          {'Authorization': prefs.getString('usrToken')},
+        ).then((res) async {
+          if (res.statusCode == 200) {
+            supportTicketsModel = SupportTicketsModel.fromJson(res.data);
+            if (supportTicketsModel!.status == true &&
+                supportTicketsModel!.dataticket!.isNotEmpty) {
+              searchResultList.addAll(supportTicketsModel!.dataticket!);
+            } else if (supportTicketsModel!.dataticket!.isEmpty) {}
+          } else if (res.statusCode == 401) {
+            if (context.mounted) {
+              context.pushReplacement(Routes.loginRoute);
+            }
+          } else if (res.statusCode == 404 &&
+              res.data['message'] == "No data found") {
+            isLastPage = true;
+          } else {
+            if (context.mounted) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(res.data['message'])));
+            }
+          }
+        });
+        return supportTicketsModel?.dataticket;
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 }

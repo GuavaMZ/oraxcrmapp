@@ -44,16 +44,16 @@ class _ContractTermsViewState extends State<ContractTermsView> {
                       boxShadow: [
                         BoxShadow(
                             color: ColorsManager.defaultShadowColor
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             spreadRadius: 0,
                             offset: const Offset(0, 4),
                             blurRadius: 25)
                       ]),
                   child: IconButton(
                       onPressed: () {
-                        context.pop();
+                        Scaffold.of(context).openDrawer();
                       },
-                      icon: const Icon(Icons.arrow_back))),
+                      icon: SvgPicture.asset('assets/images/menu-1 3.svg'))),
               Text(AppStrings.contractTerms.getString(context),
                   style: const TextStyle(
                       fontSize: 19, fontWeight: FontWeight.bold)),
@@ -64,16 +64,17 @@ class _ContractTermsViewState extends State<ContractTermsView> {
                       boxShadow: [
                         BoxShadow(
                             color: ColorsManager.defaultShadowColor
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             spreadRadius: 0,
                             offset: const Offset(0, 4),
                             blurRadius: 25)
                       ]),
                   child: IconButton(
                       onPressed: () {
-                        Scaffold.of(context).openDrawer();
+                        context.pop();
                       },
-                      icon: SvgPicture.asset('assets/images/menu-1 3.svg'))),
+                      icon:
+                          SvgPicture.asset('assets/images/arrow-left 2.svg'))),
             ],
           ),
         ),
@@ -114,7 +115,7 @@ class _ContractTermsViewState extends State<ContractTermsView> {
                         /*boxShadow: [
                             BoxShadow(
                                 color: ColorsManager.defaultShadowColor
-                                    .withOpacity(0.1),
+                                    .withValues(alpha:0.1),
                                 spreadRadius: 0,
                                 offset: const Offset(0, 4),
                                 blurRadius: 25)

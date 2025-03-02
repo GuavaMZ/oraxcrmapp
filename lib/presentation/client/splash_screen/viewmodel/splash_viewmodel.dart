@@ -26,6 +26,7 @@ class SplashViewModel {
 
     if (isUpdateAvailable == UpdateStatus.outdated) {
       // Download the new patch if it's available.
+
       try {
         await shorebirdCodePush.update();
         Restart.restartApp(

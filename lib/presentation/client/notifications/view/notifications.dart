@@ -44,7 +44,7 @@ class _NotificationsViewState extends State<NotificationsView> {
                     //         boxShadow: [
                     //           BoxShadow(
                     //               color: ColorsManager.defaultShadowColor
-                    //                   .withOpacity(0.1),
+                    //                   .withValues(alpha:0.1),
                     //               spreadRadius: 0,
                     //               offset: const Offset(0, 4),
                     //               blurRadius: 25)
@@ -62,7 +62,7 @@ class _NotificationsViewState extends State<NotificationsView> {
                             boxShadow: [
                               BoxShadow(
                                   color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.1),
+                                      .withValues(alpha: 0.1),
                                   spreadRadius: 0,
                                   offset: const Offset(0, 4),
                                   blurRadius: 25)
@@ -139,7 +139,7 @@ class _NotificationsViewState extends State<NotificationsView> {
                                     BoxShadow(
                                         color: const Color.fromARGB(
                                                 255, 255, 255, 255)
-                                            .withOpacity(0.1),
+                                            .withValues(alpha: 0.1),
                                         spreadRadius: 0,
                                         offset: const Offset(0, 4),
                                         blurRadius: 25)

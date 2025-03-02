@@ -29,6 +29,8 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
         await _viewModel.loadMoreData(context);
       }
     });
+    _viewModel.currentList = _viewModel.supportTicketsList!;
+    _viewModel.searchForSupportTickets(context);
     super.initState();
   }
 
@@ -121,7 +123,7 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                           ],
                         ),
                       ),
-                      SizedBox(height: displayHeight(context) * 0.04),
+                      SizedBox(height: displayHeight(context) * 0.02),
                       Consumer<TicketsSummaryViewModel>(
                         builder: (BuildContext context, value, Widget? child) =>
                             Container(
@@ -145,6 +147,19 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                   _viewModel.selectedStatus = _viewModel
                                       .ticketsStatuses[index]
                                       .toString();
+                                  _viewModel.filteredTicketsBasedOnStatus =
+                                      _viewModel.supportTicketsList!
+                                          .where((element) =>
+                                              element.status ==
+                                              _viewModel
+                                                      .ticketsStatusesDictionary[
+                                                  _viewModel
+                                                      .ticketsStatuses[index]
+                                                      .toString()])
+                                          .toList();
+
+                                  _viewModel.currentList =
+                                      _viewModel.filteredTicketsBasedOnStatus;
                                   _viewModel.toggleNotifyListeners();
                                 },
                                 child: Container(
@@ -214,11 +229,62 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                         ),
                       ),
                       SizedBox(height: displayHeight(context) * 0.02),
+                      SizedBox(
+                          width: displayWidth(context) * 0.9,
+                          child: TextFormField(
+                            controller: _viewModel.searchController,
+                            onChanged: (value) {
+                              if (value.isEmpty) {
+                                _viewModel.currentList =
+                                    _viewModel.supportTicketsList!;
+                                _viewModel.toggleNotifyListeners();
+                              } else {
+                                _viewModel.currentList = _viewModel
+                                    .searchResultList
+                                    .where((element) => element.subject
+                                        .toString()
+                                        .contains(
+                                            _viewModel.searchController.text))
+                                    .toList();
+                                _viewModel.toggleNotifyListeners();
+                              }
+                            },
+                            decoration: InputDecoration(
+                              filled: true,
+                              contentPadding: EdgeInsets.only(
+                                  left: displayWidth(context) * 0.06,
+                                  right: displayWidth(context) * 0.06,
+                                  top: displayHeight(context) * 0.02,
+                                  bottom: displayHeight(context) * 0.02),
+                              fillColor: const Color(0xffFFFFFF),
+                              hintText: AppStrings.searchTicketName
+                                  .getString(context),
+                              enabledBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                                borderSide: BorderSide(
+                                    width: 2, color: Color(0x70000000)),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                                borderSide: BorderSide(
+                                    width: 2, color: Color(0x70000000)),
+                              ),
+                              // border: const OutlineInputBorder(
+                              //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                              //   borderSide: BorderSide(width: 0, color: Color(0xffffffff)),
+                              // ),
+                            ),
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.normal),
+                          )),
+                      SizedBox(height: displayHeight(context) * 0.02),
                       Consumer<TicketsSummaryViewModel>(
                         builder: (BuildContext context, value, Widget? child) =>
                             ListView.builder(
                           shrinkWrap: true,
-                          itemCount: _viewModel.supportTicketsList?.length,
+                          itemCount: _viewModel.currentList.length,
                           padding: EdgeInsets.symmetric(
                               horizontal: displayHeight(context) * 0.02),
                           primary: false,
@@ -229,8 +295,7 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                             child: ElevatedButton(
                               onPressed: () {
                                 context.push(Routes.ticketsDetailsRoute,
-                                    extra:
-                                        _viewModel.supportTicketsList![index]);
+                                    extra: _viewModel.currentList[index]);
                               },
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -245,8 +310,8 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                 padding: EdgeInsets.only(
                                     top: displayHeight(context) * 0.03,
                                     bottom: displayHeight(context) * 0.03,
-                                    left: displayWidth(context) * 0.07,
-                                    right: displayWidth(context) * 0.07),
+                                    left: displayWidth(context) * 0.04,
+                                    right: displayWidth(context) * 0.04),
                                 decoration: BoxDecoration(
                                     color: ColorsManager.ticketsContainerColor,
                                     borderRadius: BorderRadius.circular(
@@ -269,8 +334,7 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          _viewModel.supportTicketsList![index]
-                                              .subject
+                                          _viewModel.currentList[index].subject
                                               .toString(),
                                           style: TextStyle(
                                             fontSize:
@@ -280,8 +344,8 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                           ),
                                         ),
                                         Text(
-                                          _viewModel.supportTicketsList![index]
-                                              .departmentName
+                                          _viewModel
+                                              .currentList[index].departmentName
                                               .toString(),
                                           style: TextStyle(
                                             fontSize:
@@ -291,8 +355,8 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                           ),
                                         ),
                                         Text(
-                                          _viewModel.supportTicketsList![index]
-                                              .priorityName
+                                          _viewModel
+                                              .currentList[index].priorityName
                                               .toString()
                                               .getString(context),
                                           style: TextStyle(
@@ -315,14 +379,13 @@ class _TicketsSummaryViewState extends State<TicketsSummaryView> {
                                           vertical:
                                               displayHeight(context) * 0.005),
                                       child: Text(
-                                        _viewModel.supportTicketsList![index]
-                                            .statusName
+                                        _viewModel.currentList[index].statusName
                                             .toString()
                                             .getString(context),
                                         style: TextStyle(
                                             color: ColorsManager.fontColor3,
                                             fontSize:
-                                                displayHeight(context) * 0.018),
+                                                displayHeight(context) * 0.015),
                                       ),
                                     )
                                   ],

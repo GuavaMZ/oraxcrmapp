@@ -4,6 +4,7 @@ import 'package:oraxcrm/data/api-request/contracts_requests.dart';
 import 'package:oraxcrm/domain/model/contracts_model.dart';
 import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ContractsViewModel extends ChangeNotifier {
@@ -58,5 +59,24 @@ class ContractsViewModel extends ChangeNotifier {
       }
     }
     print(contractsTypeAndCounts);
+  }
+
+  Future downloadContract(
+      BuildContext context, String contractId, String hash) async {
+    ContractsRequests contractsRequests = ContractsRequests();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await Permission.storage.request();
+    try {
+      await contractsRequests.downloadContract(
+        {
+          'Authorization': prefs.getString('usrToken'),
+          'csrf_token_name': "4024cd4ee4b4d395bb46ca7f5ac75680"
+        },
+        contractId,
+        hash,
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 }

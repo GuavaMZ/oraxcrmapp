@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/data/api-base/api_urls.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -53,15 +54,18 @@ class ContractsRequests {
     final Directory? downloadsDir = await getDownloadsDirectory();
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.download(
-          '${ApiLinks.baseUrl}${ApiLinks.getContracts}/$contractId/$hash',
-          Platform.isAndroid
-              ? '/storage/emulated/0/Download/orax_$contractId.pdf'
-              : '${downloadsDir!.path}orax_$contractId.pdf',
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .download(
+              'https://democrm.oraxsoft.net/contract/105/e82bf979a2c014ca966a27529404d70b',
+              Platform.isAndroid
+                  ? '/storage/emulated/0/Download/orax_$contractId'
+                  : '${downloadsDir!.path}orax_$contractId',
+              options: Options(
+                // method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
+      if (response.statusCode == 200) {}
       return response;
     } on DioException catch (error) {
       if (error.response != null) {

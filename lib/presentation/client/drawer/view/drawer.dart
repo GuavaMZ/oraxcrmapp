@@ -32,6 +32,7 @@ class _DrawerViewState extends State<DrawerView> {
           ElevatedButton(
               onPressed: () {
                 context.pushReplacement(Routes.mainScreenRoute);
+                context.pop();
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.bgColor,

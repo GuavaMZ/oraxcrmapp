@@ -146,6 +146,19 @@ mixin AppStrings {
   static const String advertises = 'Advertises';
   static const String tutorials = 'Tutorials';
   static const String fixedPrice = 'Fixed Price';
+  static const String searchTicketName = "Search For Ticket Name";
+  static const String bad = "Bad";
+  static const String good = "Good";
+  static const String veryGood = "Very Good";
+  static const String excellent = "Excellent";
+  static const String rateEmployee = "Rate Employee";
+  static const String thanksForRating = "Thanks For Rating Our Employee";
+  static const String rateAdvice = "Rate Advice";
+  static const String rateTechnicalSupport = "Rate Technical Support";
+  static const String sendRate = "Send Rate";
+  static const String cancel = "Cancel";
+  static const String notes = "Notes";
+  static const String youShouldChooseRate = "You Should Choose Rate";
 
   static Map<String, dynamic> EN = {
     welcomeBack: 'Welcome Back',
@@ -299,7 +312,21 @@ mixin AppStrings {
     more: "More",
     advertises: "Advertises",
     tutorials: 'Tutorials',
-    fixedPrice: 'Fixed Price'
+    fixedPrice: 'Fixed Price',
+    searchTicketName: 'Search Ticket Name',
+    bad: "Bad",
+    good: "Good",
+    veryGood: "Very Good",
+    excellent: "Excellent",
+    thanksForRating: "Thanks For Rating Our Employee",
+    rateEmployee: "Rate Employee",
+    rateAdvice:
+        "Rating Our Technical Support Will Help Us To Improve Our Service",
+    rateTechnicalSupport: "Rate Technical Support",
+    sendRate: "Send",
+    cancel: "Cancel",
+    notes: "Notes",
+    youShouldChooseRate: "You Should Choose One Rates"
   };
 
   static Map<String, dynamic> AR = {
@@ -314,6 +341,7 @@ mixin AppStrings {
     all: 'الكل',
     apps: 'التطبيقات',
     websites: 'المواقع',
+    website: 'الموقع الالكتروني',
     erpSystems: ' ERP انظمة',
     openTicket: 'إنشاء تذكرة',
     signContract: 'توقيع العقد',
@@ -454,6 +482,22 @@ mixin AppStrings {
     more: "المزيد",
     advertises: "الاعلانات",
     tutorials: 'الشروحات',
-    fixedPrice: 'سعر الصرف ثابت'
+    fixedPrice: 'سعر الصرف ثابت',
+    searchTicketName: 'ابحث بإسم التذكرة',
+    bad: "سيء",
+    good: "جيد",
+    veryGood: "جيد جدا",
+    excellent: "ممتاز",
+    thanksForRating: "شكرا لك على تقييمك",
+    contactUs: "تواصل معنا",
+    rateEmployee: "تقييم الموظف",
+    rateAdvice: "تقييمك للدعم الفني يحسن من عمل موظفينا",
+    rateTechnicalSupport: "تقييم الدعم الفني",
+    sendRate: "إرسال",
+    cancel: "الغاء",
+    notes: "ملاحظات",
+    youShouldChooseRate: "يجب عليك اختيار تقييم",
+    unifiedNumber: 'الرقم الموحد',
+    location: 'الموقع',
   };
 }

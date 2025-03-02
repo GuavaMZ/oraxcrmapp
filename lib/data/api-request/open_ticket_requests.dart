@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/data/api-base/api_urls.dart';
 
 class OpenTicketRequests {
@@ -27,16 +28,18 @@ class OpenTicketRequests {
   Future sendTicket(
       {required Map<String, dynamic> header, required FormData body}) async {
     try {
-      final Response response = await dio.post(
-        ApiLinks.baseUrl + ApiLinks.getTickets,
-        options: Options(
-          headers: header,
-          // method: 'POST',
-        ),
-        data: body,
-        /*onSendProgress: (count, total) =>
+      final Response response = await dio
+          .post(
+            ApiLinks.baseUrl + ApiLinks.getTickets,
+            options: Options(
+              headers: header,
+              // method: 'POST',
+            ),
+            data: body,
+            /*onSendProgress: (count, total) =>
             Center(child: CircularProgressIndicator()*/
-      );
+          )
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       // print(error);

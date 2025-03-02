@@ -41,7 +41,7 @@ class CRMAdsRequests {
     CrmAppsSystemsModel crmAppsSystemsModel = CrmAppsSystemsModel();
     try {
       final res = await supabase.rpc('getsystemsandappsbasedoncategory',
-          params: {'category_id': categoryId});
+          params: {'categoryid': categoryId});
       crmAppsSystemsModel = CrmAppsSystemsModel.fromJson(res);
       print(res);
       return crmAppsSystemsModel;

@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreenViewmodel extends ChangeNotifier {
   Future? currentCategoryFilterFuture;
+  String? selectedFilter;
 
   Future getUserInfo(BuildContext context) async {
     UserInfoRequests userInfoRequests = UserInfoRequests();
@@ -72,7 +73,7 @@ class HomeScreenViewmodel extends ChangeNotifier {
     }
   }
 
-  changeCategory(String selectedFilter, String filter) {
+  changeCategory(String filter) {
     selectedFilter = filter;
     notifyListeners();
   }

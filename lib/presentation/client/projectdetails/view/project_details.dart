@@ -70,7 +70,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                                 boxShadow: [
                                   BoxShadow(
                                       color: ColorsManager.defaultShadowColor
-                                          .withOpacity(0.1),
+                                          .withValues(alpha: 0.1),
                                       spreadRadius: 0,
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
@@ -90,7 +90,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                                 boxShadow: [
                                   BoxShadow(
                                       color: ColorsManager.defaultShadowColor
-                                          .withOpacity(0.1),
+                                          .withValues(alpha: 0.1),
                                       spreadRadius: 0,
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
@@ -114,7 +114,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
                             color: ColorsManager.defaultShadowColor
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             spreadRadius: 0,
                             offset: const Offset(0, 4),
                             blurRadius: 25)

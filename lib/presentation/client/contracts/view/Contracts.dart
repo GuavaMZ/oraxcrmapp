@@ -3,6 +3,8 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:oraxcrm/data/api-base/api_urls.dart';
+import 'package:oraxcrm/data/api-request/contracts_requests.dart';
 import 'package:oraxcrm/presentation/client/contracts/viewmodel/contracts_viewmodel.dart';
 import 'package:oraxcrm/presentation/client/drawer/view/drawer.dart';
 import 'package:oraxcrm/presentation/resources/colors.dart';
@@ -10,6 +12,7 @@ import 'package:oraxcrm/presentation/resources/routes_manager.dart';
 import 'package:oraxcrm/presentation/resources/sizehelper.dart';
 import 'package:oraxcrm/presentation/resources/string_manager.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContractsView extends StatefulWidget {
   const ContractsView({super.key});
@@ -70,7 +73,7 @@ class _ContractsViewState extends State<ContractsView> {
                                         BoxShadow(
                                             color: ColorsManager
                                                 .defaultShadowColor
-                                                .withOpacity(0.1),
+                                                .withValues(alpha: 0.1),
                                             spreadRadius: 0,
                                             offset: const Offset(0, 4),
                                             blurRadius: 25)
@@ -95,7 +98,7 @@ class _ContractsViewState extends State<ContractsView> {
                                         BoxShadow(
                                             color: ColorsManager
                                                 .defaultShadowColor
-                                                .withOpacity(0.1),
+                                                .withValues(alpha: 0.1),
                                             spreadRadius: 0,
                                             offset: const Offset(0, 4),
                                             blurRadius: 25)
@@ -116,7 +119,7 @@ class _ContractsViewState extends State<ContractsView> {
                           decoration: BoxDecoration(boxShadow: [
                             BoxShadow(
                                 color: ColorsManager.defaultShadowColor
-                                    .withOpacity(0.1),
+                                    .withValues(alpha: 0.1),
                                 spreadRadius: 0,
                                 offset: const Offset(0, 4),
                                 blurRadius: 25)
@@ -213,7 +216,7 @@ class _ContractsViewState extends State<ContractsView> {
                                           BoxShadow(
                                               color: ColorsManager
                                                   .defaultShadowColor
-                                                  .withOpacity(0.1),
+                                                  .withValues(alpha: 0.1),
                                               spreadRadius: 0,
                                               offset: const Offset(0, 4),
                                               blurRadius: 25)
@@ -387,7 +390,38 @@ class _ContractsViewState extends State<ContractsView> {
                                                     fontWeight:
                                                         FontWeight.w700),
                                               )),
-                                        )
+                                        ),
+                                        PopupMenuItem(
+                                          child: TextButton(
+                                              onPressed: () async {
+                                                String url =
+                                                    '${ApiLinks.baseUrl}/contract/${_viewModel.contractsList![index].id}/${_viewModel.contractsList![index].hash}';
+                                                launchUrl(Uri.parse(url));
+                                                // await _viewModel
+                                                //     .downloadContract(
+                                                //         context,
+                                                //         _viewModel
+                                                //             .contractsList![
+                                                //                 index]
+                                                //             .id!,
+                                                //         _viewModel
+                                                //             .contractsList![
+                                                //                 index]
+                                                //             .hash!);
+                                              },
+                                              child: Text(
+                                                AppStrings.downloadContract
+                                                    .getString(context),
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        displayHeight(context) *
+                                                            0.015,
+                                                    color: ColorsManager
+                                                        .fontColor1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )),
+                                        ),
                                       ];
                                     },
                                     // icon: Icon(Icons.menu),
@@ -396,7 +430,8 @@ class _ContractsViewState extends State<ContractsView> {
                                           top: displayHeight(context) * 0.023,
                                           left: displayWidth(context) * 0.018),
                                       decoration: BoxDecoration(
-                                        color: Colors.grey.withOpacity(0.3),
+                                        color:
+                                            Colors.grey.withValues(alpha: 0.3),
                                         borderRadius: BorderRadius.circular(
                                             displayHeight(context) * 0.08),
                                       ),

@@ -59,7 +59,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                 boxShadow: [
                                   BoxShadow(
                                       color: ColorsManager.defaultShadowColor
-                                          .withOpacity(0.1),
+                                          .withValues(alpha: 0.1),
                                       spreadRadius: 0,
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
@@ -82,7 +82,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                 boxShadow: [
                                   BoxShadow(
                                       color: ColorsManager.defaultShadowColor
-                                          .withOpacity(0.1),
+                                          .withValues(alpha: 0.1),
                                       spreadRadius: 0,
                                       offset: const Offset(0, 4),
                                       blurRadius: 25)
@@ -206,7 +206,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                         style: TextStyle(
                                           fontSize: 13,
                                           fontWeight: FontWeight.w400,
-                                          color: selectedFilter ==
+                                          color: _viewModel.selectedFilter ==
                                                   snapshot.data.data[index]
                                                       .categoryNameEn
                                               ? const Color(0xffffffff)
@@ -217,10 +217,13 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                         horizontal:
                                             displayWidth(context) * 0.045),
                                     onSelected: (b) {
-                                      viewModel.changeCategory(
-                                          selectedFilter!,
-                                          snapshot
-                                              .data.data[index].categoryNameEn);
+                                      _viewModel.changeCategory(snapshot
+                                          .data.data[index].categoryNameEn);
+                                      _viewModel.currentCategoryFilterFuture =
+                                          _viewModel
+                                              .getSystemsAndAppsBasedOnCategory(
+                                                  snapshot.data.data[index]
+                                                      .categoryId);
                                     },
                                     side: const BorderSide(
                                         width: 0, color: Color(0xffffffff)),
@@ -231,7 +234,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                           Radius.circular(
                                               displayHeight(context) * 0.02)),
                                     ),
-                                    selected: selectedFilter ==
+                                    selected: _viewModel.selectedFilter ==
                                         snapshot
                                             .data.data[index].categoryNameEn);
                               },
@@ -247,111 +250,123 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       },
                     ),
                   ),
-                  FutureBuilder(
-                    future: _viewModel.currentCategoryFilterFuture,
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const SizedBox();
-                      } else {
-                        if (snapshot.data.data != null) {
-                          return ListView.builder(
-                            itemCount: snapshot.data.data.length,
-                            shrinkWrap: true,
-                            primary: false,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: displayWidth(context) * 0.04,
-                                vertical: displayHeight(context) * 0.025),
-                            itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                  width: displayWidth(context) * 0.9,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: displayWidth(context) * 0.02,
-                                      vertical: displayHeight(context) * 0.008),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          displayHeight(context) * 0.049),
-                                      color: const Color(0xffffffff),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: const Color(0xff000000)
-                                                .withOpacity(0.2),
-                                            spreadRadius: 0,
-                                            blurRadius: 25,
-                                            offset: const Offset(0, 4))
-                                      ]),
-                                  child: Row(children: [
-                                    ExtendedImage.network(
-                                      snapshot.data.data[index].images,
-                                      height: displayHeight(context) * 0.14,
-                                      width: displayWidth(context) * 0.28,
-                                      // color: Colors.grey
-                                      fit: BoxFit.fill,
-                                      shape: BoxShape.rectangle,
-                                      borderRadius: BorderRadius.circular(
-                                          displayHeight(context) * 0.044),
-                                    ),
-                                    SizedBox(
-                                      width: displayWidth(context) * 0.025,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: displayWidth(context) * 0.5,
-                                          child: Text(
-                                            snapshot.data.data[index].sysName,
-                                            style: TextStyle(
-                                                fontSize:
-                                                    displayHeight(context) *
-                                                        0.018,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height:
-                                              displayHeight(context) * 0.008,
-                                        ),
-                                        SizedBox(
-                                          width: displayWidth(context) * 0.5,
-                                          child: Text(
-                                            snapshot
-                                                .data.data[index].description,
-                                            style: TextStyle(
-                                                fontSize:
-                                                    displayHeight(context) *
-                                                        0.013,
-                                                color: ColorsManager.fontColor2,
-                                                overflow: TextOverflow.clip),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height:
-                                              displayHeight(context) * 0.008,
-                                        ),
-                                        SizedBox(
-                                          width: displayWidth(context) * 0.5,
-                                          child: Text(
-                                            snapshot.data.data[index].price,
-                                            style: TextStyle(
-                                                fontSize:
-                                                    displayHeight(context) *
-                                                        0.018,
-                                                color: ColorsManager.fontColor2,
-                                                fontWeight: FontWeight.w700,
-                                                overflow: TextOverflow.clip),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ]));
-                            },
-                          );
-                        } else {
+                  Consumer<HomeScreenViewmodel>(
+                    builder: (_, value, Widget? child) => FutureBuilder(
+                      future: _viewModel.currentCategoryFilterFuture,
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return const SizedBox();
+                        } else {
+                          if (snapshot.data.data != null) {
+                            return ListView.separated(
+                              separatorBuilder: (context, index) {
+                                return SizedBox(
+                                  height: displayHeight(context) * 0.02,
+                                );
+                              },
+                              itemCount: snapshot.data.data.length,
+                              shrinkWrap: true,
+                              primary: false,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: displayWidth(context) * 0.04,
+                                  vertical: displayHeight(context) * 0.025),
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                    width: displayWidth(context) * 0.9,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            displayWidth(context) * 0.02,
+                                        vertical:
+                                            displayHeight(context) * 0.008),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            displayHeight(context) * 0.049),
+                                        color: const Color(0xffffffff),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: const Color(0xff000000)
+                                                  .withValues(alpha: (0.2)),
+                                              spreadRadius: 0,
+                                              blurRadius: 25,
+                                              offset: const Offset(0, 4))
+                                        ]),
+                                    child: Row(children: [
+                                      ExtendedImage.network(
+                                        snapshot.data.data[index].images,
+                                        height: displayHeight(context) * 0.14,
+                                        width: displayWidth(context) * 0.28,
+                                        // color: Colors.grey
+                                        fit: BoxFit.fill,
+                                        shape: BoxShape.rectangle,
+                                        borderRadius: BorderRadius.circular(
+                                            displayHeight(context) * 0.044),
+                                      ),
+                                      SizedBox(
+                                        width: displayWidth(context) * 0.025,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            width: displayWidth(context) * 0.5,
+                                            child: Text(
+                                              snapshot.data.data[index].sysName,
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      displayHeight(context) *
+                                                          0.018,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height:
+                                                displayHeight(context) * 0.008,
+                                          ),
+                                          SizedBox(
+                                            width: displayWidth(context) * 0.5,
+                                            child: Text(
+                                              snapshot
+                                                  .data.data[index].description,
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      displayHeight(context) *
+                                                          0.013,
+                                                  color:
+                                                      ColorsManager.fontColor2,
+                                                  overflow: TextOverflow.clip),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height:
+                                                displayHeight(context) * 0.008,
+                                          ),
+                                          SizedBox(
+                                            width: displayWidth(context) * 0.5,
+                                            child: Text(
+                                              snapshot.data.data[index].price,
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      displayHeight(context) *
+                                                          0.018,
+                                                  color:
+                                                      ColorsManager.fontColor2,
+                                                  fontWeight: FontWeight.w700,
+                                                  overflow: TextOverflow.clip),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ]));
+                              },
+                            );
+                          } else {
+                            return const SizedBox();
+                          }
                         }
-                      }
-                    },
+                      },
+                    ),
                   )
                 ],
               ),

@@ -12,6 +12,7 @@ class ColorsManager {
   static const Color buttonColor2 = Color(0xff747474);
   static const Color buttonColor3 = Color(0xff989898);
   static const Color buttonColor4 = Color(0xffC8C8C8);
+  static const Color buttonColor5 = Color(0xffffffff);
   static const Color textFieldColor = Color(0xffF5F4F4);
   static const Color defaultShadowColor = Color(0xff000000);
   static const Color profilePicBorderColor = Color(0xff000000);
@@ -27,4 +28,5 @@ class ColorsManager {
   static const Color discreteCircleFirstColor = Color(0xff2795ca);
   static const Color discreteCircleSecondColor = Color(0xffe30716);
   static const Color discreteCircleThirdColor = Color(0xffffffff);
+  static const Color rateChoiceColor = Color(0xff2795ca);
 }

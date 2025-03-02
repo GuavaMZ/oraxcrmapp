@@ -82,7 +82,7 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                             boxShadow: [
                               BoxShadow(
                                   color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.1),
+                                      .withValues(alpha: 0.1),
                                   spreadRadius: 0,
                                   offset: const Offset(0, 4),
                                   blurRadius: 25)
@@ -425,7 +425,7 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               boxShadow: [
                                 BoxShadow(
                                     color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
+                                        .withValues(alpha: 0.1),
                                     spreadRadius: 0,
                                     offset: const Offset(0, 4),
                                     blurRadius: 25)
@@ -468,7 +468,7 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                               boxShadow: [
                                 BoxShadow(
                                     color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
+                                        .withValues(alpha: 0.1),
                                     spreadRadius: 0,
                                     offset: const Offset(0, 4),
                                     blurRadius: 25)
@@ -501,7 +501,7 @@ class _ProjectSummaryViewState extends State<ProjectSummaryView> {
                                             BoxShadow(
                                                 color: ColorsManager
                                                     .defaultShadowColor
-                                                    .withOpacity(0.1),
+                                                    .withValues(alpha: 0.1),
                                                 spreadRadius: 0,
                                                 offset: const Offset(0, 4),
                                                 blurRadius: 25)

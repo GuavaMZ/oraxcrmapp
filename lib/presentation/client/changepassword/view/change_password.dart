@@ -19,16 +19,16 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => _viewModel,
-      child: Scaffold(
-        backgroundColor: ColorsManager.bgColor,
-        body: SingleChildScrollView(
-        child: Center(
-          child: Column(children: [
-              SizedBox(
-                height: displayHeight(context) * 0.07,
-              ),
-               SizedBox(
+        create: (_) => _viewModel,
+        child: Scaffold(
+          backgroundColor: ColorsManager.bgColor,
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(children: [
+                SizedBox(
+                  height: displayHeight(context) * 0.07,
+                ),
+                SizedBox(
                   width: displayWidth(context) * 0.9,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +40,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               boxShadow: [
                                 BoxShadow(
                                     color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
+                                        .withValues(alpha: 0.1),
                                     spreadRadius: 0,
                                     offset: const Offset(0, 4),
                                     blurRadius: 25)
@@ -58,7 +58,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               boxShadow: [
                                 BoxShadow(
                                     color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
+                                        .withValues(alpha: 0.1),
                                     spreadRadius: 0,
                                     offset: const Offset(0, 4),
                                     blurRadius: 25)
@@ -71,92 +71,89 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   ),
                 ),
                 SizedBox(
-                height: displayHeight(context) * 0.07,
-              ),
-              SizedBox(
-                width: displayWidth(context) * 0.9,
-                height: displayHeight(context) * 0.08,
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xffF5F4F4),
-                    hintText: AppStrings.oldPassword.getString(context),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      borderSide:
-                          BorderSide(width: 0, color: Color(0xffffffff)),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      borderSide:
-                          BorderSide(width: 0, color: Color(0xffffffff)),
-                    ),
-                  ),
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.normal),
+                  height: displayHeight(context) * 0.07,
                 ),
-              ),
-              SizedBox(
-                height: displayHeight(context) * 0.04,
-              ),
-              SizedBox(
-                width: displayWidth(context) * 0.9,
-                height: displayHeight(context) * 0.08,
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xffF5F4F4),
-                    hintText: AppStrings.newPassword.getString(context),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      borderSide:
-                          BorderSide(width: 0, color: Color(0xffffffff)),
+                SizedBox(
+                  width: displayWidth(context) * 0.9,
+                  height: displayHeight(context) * 0.08,
+                  child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF5F4F4),
+                      hintText: AppStrings.oldPassword.getString(context),
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderSide:
+                            BorderSide(width: 0, color: Color(0xffffffff)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderSide:
+                            BorderSide(width: 0, color: Color(0xffffffff)),
+                      ),
                     ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      borderSide:
-                          BorderSide(width: 0, color: Color(0xffffffff)),
-                    ),
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.normal),
                   ),
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.normal),
                 ),
-              ),
-              SizedBox(
-                height: displayHeight(context) * 0.05,
-              ),
-              SizedBox(
-                width: displayWidth(context) * 0.9,
-                height: displayHeight(context) * 0.08,
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xffF5F4F4),
-                    hintText: AppStrings.confirmPassword.getString(context),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      borderSide:
-                          BorderSide(width: 0, color: Color(0xffffffff)),
+                SizedBox(
+                  height: displayHeight(context) * 0.04,
+                ),
+                SizedBox(
+                  width: displayWidth(context) * 0.9,
+                  height: displayHeight(context) * 0.08,
+                  child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF5F4F4),
+                      hintText: AppStrings.newPassword.getString(context),
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderSide:
+                            BorderSide(width: 0, color: Color(0xffffffff)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderSide:
+                            BorderSide(width: 0, color: Color(0xffffffff)),
+                      ),
                     ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      borderSide:
-                          BorderSide(width: 0, color: Color(0xffffffff)),
-                    ),
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.normal),
                   ),
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.normal),
                 ),
-              ),
-
-          ]
-        ),
-        ),
-      ),
-      )
-      );
+                SizedBox(
+                  height: displayHeight(context) * 0.05,
+                ),
+                SizedBox(
+                  width: displayWidth(context) * 0.9,
+                  height: displayHeight(context) * 0.08,
+                  child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF5F4F4),
+                      hintText: AppStrings.confirmPassword.getString(context),
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderSide:
+                            BorderSide(width: 0, color: Color(0xffffffff)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderSide:
+                            BorderSide(width: 0, color: Color(0xffffffff)),
+                      ),
+                    ),
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.normal),
+                  ),
+                ),
+              ]),
+            ),
+          ),
+        ));
   }
 }

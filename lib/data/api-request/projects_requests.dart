@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:oraxcrm/app/data_holders.dart';
 import 'package:oraxcrm/data/api-base/api_urls.dart';
 
 class ProjectsRequests {
@@ -8,11 +9,13 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(ApiLinks.baseUrl + ApiLinks.getProjects,
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(ApiLinks.baseUrl + ApiLinks.getProjects,
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -27,12 +30,13 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response =
-          await dio.get(ApiLinks.baseUrl + ApiLinks.getProjectDetailsById + id,
+      response = await dio
+          .get(ApiLinks.baseUrl + ApiLinks.getProjectDetailsById + id,
               options: Options(
                 method: 'GET',
                 headers: header,
-              ));
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -47,12 +51,13 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(
-          "${ApiLinks.baseUrl}${ApiLinks.getProjects}/id/$id/group/tasks",
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get("${ApiLinks.baseUrl}${ApiLinks.getProjects}/id/$id/group/tasks",
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -67,12 +72,14 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(
-          "${ApiLinks.baseUrl}${ApiLinks.getProjectTickets}?project_id=$id",
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(
+              "${ApiLinks.baseUrl}${ApiLinks.getProjectTickets}?project_id=$id",
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -86,15 +93,17 @@ class ProjectsRequests {
   Future getProjectActivities(Map<String, dynamic> header, String id) async {
     Response response;
     try {
-      response = await dio.get(
-          ApiLinks.baseUrl +
-              ApiLinks.getProjectActivities +
-              "?project_id=" +
-              id,
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(
+              ApiLinks.baseUrl +
+                  ApiLinks.getProjectActivities +
+                  "?project_id=" +
+                  id,
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -109,12 +118,14 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(
-          "${ApiLinks.baseUrl}${ApiLinks.getProjectDiscussions}?project_id=$id",
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(
+              "${ApiLinks.baseUrl}${ApiLinks.getProjectDiscussions}?project_id=$id",
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -130,12 +141,14 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(
-          "${ApiLinks.baseUrl}${ApiLinks.getProjectDiscussions}?project_id=$id",
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(
+              "${ApiLinks.baseUrl}${ApiLinks.getProjectDiscussions}?project_id=$id",
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -150,12 +163,13 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(
-          "${ApiLinks.baseUrl}${ApiLinks.getProjectFiles}?project_id=$id",
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get("${ApiLinks.baseUrl}${ApiLinks.getProjectFiles}?project_id=$id",
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
@@ -170,12 +184,14 @@ class ProjectsRequests {
     Response response;
     try {
       // print("بداية  الريسبونس ");
-      response = await dio.get(
-          "${ApiLinks.baseUrl}${ApiLinks.getProjectFileDetails}?file_id=$id",
-          options: Options(
-            method: 'GET',
-            headers: header,
-          ));
+      response = await dio
+          .get(
+              "${ApiLinks.baseUrl}${ApiLinks.getProjectFileDetails}?file_id=$id",
+              options: Options(
+                method: 'GET',
+                headers: header,
+              ))
+          .timeout(Duration(minutes: DataHolders.timeOut));
       return response;
     } on DioException catch (error) {
       if (error.response != null) {

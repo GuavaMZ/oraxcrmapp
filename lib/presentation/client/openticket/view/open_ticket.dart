@@ -86,7 +86,7 @@ class _OpenTicketViewState extends State<OpenTicketView> {
                                       BoxShadow(
                                           color: ColorsManager
                                               .defaultShadowColor
-                                              .withOpacity(0.1),
+                                              .withValues(alpha: 0.1),
                                           spreadRadius: 0,
                                           offset: const Offset(0, 4),
                                           blurRadius: 25)
@@ -107,7 +107,7 @@ class _OpenTicketViewState extends State<OpenTicketView> {
                                       BoxShadow(
                                           color: ColorsManager
                                               .defaultShadowColor
-                                              .withOpacity(0.1),
+                                              .withValues(alpha: 0.1),
                                           spreadRadius: 0,
                                           offset: const Offset(0, 4),
                                           blurRadius: 25)
@@ -388,7 +388,7 @@ class _OpenTicketViewState extends State<OpenTicketView> {
                               boxShadow: [
                                 BoxShadow(
                                   color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.2),
+                                      .withValues(alpha: 0.2),
                                   blurRadius: 4,
                                 )
                               ]),
@@ -416,7 +416,7 @@ class _OpenTicketViewState extends State<OpenTicketView> {
                                         Container(
                                           decoration: BoxDecoration(
                                               color: const Color(0xffffffff)
-                                                  .withOpacity(0.4),
+                                                  .withValues(alpha: 0.4),
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       displayHeight(context) *
@@ -490,16 +490,20 @@ class _OpenTicketViewState extends State<OpenTicketView> {
                                           ],
                                   });
                                   final res = await _viewModel.sendTicket(data);
-                                  print(res);
                                   if (res.data['status'] == true) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            content: Text(AppStrings
-                                                .ticketSubmitted
-                                                .getString(context))));
+                                    if (context.mounted) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(AppStrings
+                                                  .ticketSubmitted
+                                                  .getString(context))));
+                                    }
                                   }
-                                  context.pushReplacement(
-                                      Routes.ticketsSummaryRoute);
+                                  if (context.mounted) {
+                                    context.pushReplacement(
+                                        Routes.ticketsSummaryRoute);
+                                  }
+
                                   if (context.mounted) {
                                     context.pop();
                                   }

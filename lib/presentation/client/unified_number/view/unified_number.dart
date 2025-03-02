@@ -21,64 +21,63 @@ class _UnifiedNumberViewState extends State<UnifiedNumberView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => _viewModel,
-      child: Scaffold(
-        backgroundColor: ColorsManager.bgColor,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: displayHeight(context) * 0.06,
-                ),
-                SizedBox(
-                  width: displayWidth(context) * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                              color: ColorsManager.iconsColor3,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
-                                    spreadRadius: 0,
-                                    offset: const Offset(0, 4),
-                                    blurRadius: 25)
-                              ]),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.arrow_back))),
-                      Text(AppStrings.unifiedNumber.getString(context),
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      Container(
-                          decoration: BoxDecoration(
-                              color: ColorsManager.iconsColor3,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: ColorsManager.defaultShadowColor
-                                        .withOpacity(0.1),
-                                    spreadRadius: 0,
-                                    offset: const Offset(0, 4),
-                                    blurRadius: 25)
-                              ]),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: SvgPicture.asset(
-                                  'assets/images/menu-1 3.svg'))),
-                    ],
+        create: (_) => _viewModel,
+        child: Scaffold(
+          backgroundColor: ColorsManager.bgColor,
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: displayHeight(context) * 0.06,
                   ),
-                ),
-                SizedBox(
+                  SizedBox(
+                    width: displayWidth(context) * 0.9,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                                color: ColorsManager.iconsColor3,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: ColorsManager.defaultShadowColor
+                                          .withValues(alpha: 0.1),
+                                      spreadRadius: 0,
+                                      offset: const Offset(0, 4),
+                                      blurRadius: 25)
+                                ]),
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.arrow_back))),
+                        Text(AppStrings.unifiedNumber.getString(context),
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        Container(
+                            decoration: BoxDecoration(
+                                color: ColorsManager.iconsColor3,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: ColorsManager.defaultShadowColor
+                                          .withValues(alpha: 0.1),
+                                      spreadRadius: 0,
+                                      offset: const Offset(0, 4),
+                                      blurRadius: 25)
+                                ]),
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: SvgPicture.asset(
+                                    'assets/images/menu-1 3.svg'))),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
                     height: displayHeight(context) * 0.04,
                   ),
                   ElevatedButton(
-                      onPressed: () async {
-                      },
+                      onPressed: () async {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorsManager.bgColor,
                           elevation: 0,
@@ -116,8 +115,7 @@ class _UnifiedNumberViewState extends State<UnifiedNumberView> {
                     color: ColorsManager.separatorColor,
                   ),
                   ElevatedButton(
-                      onPressed: () async {
-                      },
+                      onPressed: () async {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorsManager.bgColor,
                           elevation: 0,
@@ -155,8 +153,7 @@ class _UnifiedNumberViewState extends State<UnifiedNumberView> {
                     color: ColorsManager.separatorColor,
                   ),
                   ElevatedButton(
-                      onPressed: () async {
-                      },
+                      onPressed: () async {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorsManager.bgColor,
                           elevation: 0,
@@ -168,7 +165,8 @@ class _UnifiedNumberViewState extends State<UnifiedNumberView> {
                           children: [
                             Row(
                               children: [
-                                SvgPicture.asset('assets/images/whatsapp 1.svg'),
+                                SvgPicture.asset(
+                                    'assets/images/whatsapp 1.svg'),
                                 const Padding(
                                   padding: EdgeInsets.only(right: 15),
                                 ),
@@ -189,10 +187,10 @@ class _UnifiedNumberViewState extends State<UnifiedNumberView> {
                               color: ColorsManager.iconsColor1,
                             )
                           ])),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ));
+        ));
   }
 }

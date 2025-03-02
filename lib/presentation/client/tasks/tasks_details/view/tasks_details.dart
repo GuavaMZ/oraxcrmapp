@@ -44,7 +44,7 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
                             boxShadow: [
                               BoxShadow(
                                   color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.1),
+                                      .withValues(alpha: 0.1),
                                   spreadRadius: 0,
                                   offset: const Offset(0, 4),
                                   blurRadius: 25)
@@ -64,7 +64,7 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
                             boxShadow: [
                               BoxShadow(
                                   color: ColorsManager.defaultShadowColor
-                                      .withOpacity(0.1),
+                                      .withValues(alpha: 0.1),
                                   spreadRadius: 0,
                                   offset: const Offset(0, 4),
                                   blurRadius: 25)
@@ -105,8 +105,8 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
                         BorderRadius.circular(displayHeight(context) * 0.05),
                     boxShadow: [
                       BoxShadow(
-                          color:
-                              ColorsManager.defaultShadowColor.withOpacity(0.1),
+                          color: ColorsManager.defaultShadowColor
+                              .withValues(alpha: 0.1),
                           spreadRadius: 0,
                           offset: const Offset(0, 4),
                           blurRadius: 25)
@@ -187,8 +187,8 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
                         BorderRadius.circular(displayHeight(context) * 0.05),
                     boxShadow: [
                       BoxShadow(
-                          color:
-                              ColorsManager.defaultShadowColor.withOpacity(0.1),
+                          color: ColorsManager.defaultShadowColor
+                              .withValues(alpha: 0.1),
                           spreadRadius: 0,
                           offset: const Offset(0, 4),
                           blurRadius: 25)
@@ -243,8 +243,8 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
                         BorderRadius.circular(displayHeight(context) * 0.05),
                     boxShadow: [
                       BoxShadow(
-                          color:
-                              ColorsManager.defaultShadowColor.withOpacity(0.1),
+                          color: ColorsManager.defaultShadowColor
+                              .withValues(alpha: 0.1),
                           spreadRadius: 0,
                           offset: const Offset(0, 4),
                           blurRadius: 25)
@@ -287,7 +287,7 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
               //       boxShadow: [
               //         BoxShadow(
               //             color:
-              //                 ColorsManager.defaultShadowColor.withOpacity(0.1),
+              //                 ColorsManager.defaultShadowColor.withValues(alpha:0.1),
               //             spreadRadius: 0,
               //             offset: const Offset(0, 4),
               //             blurRadius: 25)
